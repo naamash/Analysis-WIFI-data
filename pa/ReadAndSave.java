@@ -1,3 +1,5 @@
+package pa;
+
 import java.io.BufferedReader;
 
 import java.io.File;
@@ -33,7 +35,7 @@ public class ReadAndSave {
 
 	public static String[][] readingFile(File folder) throws IOException{	
 
-		ArrayList<String[]> answer = new ArrayList<>();
+		ArrayList<String[]> answer = new ArrayList<String[]>();
 
 		String[] line = new String[46];
 
@@ -174,7 +176,7 @@ public class ReadAndSave {
 		int LatPlace = Place(information,"CurrentLatitude");
 		int LonPlace = Place(information,"CurrentLongitude");
 		int WifiPlace = Place(information,"Type");
-		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<>();
+		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
 
 		while (r<information.length-1){
 
@@ -193,12 +195,12 @@ public class ReadAndSave {
 					CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(information,arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size());
 
-					arrLineOfInfo = new ArrayList<>();
+					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 				else{
 					CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(information,arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size());
-					arrLineOfInfo = new ArrayList<>();
+					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 
 			}
@@ -268,12 +270,14 @@ public class ReadAndSave {
 			int a = sc.nextInt();
 
 			if (a == 1) {
-				Scanner timeSt = new Scanner((System.in));
-				Scanner timeEn = new Scanner((System.in));
-				System.out.println("enter begining");
-				String timestart = timeSt.nextLine();
-				System.out.println("enter end");
-				String timeend = timeEn.nextLine();
+//				Scanner timeSt = new Scanner((System.in));
+//				Scanner timeEn = new Scanner((System.in));
+//				System.out.println("enter begining");
+//				String timestart = timeSt.nextLine();
+//				System.out.println("enter end");
+//				String timeend = timeEn.nextLine();
+				String timestart = "2017/10/27 16:34:00";
+				String timeend = "2017/11/03 17:25:26";
 				try {
 					Sorting.SortByTime(file, timestart, timeend);
 				} catch (Exception e) {

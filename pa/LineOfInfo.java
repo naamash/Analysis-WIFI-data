@@ -1,3 +1,5 @@
+package pa;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public class LineOfInfo implements Comparable<LineOfInfo>  {
-	ArrayList<LineOfInfo> lines = new ArrayList<>();
+	ArrayList<LineOfInfo> lines = new ArrayList<LineOfInfo>();
 	
 	String Type;
 	String AccuracyMeters;
