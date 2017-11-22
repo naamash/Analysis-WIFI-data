@@ -1,8 +1,5 @@
 package pa;
 
-import java.util.ArrayList;
-
-
 public class MacBig {
 
 	String Mac;
@@ -15,14 +12,14 @@ public class MacBig {
 	String ID;
 
 	public MacBig(){
-		String Mac=null;
-		String Signal=null;
-		String time=null;
-		String frequency=null;
-		String lon=null;
-		String lat=null;
-		String ssid=null;
-		String ID=null;
+		this.Mac=null;
+		this.Signal=null;
+		this.time=null;
+		this.frequency=null;
+		this.lon=null;
+		this.lat=null;
+		this.ssid=null;
+		this.ID=null;
 	}
 
 

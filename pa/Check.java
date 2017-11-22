@@ -20,7 +20,7 @@ public class Check {
 		//				2017/10/27 16:34:00
 		//				2017/11/03 17:25:26
 		//		
-		ReadAndSave.Decide();
+		ChooseFilter.Decide();
 		
 		
 	}

@@ -30,7 +30,7 @@ public class Copying {
 
 		arrLineOfInfo.sort(null);
 		
-		String[] line = ReadAndSave.CopyingToAnswer(information,answer,indexOfRow,arrLineOfInfo.size());
+		String[] line = CopyingToAnswer(information,answer,indexOfRow,arrLineOfInfo.size());
 
 		for (int i = 0; i < realsize; i++) {
 			line[ssid]=arrLineOfInfo.get(i).SSID;
@@ -53,6 +53,27 @@ public class Copying {
 		}
 		answer.add(line);
 	}
+	/**
+	 * This function copying values from information matrix to array of String type.
+	 * @param information
+	 * @param answer
+	 * @param indexOfRow
+	 * @param realsize
+	 * @return the array String.
+	 */
+
+	public static String[] CopyingToAnswer(String information[][],ArrayList<String[]> answer,int indexOfRow,  int realsize){
+		String[] line = new String[46];
+		line[0] = information[indexOfRow][3];
+		line[1] = information[0][5];
+		line[2] = information[indexOfRow][6];
+		line[3] = information[indexOfRow][7];
+		line[4] = information[indexOfRow][8];
+		line[5] = "" + realsize;
+
+		return line;
+	}
+
 
 	/**
 	 * This function converting from channel type to frequency type by ormula.
@@ -73,42 +94,5 @@ public class Copying {
 			return "";
 		}
 	}
-//
-//	/**
-//	 * The function copying all the relevant values to ArrayList<String[]> matrix2.
-//	 * @param lines
-//	 * @param matrix2
-//	 * @param indexOfRow
-//	 * @param indexanswer
-//	 */
-//	
-//	public static void CopyingToSorted(ArrayList<LineOfInfo> lines, ArrayList<String[]> matrix2,int indexOfRow,int indexanswer){
-//		int ssid=6;
-//		int mac=7;
-//		int frequncy=8;
-//		int signal=9;		
-//		int networks=0;
-//
-//		for (int i = 0; i < lines.size(); i++) {
-//			matrix2.get(indexanswer)[ssid]=lines.get(i).SSID;
-//			ssid=ssid+4;
-//			networks++;
-//		}
-//		matrix2.get(indexanswer)[5]="" + networks;
-//
-//		for (int i = 0; i < lines.size(); i++) {
-//			matrix2.get(indexanswer)[mac]=lines.get(i).MAC;
-//			mac=mac+4;
-//		}
-//		for (int i = 0; i < lines.size(); i++) {
-//			matrix2.get(indexanswer)[frequncy]=lines.get(i).Channel;
-//			frequncy=frequncy+4;
-//		}
-//		for (int i = 0; i < lines.size(); i++) {
-//			matrix2.get(indexanswer)[signal]=lines.get(i).RSSI;
-//			signal=signal+4;
-//		}
-//	}
-//	
 
 }

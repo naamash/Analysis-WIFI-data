@@ -33,14 +33,73 @@ public class ReadAndSave {
 	 * @throws IOException
 	 */
 
-	public static String[][] readingFile(File folder) throws IOException{	
+	public static String [][] readingFile(File folder) throws IOException {	
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 
-		String[] line = new String[46];
-
 		File[] listOfFiles = folder.listFiles();
 		String [][]information ;
+
+		answer.add(MadeLine());
+		int r=2;
+		boolean flag = false;
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+			flag = false;
+			try {
+				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
+					File f = new File(listOfFiles[i].getPath());
+					FileInputStream fi = new FileInputStream(f);
+					Scanner sc = new Scanner(fi);
+					int m = 0;
+					int row = 0;
+					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
+					while (read.readLine() != null) {
+						row++;
+					}
+					read.close();
+
+					information = new String[row][12];
+					r = 2;
+
+					while (sc.hasNext()) {
+						String str = sc.nextLine();
+						information[m] = str.split(",");
+						try {
+							if ((information[0][0].contains("WigleWifi-1.4")) && (!(information[0][0].equals(null)))
+									&& (!(information[0][1].equals(null)))) {
+								m++;
+							}
+							else{
+								throw new IOException();
+							}
+						}
+						catch (Exception e) {
+							flag = true;
+							System.err.println("The file " + listOfFiles[i].getName() + " is illegal!!");
+						}
+					}
+
+					if(flag)
+						continue;
+
+					Save_info(information, answer, r);
+					sc.close();
+					fi.close();
+				}
+
+				else {
+					throw new IOException(); 
+				}
+			}
+			catch (Exception e) {
+				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
+			}
+		}
+		return WriteToCsv(answer);
+	}
+	public static String[] MadeLine(){
+		String[] line = new String[46];
 		line[0] = "Time";
 		line[1] = "ID";
 		line[2] = "Lat";
@@ -72,73 +131,11 @@ public class ReadAndSave {
 			line[i] = helper4 + hel;
 			hel++;
 		}
+		return line;
 
-		answer.add(line);
+	}
 
-		int r=2;
-
-		boolean flag = false;
-
-		for (int i = 0; i < listOfFiles.length; i++) {
-
-			flag = false;
-
-			try {
-
-				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
-					File f = new File(listOfFiles[i].getPath());
-					FileInputStream fi = new FileInputStream(f);
-					Scanner sc = new Scanner(fi);
-					int m = 0;
-					int row = 0;
-					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
-					while (read.readLine() != null) {
-						row++;
-					}
-					read.close();
-
-					information = new String[row][12];
-					r = 2;
-
-					while (sc.hasNext()) {
-						String str = sc.nextLine();
-						information[m] = str.split(",");
-						try {
-							if ((information[0][0].contains("WigleWifi-1.4")) && (!(information[0][0].equals(null)))
-									&& (!(information[0][1].equals(null)))) {
-								m++;
-							}
-							else{
-								throw new IOException();
-							}
-
-						}
-						catch (Exception e) {
-							flag = true;
-							System.err.println("The file " + listOfFiles[i].getName() + " is illegal!!");
-						}
-					}
-
-					if(flag)
-						continue;
-
-
-					Save_info(information, answer, r);
-
-					sc.close();
-					fi.close();
-
-				}
-
-				else {
-					//if (!(listOfFiles[i].isFile()) || !(listOfFiles[i].getName().contains("csv"))){
-					throw new IOException(); 
-				}
-			}
-			catch (Exception e) {
-				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
-			}
-		}
+	public static String[][] WriteToCsv(ArrayList<String[]> answer) throws IOException{
 
 		String [][]Answer_One = new String [answer.size()][46];
 		int ansRows = 0;
@@ -148,7 +145,6 @@ public class ReadAndSave {
 			}
 			ansRows++;
 		}
-		//Sorting.printanswer(Answer_One);
 
 		FileWriter write = new FileWriter("C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv");
 		PrintWriter pw = new PrintWriter(write);
@@ -160,7 +156,6 @@ public class ReadAndSave {
 			pw.println();
 		}
 		write.close();
-
 		return Answer_One;
 	}
 
@@ -172,10 +167,10 @@ public class ReadAndSave {
 	 * @param r
 	 */
 	public static void Save_info(String [][]information,ArrayList<String[]> answer,int r){
-		int TimePlace = Place(information,"FirstSeen");
-		int LatPlace = Place(information,"CurrentLatitude");
-		int LonPlace = Place(information,"CurrentLongitude");
-		int WifiPlace = Place(information,"Type");
+		int TimePlace = FindIndex.PlaceArticle(information,"FirstSeen",1);
+		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
+		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
+		int WifiPlace = FindIndex.PlaceArticle(information,"Type",1);
 		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
 
 		while (r<information.length-1){
@@ -192,116 +187,18 @@ public class ReadAndSave {
 				arrLineOfInfo.add(line);
 
 				if(arrLineOfInfo.size() >= 10){
-					CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
+					Copying.CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(information,arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size());
 
 					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 				else{
-					CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
+					Copying.CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(information,arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size());
 					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
-
 			}
 			r++;
-		}
-	}
-
-	/**
-	 * This function copying values from information matrix to array of String type.
-	 * @param information
-	 * @param answer
-	 * @param indexOfRow
-	 * @param realsize
-	 * @return the array String.
-	 */
-
-	public static String[] CopyingToAnswer(String information[][],ArrayList<String[]> answer,int indexOfRow,  int realsize){
-		String[] line = new String[46];
-		line[0] = information[indexOfRow][3];
-		line[1] = information[0][5];
-		line[2] = information[indexOfRow][6];
-		line[3] = information[indexOfRow][7];
-		line[4] = information[indexOfRow][8];
-		line[5] = "" + realsize;
-
-		return line;
-	}
-	/**
-	 * This function getting matrix of String type, and String name.
-	 * The function search the String name on the matrix and return the index of this.
-	 * @param answer
-	 * @param name
-	 * @return
-	 */
-	public static int Place (String [][]information, String name){
-		for (int i = 0; i <11; i++) {
-			if(information[1][i].equals(name)){
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	public static void Decide() throws IOException{
-		boolean flag1 = true;
-		while(flag1){
-			try {
-				Scanner folderr = new Scanner((System.in));
-				System.out.println("enter folder name");
-				String foldername = folderr.nextLine();
-				File folder = new File(foldername);
-				ReadAndSave.readingFile(folder);
-				flag1 = false;
-			} catch (Exception e) {
-				System.err.println("This folder does'nt exist! try again.");
-			}
-		}
-//		Scanner p = new Scanner(System.in);
-//		System.out.println("Please write where you want to save the CSV file");
-//		String place = p.next() + "\\Answer_Of_Matala_Zero.csv";
-		File file = new File("C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv");
-		boolean flag = true;
-		while (flag){
-
-			Scanner sc = new Scanner((System.in));
-			System.out.println("enter: 1 to sortByTime , 2 to sortByLocation or 3 to sortById");
-			int a = sc.nextInt();
-
-			if (a == 1) {
-//				Scanner timeSt = new Scanner((System.in));
-//				Scanner timeEn = new Scanner((System.in));
-//				System.out.println("enter begining");
-//				String timestart = timeSt.nextLine();
-//				System.out.println("enter end");
-//				String timeend = timeEn.nextLine();
-				String timestart = "2017/10/27 16:34:00";
-				String timeend = "2017/11/03 17:25:26";
-				try {
-					Sorting.SortByTime(file, timestart, timeend);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				flag = false;
-
-			} else if (a == 2) {
-				Scanner location = new Scanner((System.in));
-				System.out.println("enter lat");
-				String locationstart = location.nextLine();
-				System.out.println("enter lon");
-				String locationend = location.nextLine();
-				System.out.println("enter radious");
-				double radious = location.nextDouble();
-				Sorting.SortByLocation(file, locationstart, locationend, radious);
-				flag = false;					
-			} else if (a == 3) {
-				Scanner id = new Scanner((System.in));
-				System.out.println("enter id");
-				String idName = id.nextLine();
-				Sorting.SortByID(file, "display=" + idName);
-				flag = false;					
-			} 
 		}
 	}
 }
