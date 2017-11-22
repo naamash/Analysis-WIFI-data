@@ -107,19 +107,21 @@ public class Sorting {
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
 				SaveTheLargestSSID(macs, answer, rowSort);
 
-				for (int j2 = 0; j2 < answer[0].length; j2++) {
-					sorted[rowSort][j2]=answer[i][j2];
-
-				}
+//				for (int j2 = 0; j2 < answer[0].length; j2++) {
+//					sorted[rowSort][j2]=answer[i][j2];
+//
+//				}
 				rowSort++;
 			}
 		}
+		
 		for (int i = 0; i < macs.size(); i++) {
 			System.out.println(macs.get(i).toString());
 		}
 		//MacBig.CheckMac(sorted);
-		printanswer(sorted);
-		ConvertToKml.ToKml(sorted);
+		//printanswer(sorted);
+		ConvertToKml.ToKml(macs);
+		//ConvertToKml.ToKml(sorted);
 		//	return sorted;
 	}
 
@@ -260,7 +262,7 @@ public class Sorting {
 			}
 		}
 		//printanswer(sorted);
-		ConvertToKml.ToKml(sorted);
+		//ConvertToKml.ToKml(sorted);
 		//kmlFile.convertTokml(sorted);
 		//return sorted;
 	}
@@ -352,7 +354,7 @@ public class Sorting {
 		}
 		//printanswer(sorted);
 		//kmlFile.convertTokml(sorted);
-		ConvertToKml.ToKml(sorted);
+		//ConvertToKml.ToKml(sorted);
 		//	return sorted;
 	}
 
