@@ -39,10 +39,12 @@ public class ConvertToKml {
 		String[] finalDate=finalTime[0].split("/");
 		if(finalDate[0].length()==4){
 			timeSt+= finalDate[0]+"-"+finalDate[1]+"-"+finalDate[2]+"T"+finalTime[1];
+			System.out.println(timeSt);
 			return timeSt;
 		}
 		else{
 			timeSt+= finalDate[2]+"-"+finalDate[1]+"-"+finalDate[0]+"T"+finalTime[1];
+			System.out.println(timeSt);
 			return timeSt;
 		}
 	}

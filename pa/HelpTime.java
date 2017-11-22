@@ -67,11 +67,14 @@ public class HelpTime {
 
 		try {			
 			date = sdf.parse(time);
+			System.out.println(date);
 			return date;
 		} catch (ParseException e) {}
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
 			date = sdf2.parse(time);
+			System.out.println(date);
+
 			return date;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -79,6 +82,8 @@ public class HelpTime {
 		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		try{
 			date = sdf3.parse(time);
+			System.out.println(date);
+
 			return date;
 		}
 		catch (ParseException e){
@@ -87,11 +92,15 @@ public class HelpTime {
 		SimpleDateFormat sdf4 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");	
 		try {
 			date = sdf4.parse(time);
+			System.out.println(date);
+
 			return date;		
 		}
 		catch (ParseException e){
 			e.printStackTrace();		
 		}
+		System.out.println(date);
+
 		return date;
 	}
 

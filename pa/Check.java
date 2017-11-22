@@ -20,7 +20,10 @@ public class Check {
 		//				2017/10/27 16:34:00
 		//				2017/11/03 17:25:26
 		//		
-		ChooseFilter.Decide();
+		
+		HelpTime.fromStringToDate("2017-11-03 16:10:50");
+		//ConvertToKml.ConvertTimeToKmlFormat("2017/11/03 16:10:50");
+		//ChooseFilter.Decide();
 		
 		
 	}
