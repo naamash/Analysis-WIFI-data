@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 
 public class ReadAndSave {
-
+static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 	/**
 	 * This function get folder of files and sort it for getting only relevant files of CSV type.
 	 * for doing that the function call another functions from it's class and from another classes on this package.
@@ -160,7 +160,7 @@ public class ReadAndSave {
 			ansRows++;
 		}
 
-		FileWriter write = new FileWriter("C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv");
+		FileWriter write = new FileWriter(location);
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.length; i++) {
 			for (int j = 0; j < Answer_One[0].length; j++) {

@@ -28,9 +28,12 @@ public class filters {
 	 * @param end
 	 * @throws IOException
 	 */
+
 	public static void FilterByTime(File file, String start, String end) throws Exception{
+		System.out.println(HelpTime.fromStringToDate(start));
 		Date StartDate = HelpTime.fromStringToDate(start);
-		Date EndDate = HelpTime.fromStringToDate(end);
+		System.out.println(StartDate);
+		Date EndDate =  HelpTime.fromStringToDate(end);
 		ArrayList<MacBig> macs=new ArrayList<MacBig>();
 
 		FileInputStream fi = new FileInputStream(file);
@@ -58,8 +61,10 @@ public class filters {
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
 			dateLine = (Date) (HelpTime.fromStringToDate(answer[i][timeIndex]));
+			System.out.println(StartDate);
+
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
-				HelpTime.SaveTheLargestSSID(macs, answer, rowSort);
+				macs = HelpTime.SaveTheLargestSSID(macs, answer, rowSort);
 				rowSort++;
 			}
 		}

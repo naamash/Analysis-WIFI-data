@@ -16,16 +16,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class HelpTime {
-	
-		/**
-		 * The function accept ArrayList of MacBig type , matrix of String type and int row.
-		 * The function save the largest SSID of each Mac.
-		 * The function copying all the Values to ArrayList of MacBig type 
-		 * @param macs
-		 * @param answer
-		 * @param row
-		 */
-	public static void SaveTheLargestSSID (ArrayList<MacBig> macs,String [][]answer,int row){
+
+	/**
+	 * The function accept ArrayList of MacBig type , matrix of String type and int row.
+	 * The function save the largest SSID of each Mac.
+	 * The function copying all the Values to ArrayList of MacBig type 
+	 * @param macs
+	 * @param answer
+	 * @param row
+	 */
+	public static ArrayList<MacBig> SaveTheLargestSSID (ArrayList<MacBig> macs,String [][]answer,int row){
 
 		boolean isIn = true;
 		int ssidindex=FindIndex.Place(answer, "SSID1");
@@ -61,6 +61,7 @@ public class HelpTime {
 				macs.add(temp);
 			}
 		}
+		return macs;
 	}
 	/**
 	 * The function accept two MacBig type and copying all the Values of one another
@@ -84,41 +85,25 @@ public class HelpTime {
 	 * @return the time in format of Date
 	 */
 	public static Date fromStringToDate (String time)   {
-		time = time.replace("-", "/");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		time = time.replace("/", "-");
+		SimpleDateFormat sdf = new SimpleDateFormat();
 		Date date=null;
-
-		try {			
+		if(time.split(" ")[1].length() == 5)
+			time = time + ":00";
+		try {	
+			System.out.println(time+"3");
+			if(time.split(" ")[0].split("-")[0].length() == 2)
+				sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+			else
+				sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			date = sdf.parse(time);
 			return date;
-		} catch (ParseException e) {}
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		try {
-			date = sdf2.parse(time);
-
-			return date;
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
-		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		try{
-			date = sdf3.parse(time);
-
-			return date;
-		}
-		catch (ParseException e){
-			e.printStackTrace();
-		}
-		SimpleDateFormat sdf4 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");	
-		try {
-			date = sdf4.parse(time);
-
-			return date;		
-		}
-		catch (ParseException e){
-			e.printStackTrace();		
+		catch (Exception e) {
+			
 		}
 		return date;
 	}
-
 }
+	
+

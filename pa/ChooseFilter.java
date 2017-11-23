@@ -55,10 +55,24 @@ public class ChooseFilter {
 	public static boolean time(File file, boolean flag){
 		Scanner timeSt = new Scanner((System.in));
 		Scanner timeEn = new Scanner((System.in));
-		System.out.println("enter begining");
+		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
 		String timestart = timeSt.nextLine();
+		while(timestart.length()!=19)
+		{
+			timeSt = new Scanner((System.in));
+			
+			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+			timestart = timeSt.nextLine();
+		}
 		System.out.println("enter end");
 		String timeend = timeEn.nextLine();
+		while(timeend.length()!=19)
+		{
+			timeEn = new Scanner((System.in));
+			
+			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
+			timeend = timeEn.nextLine();
+		}
 		try {
 			filters.FilterByTime(file, timestart, timeend);
 		} catch (Exception e) {
