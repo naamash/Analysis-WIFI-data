@@ -66,7 +66,6 @@ public class filters {
 		ConvertToKml.ToKml(macs);
 	}
 
-	
 	/**
 	 * This function sort the file it gets by ID.
 	 * the function gets file and String ID .
@@ -76,7 +75,6 @@ public class filters {
 	 * @param ID
 	 * @throws IOException
 	 */
-
 	public static void FilterByID(File file, String ID) throws IOException{
 		ArrayList<MacBig> macs=new ArrayList<MacBig>();
 
@@ -145,7 +143,6 @@ public class filters {
 		sc.close();
 		fi.close();
 
-
 		int latIndex = FindIndex.PlaceArticle(answer, "Lat",0);
 		int lonIndex = FindIndex.PlaceArticle(answer, "Lon",0);
 		int rowSort = 1;
@@ -172,10 +169,9 @@ public class filters {
 		double y1=(Double.parseDouble(lon));
 		double y2=(Double.parseDouble(lon1));
 		double distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-
 		return distance;
 	}
-
+	
 }
 
 

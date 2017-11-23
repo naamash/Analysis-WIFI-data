@@ -1,12 +1,30 @@
 package pa;
 
+/**
+ * This class contains function that "help" to three functions filters (filters class).
+ * The functions of the filters call to this functions.
+ * function that save the largest SSID.
+ * function swap.
+ * function that convert from String To Date.
+ * function that calculate the distance between two points.
+ * @author 
+ *
+ */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class HelpTime {
-
+	
+		/**
+		 * The function accept ArrayList of MacBig type , matrix of String type and int row.
+		 * The function save the largest SSID of each Mac.
+		 * The function copying all the Values to ArrayList of MacBig type 
+		 * @param macs
+		 * @param answer
+		 * @param row
+		 */
 	public static void SaveTheLargestSSID (ArrayList<MacBig> macs,String [][]answer,int row){
 
 		boolean isIn = true;
@@ -44,7 +62,11 @@ public class HelpTime {
 			}
 		}
 	}
-
+	/**
+	 * The function accept two MacBig type and copying all the Values of one another
+	 * @param temp
+	 * @param original
+	 */
 	public static void swap(MacBig temp,MacBig original){
 		original.time=temp.time;
 		original.ID = temp.ID;
@@ -56,9 +78,10 @@ public class HelpTime {
 		original.Signal = temp.Signal;
 	}
 	/**
+	 * The function accept String time, checking which format it is in and convert this to Date type 
 	 * https://www.mkyong.com/java/java-date-and-calendar-examples/
 	 * @param 
-	 * @return
+	 * @return the time in format of Date
 	 */
 	public static Date fromStringToDate (String time)   {
 		time = time.replace("-", "/");
@@ -67,13 +90,11 @@ public class HelpTime {
 
 		try {			
 			date = sdf.parse(time);
-			System.out.println(date);
 			return date;
 		} catch (ParseException e) {}
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
 			date = sdf2.parse(time);
-			System.out.println(date);
 
 			return date;
 		} catch (ParseException e) {
@@ -82,7 +103,6 @@ public class HelpTime {
 		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		try{
 			date = sdf3.parse(time);
-			System.out.println(date);
 
 			return date;
 		}
@@ -92,43 +112,13 @@ public class HelpTime {
 		SimpleDateFormat sdf4 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");	
 		try {
 			date = sdf4.parse(time);
-			System.out.println(date);
 
 			return date;		
 		}
 		catch (ParseException e){
 			e.printStackTrace();		
 		}
-		System.out.println(date);
-
 		return date;
 	}
-
-	/**
-	 * check if the input is in the same format of the String-format
-	 * 
-	 * @param date
-	 * @param format
-	 * @return
-	 */
-	public static boolean checkingTheInput(String date, String format) {
-		if (format.equals("dd/mm/yyyy")) {
-			if ((date.length() == 10) && (date.charAt(2) == '/') && (date.charAt(5) == '/'))
-				return true;
-		}
-
-		if (format.equals("hh:mm:ss")) {
-			if ((date.length() == 8) && (date.charAt(2) == ':') && (date.charAt(5) == ':'))
-				return true;
-		}
-		return false;
-
-	}
-
-
-
-
-
-
 
 }

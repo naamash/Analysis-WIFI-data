@@ -27,6 +27,9 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 	String MAC;
 
 
+		/**
+		 * defulte constractor
+		 */
 	public LineOfInfo(){
 		this.Type = null;
 		this.AccuracyMeters = null;
@@ -41,6 +44,10 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 		this.MAC = null;
 	}
 
+		/**
+		 * copying constractor
+		 * @param other
+		 */
 	public LineOfInfo(LineOfInfo other) {
 		this.AccuracyMeters = other.AccuracyMeters;
 		this.AltitudeMeters = other.AltitudeMeters;
@@ -54,7 +61,20 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 		this.SSID = other.SSID;
 		this.Type = other.Type;
 	}
-
+	/**
+	 * Defined constructors
+	 * @param Type
+	 * @param AccuracyMeters
+	 * @param AltitudeMeters
+	 * @param CurrentLongitude
+	 * @param CurrentLatitude
+	 * @param RSSI
+	 * @param Channel
+	 * @param FirstSeen
+	 * @param AuthMode
+	 * @param SSID
+	 * @param MAC
+	 */
 	public LineOfInfo(String Type,String AccuracyMeters,String AltitudeMeters,String CurrentLongitude,String CurrentLatitude,
 			String RSSI,String Channel,String FirstSeen,String AuthMode,String SSID,String MAC){
 		this.AccuracyMeters = AccuracyMeters;
@@ -69,6 +89,13 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 		this.SSID = SSID;
 		this.Type = Type;
 	}
+	
+	/**
+	 * The function accept matrix of String type and int indexOfLine
+	 * The function enter all Values from the matrix to Values LineOfInfo
+	 * @param matrix
+	 * @param indexOfLine
+	 */
 	
 	public LineOfInfo(String matrix[][], int indexOfLine){
 		this.MAC = matrix[indexOfLine][0];
@@ -94,6 +121,9 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 				+ ", MAC=" + MAC + "]";
 	}
 
+	/**
+	 * The function compare between two RSSI of LineOfInfo type. 
+	 */
 	public int compareTo(LineOfInfo line) {
 		return this.RSSI.compareTo(line.RSSI);
 	}

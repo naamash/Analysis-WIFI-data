@@ -19,40 +19,38 @@ public class Copying {
 	 * @param realsize
 	 * @param sarr
 	 */
-
-	public static void CopyingToAnswer(String [][]information ,ArrayList<LineOfInfo> arrLineOfInfo,ArrayList<String[]> answer,
-		int indexOfRow,int realsize,int sarr){
+	public static void CopyingToAnswer(ArrayList<LineOfInfo> arrLineOfInfo,
+		ArrayList<String[]> answer,int indexOfRow,int realsize,int sarr,String[] infoofLine){
 		int ssid=6;
 		int mac=7;
 		int frequncy=8;
 		int signal=9;		
 		int networks=0;
-
+		
 		arrLineOfInfo.sort(null);
 		
-		String[] line = CopyingToAnswer(information,answer,indexOfRow,arrLineOfInfo.size());
-
 		for (int i = 0; i < realsize; i++) {
-			line[ssid]=arrLineOfInfo.get(i).SSID;
+			infoofLine[ssid]=arrLineOfInfo.get(i).SSID;
 			ssid=ssid+4;
 			networks++;
 		}
-		line[5]="" + networks;
+		infoofLine[5]="" + networks;
 
 		for (int i = 0; i < realsize; i++) {
-			line[mac]=arrLineOfInfo.get(i).MAC;
+			infoofLine[mac]=arrLineOfInfo.get(i).MAC;
 			mac=mac+4;
 		}
 		for (int i = 0; i < realsize; i++) {
-			line[frequncy]=From_Channel_To_Frequency(arrLineOfInfo.get(i).Channel);
+			infoofLine[frequncy]=From_Channel_To_Frequency(arrLineOfInfo.get(i).Channel);
 			frequncy=frequncy+4;
 		}
 		for (int i = 0; i < realsize; i++) {
-			line[signal]=arrLineOfInfo.get(i).RSSI;
+			infoofLine[signal]=arrLineOfInfo.get(i).RSSI;
 			signal=signal+4;
 		}
-		answer.add(line);
+		answer.add(infoofLine);
 	}
+	
 	/**
 	 * This function copying values from information matrix to array of String type.
 	 * @param information
@@ -61,8 +59,7 @@ public class Copying {
 	 * @param realsize
 	 * @return the array String.
 	 */
-
-	public static String[] CopyingToAnswer(String information[][],ArrayList<String[]> answer,int indexOfRow,  int realsize){
+	public static String[] CopyingToAnswerFirst(String information[][],ArrayList<String[]> answer,int indexOfRow,  int realsize){
 		String[] line = new String[46];
 		line[0] = information[indexOfRow][3];
 		line[1] = information[0][5];
@@ -76,7 +73,7 @@ public class Copying {
 
 
 	/**
-	 * This function converting from channel type to frequency type by ormula.
+	 * This function converting from channel type to frequency type by formula.
 	 * @param getting channel from String type.
 	 * @return frequency from String type.
 	 */
@@ -88,6 +85,7 @@ public class Copying {
 		}
 		else if (((Integer.parseInt(channel)>=36)&&(Integer.parseInt(channel)<=165))){
 			ans = "" + ((Integer.parseInt(channel)-34)*5 + 5170);
+
 			return ans;
 		}
 		else {

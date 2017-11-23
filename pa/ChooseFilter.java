@@ -1,10 +1,16 @@
 package pa;
-
+ /**
+ * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location 
+ */
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class ChooseFilter {
+	
+	/**
+	 * This function ask user to enter folder name and choose acoording to what to sort until the user enter correct input
+	 */
 	public static void Decide() throws IOException{
 		boolean flag1 = true;
 		while(flag1){
@@ -38,7 +44,14 @@ public class ChooseFilter {
 			} 
 		}
 	}
-
+	
+	/**
+	 * The function accepts file and boolean flag. 
+	 * The function ask user to enter time start and time end that acoording to this, the function sort.
+	 * @param file
+	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
+	 * @return
+	 */
 	public static boolean time(File file, boolean flag){
 		Scanner timeSt = new Scanner((System.in));
 		Scanner timeEn = new Scanner((System.in));
@@ -53,8 +66,14 @@ public class ChooseFilter {
 		}
 		return false;
 	}
-
-	public static boolean location(File file, boolean flag) throws IOException{
+	
+	/**
+	 * The function accepts file and boolean flag. 
+	 * The function ask user to enter lat, lon and radious that acoording to this, the function sort.
+	 * @param file
+	 * @param flag - after user enter the lat, lon and radious, the function return flag = false in order to the function not ask the user again.  
+	 */
+	public static boolean location(File file, boolean flag){
 		Scanner location = new Scanner((System.in));
 		System.out.println("enter lat");
 		String locationstart = location.nextLine();
@@ -62,17 +81,29 @@ public class ChooseFilter {
 		String locationend = location.nextLine();
 		System.out.println("enter radious");
 		double radious = location.nextDouble();
-		filters.FilterByLocation(file, locationstart, locationend, radious);
+		try {
+			filters.FilterByLocation(file, locationstart, locationend, radious);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return false;				
 	}
-
-	public static boolean id(File file, boolean flag) throws IOException{
+	
+	/**
+	 * The function accepts file and boolean flag. 
+	 * The function ask user to enter id that acoording to this, the function sort.
+	 * @param file
+	 * @param flag - after user enter the id, the function return flag = false in order to the function not ask the user again.  
+	 */
+	public static boolean id(File file, boolean flag){
 		Scanner id = new Scanner((System.in));
 		System.out.println("enter id");
 		String idName = id.nextLine();
-		filters.FilterByID(file, "display=" + idName);
+		try {
+			filters.FilterByID(file, "display=" + idName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return false;	
 	}
-
-
 }

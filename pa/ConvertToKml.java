@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
-
+/**
+ * The function accept ArrayList<MacBig> macs and convert to kml file with all the Values
+ * @author 
+ *
+ */
 public class ConvertToKml {
 
 	public static void ToKml(ArrayList<MacBig> macs){	
@@ -31,7 +35,11 @@ public class ConvertToKml {
 		}
 	}
 
-
+	/**
+	 * The function accept String date and convert this to format of kml
+	 * @param date
+	 * @return - the function return String of the new format of time acording to the kml
+	 */
 	public static String ConvertTimeToKmlFormat(String date){
 		date= date.replace('-', '/');
 		String[] finalTime=date.split(" ");

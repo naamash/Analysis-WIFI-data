@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -33,7 +34,7 @@ public class ReadAndSave {
 	 * @throws IOException
 	 */
 
-	public static String [][] readingFile(File folder) throws IOException {	
+	public static String [][] readingFile(File folder) throws IOException  {	
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 
@@ -98,6 +99,11 @@ public class ReadAndSave {
 		}
 		return WriteToCsv(answer);
 	}
+	
+	/**
+	 * The function create line of the Headers of values
+	 * @return the line with the Headers of values
+	 */
 	public static String[] MadeLine(){
 		String[] line = new String[46];
 		line[0] = "Time";
@@ -131,10 +137,18 @@ public class ReadAndSave {
 			line[i] = helper4 + hel;
 			hel++;
 		}
+
 		return line;
 
 	}
 
+	/**
+	 * The function accept array of String [] type and write this to csv file.
+	 * The function return the matrix after if create csv file 
+	 * @param answer
+	 * @return
+	 * @throws IOException
+	 */
 	public static String[][] WriteToCsv(ArrayList<String[]> answer) throws IOException{
 
 		String [][]Answer_One = new String [answer.size()][46];
@@ -187,14 +201,13 @@ public class ReadAndSave {
 				arrLineOfInfo.add(line);
 
 				if(arrLineOfInfo.size() >= 10){
-					Copying.CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
-					Copying.CopyingToAnswer(information,arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size());
-
+					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
+					Copying.CopyingToAnswer(arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size(),infoofLine);
 					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 				else{
-					Copying.CopyingToAnswer(information,answer,r+1,arrLineOfInfo.size());
-					Copying.CopyingToAnswer(information,arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size());
+					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
+					Copying.CopyingToAnswer(arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size(),infoofLine);
 					arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 			}
