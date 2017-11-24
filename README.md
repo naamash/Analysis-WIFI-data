@@ -18,10 +18,12 @@ Naama Shtauber
 ==
 **About the project**
 --
+
 This program gets a folder from user, takes only CSV files exported from an app called "Wigle WiFi" sorts them into one CSV file.   
 The new file will contain all the WiFi networks from the CSV files arranged by their signals in an acsending order.  
 Then it takes the new CSV file, filter the duplicated Macs, taking from each mac the strongest one and converts the file it to a KML file using JAK for writing the file.   
-The KML file could then be uploaded to Google Earth.
+The KML file could then be uploaded to Google Earth.  
+
 **File List:**  
 --
 ```
