@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class HelpTime {
+public class HelpFilter {
 
 	/**
 	 * The function accept ArrayList of MacBig type , matrix of String type and int row.

@@ -30,10 +30,10 @@ public class filters {
 	 */
 
 	public static void FilterByTime(File file, String start, String end) throws Exception{
-		System.out.println(HelpTime.fromStringToDate(start));
-		Date StartDate = HelpTime.fromStringToDate(start);
+		System.out.println(HelpFilter.fromStringToDate(start));
+		Date StartDate = HelpFilter.fromStringToDate(start);
 		System.out.println(StartDate);
-		Date EndDate =  HelpTime.fromStringToDate(end);
+		Date EndDate =  HelpFilter.fromStringToDate(end);
 		ArrayList<MacBig> macs=new ArrayList<MacBig>();
 
 		FileInputStream fi = new FileInputStream(file);
@@ -60,11 +60,11 @@ public class filters {
 		int timeIndex=FindIndex.PlaceArticle(answer, "Time",0);
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
-			dateLine = (Date) (HelpTime.fromStringToDate(answer[i][timeIndex]));
+			dateLine = (Date) (HelpFilter.fromStringToDate(answer[i][timeIndex]));
 			System.out.println(StartDate);
 
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
-				macs = HelpTime.SaveTheLargestSSID(macs, answer, rowSort);
+				macs = HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
 				rowSort++;
 			}
 		}
@@ -107,7 +107,7 @@ public class filters {
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
 			if(((answer[i][IDIndex]).equals(ID))){
-				HelpTime.SaveTheLargestSSID(macs, answer, rowSort);
+				HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
 				rowSort++;
 			}
 		}
@@ -153,7 +153,7 @@ public class filters {
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
 			if(Distance(lat, lon, (answer[i][latIndex]), (answer[i][lonIndex]))<=radius){
-				HelpTime.SaveTheLargestSSID(macs, answer, rowSort);
+				HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
 				rowSort++;
 			}
 		}

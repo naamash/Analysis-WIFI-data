@@ -12,7 +12,7 @@ public class HelpTimeTest {
 	public void testfromStringToDate(){
 		String date1="Fri Nov 03 16:10:50 IST 2017";
 		System.out.println(date1);
-		assertEquals(date1, ""+HelpTime.fromStringToDate("2017/11/03 16:10:50"));
+		assertEquals(date1, ""+HelpFilter.fromStringToDate("2017/11/03 16:10:50"));
 
 	}
 	@Test
@@ -22,7 +22,7 @@ public class HelpTimeTest {
 		MacBig original=new MacBig("1c:b9:c4:12:7c:c8","-68","2017/10/03 16:15:50","2262","35.21140758"
 				,"32.10651925","Naama1","NRD900U");
 
-		HelpTime.swap(temp,original);
+		HelpFilter.swap(temp,original);
 		if(!(original.Signal.equals(temp.Signal))&&(original.Mac.equals(temp.Mac))
 				&&(original.frequency.equals(temp.frequency))&&(original.ssid.equals(temp.ssid))
 				&&(original.ID.equals(temp.ID))&&(original.lat.equals(temp.lat))
@@ -48,7 +48,7 @@ public class HelpTimeTest {
 				"Ariel_University","1c:b9:c4:12:7d:c8","2462","-40",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 				null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}};
 		int row = 1;
-		HelpTime.SaveTheLargestSSID(macs,answer,row);
+		HelpFilter.SaveTheLargestSSID(macs,answer,row);
 		if (!((macs.get(1).Signal).equals(answer[row][9]))){
 			fail("ERR - the polynoms should be the same (equals)");
 		}
