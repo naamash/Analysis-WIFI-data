@@ -4,6 +4,7 @@ package pa;
  */
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChooseFilter {
@@ -12,6 +13,8 @@ public class ChooseFilter {
 	 * This function ask user to enter folder name and choose acoording to what to sort until the user enter correct input
 	 */
 	public static void Decide() throws IOException{
+		ArrayList<String[]> answer = new ArrayList<String[]>();
+
 		boolean flag1 = true;
 		while(flag1){
 			try {
@@ -19,7 +22,7 @@ public class ChooseFilter {
 				System.out.println("enter folder name");
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
-				ReadAndSave.readingFile(folder);
+				answer = ReadAndSave.readingFile(folder);
 				flag1 = false;
 			} catch (Exception e) {
 				System.err.println("This folder does'nt exist! try again.");

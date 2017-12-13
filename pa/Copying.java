@@ -60,13 +60,13 @@ public class Copying {
 	 * @param realsize
 	 * @return the array String.
 	 */
-	public static String[] CopyingToAnswerFirst(String information[][],ArrayList<String[]> answer,int indexOfRow,  int realsize){
+	public static String[] CopyingToAnswerFirst(ArrayList<String[]> information,ArrayList<String[]> answer,int indexOfRow,  int realsize){
 		String[] line = new String[46];
-		line[0] = information[indexOfRow][3];
-		line[1] = information[0][5];
-		line[2] = information[indexOfRow][6];
-		line[3] = information[indexOfRow][7];
-		line[4] = information[indexOfRow][8];
+		line[0] = information.get(indexOfRow)[3];
+		line[1] = information.get(0)[5];
+		line[2] = information.get(indexOfRow)[6];
+		line[3] = information.get(indexOfRow)[7];
+		line[4] = information.get(indexOfRow)[8];
 		line[5] = "" + realsize;
 
 		return line;

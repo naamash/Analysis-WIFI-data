@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 
 public class ReadAndSave {
-static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
+
 	/**
 	 * This function get folder of files and sort it for getting only relevant files of CSV type.
 	 * for doing that the function call another functions from it's class and from another classes on this package.
@@ -34,12 +34,12 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 	 * @throws IOException
 	 */
 
-	public static String [][] readingFile(File folder) throws IOException  {	
+	public static ArrayList<String[]> readingFile(File folder) throws IOException  {	
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 
 		File[] listOfFiles = folder.listFiles();
-		String [][]information ;
+		ArrayList<String[]> information = new ArrayList<String[]>();
 
 		answer.add(MadeLine());
 		int r=2;
@@ -60,15 +60,16 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 					}
 					read.close();
 
-					information = new String[row][12];
+					//information = new String[row][12];
 					r = 2;
 
 					while (sc.hasNext()) {
 						String str = sc.nextLine();
-						information[m] = str.split(",");
+						String []a = str.split(",");
+						information.add(a) ;
 						try {
-							if ((information[0][0].contains("WigleWifi-1.4")) && (!(information[0][0].equals(null)))
-									&& (!(information[0][1].equals(null)))) {
+							if ((information.get(0)[0].contains("WigleWifi-1.4")) && (!(information.get(0)[0].equals(null)))
+									&& (!(information.get(0)[1].equals(null)))) {
 								m++;
 							}
 							else{
@@ -98,8 +99,9 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 			}
 		}
 //		System.out.println("---------------------------------------size:  "+answer.size());
-		FindLocation.checkMac(answer);
-		return WriteToCsv(answer);
+//		FindLocation.checkMac(answer);
+		//return WriteToCsv(answer);
+		return answer;
 	}
 	
 	/**
@@ -151,22 +153,16 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 	 * @return
 	 * @throws IOException
 	 */
-	public static String[][] WriteToCsv(ArrayList<String[]> answer) throws IOException{
+	public static ArrayList<String[]> WriteToCsv(ArrayList<String[]> answer,String location) throws IOException{
 
-		String [][]Answer_One = new String [answer.size()][46];
-		int ansRows = 0;
-		for (int i = 0; i < Answer_One.length; i++) {
-			for (int j = 0; j < Answer_One[0].length; j++) {
-				Answer_One[i][j] = answer.get(ansRows)[j];
-			}
-			ansRows++;
-		}
-
+		ArrayList<String[]> Answer_One = new ArrayList<String[]>();
+		Answer_One.addAll(answer);
+		System.out.println(Answer_One.size()+ "  *******");
 		FileWriter write = new FileWriter(location);
 		PrintWriter pw = new PrintWriter(write);
-		for (int i = 0; i < Answer_One.length; i++) {
-			for (int j = 0; j < Answer_One[0].length; j++) {
-				write.append(Answer_One[i][j]);
+		for (int i = 0; i < Answer_One.size(); i++) {
+			for (int j = 0; j < Answer_One.get(i).length; j++) {
+				write.append(Answer_One.get(i)[j]);
 				write.append(",");
 			}
 			pw.println();
@@ -175,9 +171,6 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 		System.out.println("done");
 		return Answer_One;
 	}
-	//מטלה 2 סעיף 1
-	
-	
 
 	/**
 	 * This function copying all of the relevant values from information matrix to answer.
@@ -186,7 +179,7 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 	 * @param answer
 	 * @param r
 	 */
-	public static void Save_info(String [][]information,ArrayList<String[]> answer,int r){
+	public static void Save_info(ArrayList<String[]> information,ArrayList<String[]> answer,int r){
 		int TimePlace = FindIndex.PlaceArticle(information,"FirstSeen",1);
 		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
 		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
@@ -194,16 +187,16 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 	//	int AltPlace = FindIndex.PlaceArticle(information,"Type",1);
 		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
 
-		while (r<information.length-1){
+		while (r<information.size()-1){
 
-			if (information[r][LatPlace].equals(information[r+1][LatPlace]) && information[r][LonPlace].equals(information[r+1][LonPlace]) 
-					&& information[r][TimePlace].equals(information[r+1][TimePlace]) && (information[r][WifiPlace]).equals("WIFI")){
+			if (information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace]) && information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
+					&& information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]) && (information.get(r)[WifiPlace]).equals("WIFI")){
 
 				LineOfInfo line= new LineOfInfo(information,r);
 				arrLineOfInfo.add(line);
 			}
 
-			else if ((information[r][WifiPlace]).equals("WIFI")){
+			else if ((information.get(r)[WifiPlace]).equals("WIFI")){
 				LineOfInfo line= new LineOfInfo(information,r+1);
 				arrLineOfInfo.add(line);
 

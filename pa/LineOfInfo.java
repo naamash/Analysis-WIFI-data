@@ -97,18 +97,18 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 	 * @param indexOfLine
 	 */
 	
-	public LineOfInfo(String matrix[][], int indexOfLine){
-		this.MAC = matrix[indexOfLine][0];
-		this.SSID = matrix[indexOfLine][1];
-		this.AuthMode = matrix[indexOfLine][2];
-		this.FirstSeen = matrix[indexOfLine][3];
-		this.Channel = matrix[indexOfLine][4];
-		this.RSSI = matrix[indexOfLine][5];
-		this.CurrentLatitude = matrix[indexOfLine][6];
-		this.CurrentLongitude = matrix[indexOfLine][7];
-		this.AltitudeMeters = matrix[indexOfLine][8];
-		this.AccuracyMeters = matrix[indexOfLine][9];
-		this.Type = matrix[indexOfLine][10];
+	public LineOfInfo(ArrayList<String[]> matrix, int indexOfLine){
+		this.MAC = matrix.get(indexOfLine)[0];
+		this.SSID = matrix.get(indexOfLine)[1];
+		this.AuthMode = matrix.get(indexOfLine)[2];
+		this.FirstSeen = matrix.get(indexOfLine)[3];
+		this.Channel = matrix.get(indexOfLine)[4];
+		this.RSSI = matrix.get(indexOfLine)[5];
+		this.CurrentLatitude = matrix.get(indexOfLine)[6];
+		this.CurrentLongitude = matrix.get(indexOfLine)[7];
+		this.AltitudeMeters = matrix.get(indexOfLine)[8];
+		this.AccuracyMeters = matrix.get(indexOfLine)[9];
+		this.Type = matrix.get(indexOfLine)[10];
 	}
 
 	/**

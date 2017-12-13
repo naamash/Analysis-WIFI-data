@@ -42,7 +42,7 @@ public class filters {
 
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-		int m = 0;
+	//	int m = 0;
 		int r=0;
 		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
 		while(read.readLine()!=null){
@@ -50,21 +50,21 @@ public class filters {
 		}
 		read.close();
 
-		String [][]answer = new String[r][12];
+		ArrayList<String[]> answer = new ArrayList<String[]>();
 		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
-			answer[m] = str.split(",");
-			m++;
+			answer.add(str.split(","));
+		//	m++;
 		}
 		sc.close();
 		fi.close();
 		Date dateLine = null;
 		int timeIndex=FindIndex.PlaceArticle(answer, "Time",0);
 		int rowSort = 1;
-		for (int i = 1; i < answer.length; i++) {
-			dateLine = (Date) (HelpFilter.fromStringToDate(answer[i][timeIndex]));
+		for (int i = 1; i < answer.size(); i++) {
+			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i)[timeIndex]));
 			System.out.println(StartDate);
 
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
@@ -73,8 +73,8 @@ public class filters {
 			}
 		}
 
-		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+//		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+//		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
 		//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
 		//System.out.println(macs.toString());
 		
@@ -97,7 +97,7 @@ public class filters {
 
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-		int m = 0;
+		//int m = 0;
 		int r=0;
 		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
 		while(read.readLine()!=null){
@@ -105,20 +105,22 @@ public class filters {
 		}
 		read.close();
 
-		String [][]answer = new String[r][12];
+		ArrayList<String[]> answer = new ArrayList<String[]>();
 		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
-			answer[m] = str.split(",");
-			m++;
+			String[] a = str.split(",");
+			System.out.println("******   "  +Arrays.toString(a));
+			answer.add(a);
+		//	m++;
 		}
 		sc.close();
 		fi.close();
 		int IDIndex=FindIndex.PlaceArticle(answer, "ID",0);
 		int rowSort = 1;
-		for (int i = 1; i < answer.length; i++) {
-			if(((answer[i][IDIndex]).equals(ID))){
+		for (int i = 1; i < answer.size(); i++) {
+			if(((answer.get(i)[IDIndex]).equals(ID))){
 				HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
 				rowSort++;
 			}
@@ -151,21 +153,21 @@ public class filters {
 		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-		int m = 0;
+		//int m = 0;
 		int r=0;
 		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
-		while(read.readLine()!=null){
-			r++;
-		}
+//		while(read.readLine()!=null){
+//			r++;
+//		}
 		read.close();
 
-		String [][]answer = new String[r][12];
+		ArrayList<String[]> answer = new ArrayList<String[]>();
 		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
-			answer[m] = str.split(",");
-			m++;
+			answer.add(str.split(","));
+			//m++;
 		}
 		sc.close();
 		fi.close();
@@ -173,14 +175,12 @@ public class filters {
 		int latIndex = FindIndex.PlaceArticle(answer, "Lat",0);
 		int lonIndex = FindIndex.PlaceArticle(answer, "Lon",0);
 		int rowSort = 1;
-		for (int i = 1; i < answer.length; i++) {
-			if(HelpFilter.Distance(lat, lon, (answer[i][latIndex]), (answer[i][lonIndex]))<=radius){
-				HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
+		for (int i = 1; i < answer.size(); i++) {
+			if(HelpFilter.Distance(lat, lon, (answer.get(i)[latIndex]), (answer.get(i)[lonIndex]))<=radius){
 				rowSort++;
 			}
 		}
-		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+		
 		//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
 		ConvertToKml.ToKml(macs);
 	}

@@ -13,13 +13,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class FindLocation {
-	static String locationCsv2 = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_two_partB.csv";
-	static String locationCsv3 = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_two_partA.csv";
 
-
-	
-	static String foldername2 = "matala two";
-	static File folder=new File(foldername2);
 	static int IndexSignalInfo=9;
 	static int IndexMacInfo=7;
 	static int IndexWifiNetworkInfo=5;
@@ -42,8 +36,131 @@ public class FindLocation {
 	static int no_signal = -120;
 	static int Number_of_loc = 3;
 
+	public static void Matala2_Algo1 (File folder,String locationAlgo1) throws IOException{
+		ArrayList<String[]> answer = new ArrayList<String[]>();
+		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 
-	public static ArrayList<String[]> readingFileOfTwo(File folder) throws IOException  {	
+		answer = ReadAndSave.readingFile(folder);
+
+		for (int j = 1; j < answer.size(); j++) {
+			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
+		}
+		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+
+		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
+	}
+
+	public static void Matala2_Algo2 (File folder1 ,File folder2, String locationAlgo2) throws IOException{
+		ArrayList<String[]> answer = new ArrayList<String[]>();
+		ArrayList<String[]> information2 = new ArrayList<String[]>();
+
+		answer = ReadAndSave.readingFile(folder1);
+//		for (int h = 0; h < answer.size(); h++) {
+//			System.out.println(Arrays.toString(answer.get(h))+" ");
+//		}
+		information2 = readingFileOfTwo_(folder2);
+
+		checkMac(answer,information2,locationAlgo2);
+
+	}
+
+	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2,String locationAlgo2 ) throws IOException{
+		//ArrayList<String[]> information2 = readingFileOfTwo_(folder);
+		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
+		ArrayList<Location> ArrLocation = new ArrayList<Location>();
+		boolean []isTuched = new boolean[answer.size()];
+
+		int colm=0;
+		int row=0;
+		String MacInfo="";
+		String SignalInfo="";
+
+		for (int j = 0; j < information2.size(); j++) {
+			ArrAnswerLine = new ArrayList<String[]>();
+			ArrLocation = new ArrayList<Location>();
+			isTuched = new boolean[answer.size()];
+			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])];
+			colm=0;
+			row=0;
+			for (int i = IndexMacInfo; i < ((Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])*4)+IndexWifiNetworkInfo) ; i=i+4) {
+				MacInfo=information2.get(j)[i];
+				SignalInfo=information2.get(j)[i+2];
+				MacAndSigInfo2[row][colm]=MacInfo;
+				MacAndSigInfo2[row+1][colm]=SignalInfo;
+				row=0;
+				colm++;
+			}
+//			for (int h = 0; h < answer.size(); h++) {
+//			System.out.println(Arrays.toString(answer.get(h))+" ");
+//		}
+			ArrAnswerLine = SearchMacInAnswer(MacAndSigInfo2,ArrLocation,answer,ArrAnswerLine,isTuched);
+			CreateArrLocation(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
+
+			//System.out.println("before:   " + ArrLocation.toString());
+
+			//			Collections.sort(ArrLocation,Location.loc());
+			ArrLocation.sort(null);
+			//sSystem.out.println("after:  " + ArrLocation.toString());
+			//System.out.println("---------------------------------");
+			Location W_sum = WSUM(ArrLocation);
+			information2.get(j)[IndexLatInfo] = W_sum.Lat;
+			information2.get(j)[IndexAltInfo] = W_sum.Alt;
+			information2.get(j)[IndexLonInfo] = W_sum.Lon;
+		}
+		ReadAndSave.WriteToCsv(information2,locationAlgo2);
+//				for (int i = 0; i < information2.size(); i++) {
+//					for (int j = 0; j < information2.get(i).length; j++) {
+//						System.out.print((information2.get(i)[j])+" ");
+//					}
+//					System.out.println("*-*-*-*-*");
+//				}
+	}
+
+	public static Location WSUM (ArrayList<Location> ArrLocation){
+		Location W_sum = new Location();
+		double sumAlt=0;
+		double sumLat=0.0;
+		double sumLon=0.0;
+		double weight=0.0;
+
+		//		for (int i = 0; i < ArrLocation.size(); i++) {
+		//System.out.println(ArrLocation.toString());
+		//		}
+		int size;
+		if (ArrLocation.size()>=Number_of_loc){
+			size = Number_of_loc;
+		}
+		else{
+			size = ArrLocation.size();
+		}
+		for (int i = 0; i < size; i++) {
+			sumAlt+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Alt));
+			sumLat+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Lat));
+			sumLon+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Lon));
+			weight+=Double.parseDouble(ArrLocation.get(i).PI);
+		}
+
+
+		W_sum.Alt=""+sumAlt/weight;
+		W_sum.Lat=""+sumLat/weight;
+		W_sum.Lon=""+sumLon/weight;
+		//System.out.println(W_sum.toString());
+		return W_sum;	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public static ArrayList<String[]> readingFileOfTwo_(File folder) throws IOException  {	
 
 		ArrayList<String[]> information2 = new ArrayList<String[]>();
 		File[] listOfFiles = folder.listFiles();
@@ -88,118 +205,43 @@ public class FindLocation {
 	}
 
 
-	public static void checkMac (ArrayList<String[]> answer) throws IOException{
-		ArrayList<String[]> information2 = readingFileOfTwo(folder);
-		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
-		ArrayList<Location> ArrLocation = new ArrayList<Location>();
-		boolean []isTuched = new boolean[answer.size()];
 
-		int colm=0;
-		int row=0;
-		String MacInfo="";
-		String SignalInfo="";
-
-		for (int j = 0; j < information2.size(); j++) {
-			ArrAnswerLine = new ArrayList<String[]>();
-			ArrLocation = new ArrayList<Location>();
-			isTuched = new boolean[answer.size()];
-			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])];
-			colm=0;
-			row=0;
-			for (int i = IndexMacInfo; i < ((Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])*4)+IndexWifiNetworkInfo) ; i=i+4) {
-				MacInfo=information2.get(j)[i];
-				SignalInfo=information2.get(j)[i+2];
-				MacAndSigInfo2[row][colm]=MacInfo;
-				MacAndSigInfo2[row+1][colm]=SignalInfo;
-				row=0;
-				colm++;
-			}
-			SearchMacInAnswer(MacAndSigInfo2,ArrLocation,answer,ArrAnswerLine,isTuched);
-			naama(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
-
-			//System.out.println("before:   " + ArrLocation.toString());
-
-			//			Collections.sort(ArrLocation,Location.loc());
-			ArrLocation.sort(null);
-			//System.out.println("after:  " + ArrLocation.toString());
-			//System.out.println("---------------------------------");
-			Location W_sum = WSUM(ArrLocation);
-			information2.get(j)[IndexLatInfo] = W_sum.Lat;
-			information2.get(j)[IndexAltInfo] = W_sum.Alt;
-			information2.get(j)[IndexLonInfo] = W_sum.Lon;
-		}
-		WriteToCsv_Matala2_partb(information2);
-		for (int i = 0; i < information2.size(); i++) {
-			for (int j = 0; j < information2.get(i).length; j++) {
-				System.out.print((information2.get(i)[j])+" ");
-			}
-			System.out.println();
-		}
-	}
-
-	public static Location WSUM (ArrayList<Location> ArrLocation){
-		Location W_sum = new Location();
-		double sumAlt=0;
-		double sumLat=0.0;
-		double sumLon=0.0;
-		double weight=0.0;
-
-		//		for (int i = 0; i < ArrLocation.size(); i++) {
-		//System.out.println(ArrLocation.toString());
-		//		}
-		int size;
-		if (ArrLocation.size()>=Number_of_loc){
-			size = Number_of_loc;
-		}
-		else{
-			size = ArrLocation.size();
-		}
-		for (int i = 0; i < size; i++) {
-			sumAlt+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Alt));
-			sumLat+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Lat));
-			sumLon+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Lon));
-			weight+=Double.parseDouble(ArrLocation.get(i).PI);
-		}
-
-
-		W_sum.Alt=""+sumAlt/weight;
-		W_sum.Lat=""+sumLat/weight;
-		W_sum.Lon=""+sumLon/weight;
-		//System.out.println(W_sum.toString());
-		return W_sum;	
-	}
-
-	public static void SearchMacInAnswer (String [][]MacAndSigInfo2,ArrayList<Location> ArrLocation,
+	public static ArrayList<String[]> SearchMacInAnswer (String [][]MacAndSigInfo2,ArrayList<Location> ArrLocation,
 			ArrayList<String[]> answer, ArrayList<String[]> ArrAnswerLine,boolean []isTuched) throws IOException{
-		for (int i = 1; i < answer.size()-1; i++) {
+		for (int i = 1; i < answer.size(); i++) {
 			boolean flag = false;
 			for (int j = IndexMacAnswer; j <(Integer.parseInt(answer.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
 				for (int k = 0; k < MacAndSigInfo2[0].length; k++) {
 					flag = false;
-					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])&&!isTuched[i]){
+					//System.out.println("MacAndSigInfo2[0][k]   "+MacAndSigInfo2[0][k] + "       answer.get(i)[j]   "+answer.get(i)[j]);
+					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])&&isTuched[i]==false){
+						System.out.println("============");
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));
 						isTuched[i] = true;
 					}
 				}
 			}
+//			for (int h = 0; h < ArrAnswerLine.size(); h++) {
+//				System.out.println("aaaaaaaaaaa     "+Arrays.toString(ArrAnswerLine.get(h)));
+//			}
 		}
 
 		//		naama(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
 
 		//System.out.println("ArrAnswerLine.size()  "+ArrAnswerLine.size());
-		//		for (int i = 0; i < ArrAnswerLine.size(); i++) {
-		//			System.out.println(Arrays.toString(ArrAnswerLine.get(i)));
-		//		}
+//				for (int i = 0; i < ArrAnswerLine.size(); i++) {
+//					System.out.println(Arrays.toString(ArrAnswerLine.get(i)));
+//				}
 		//		for (int i = 0; i < MacAndSigInfo2.length; i++) {
 		//			for (int j = 0; j < MacAndSigInfo2[0].length; j++) {
 		//				System.out.print(MacAndSigInfo2[i][j]+" ");
 		//			}
 		//			System.out.println();
 		//		}
-
+return ArrAnswerLine;
 	}
-	public static void naama (ArrayList<Location> ArrLocation,  ArrayList<String[]> ArrAnswerLine,String [][]MacAndSigInfo2){
+	public static void CreateArrLocation (ArrayList<Location> ArrLocation,  ArrayList<String[]> ArrAnswerLine,String [][]MacAndSigInfo2){
 		Location line = new Location();
 
 		for (int i = 0; i < ArrAnswerLine.size(); i++) {
@@ -220,7 +262,7 @@ public class FindLocation {
 			line.Lat=ArrAnswerLine.get(i)[IndexLatAnswer];
 			line.Lon=ArrAnswerLine.get(i)[IndexLonAnswer];
 			ArrLocation.add(line);
-			//			System.out.println(line.toString());
+			System.out.println("line"+line.toString());
 			//			System.out.println("888888888888888888888888888888888888");
 		}
 		//		for (int i = 0; i < ArrLocation.size(); i++) {
@@ -242,32 +284,8 @@ public class FindLocation {
 		PI = PI*w;
 		return PI;
 	}
-	
-	public static String[][] WriteToCsv_Matala2_partb(ArrayList<String[]> information2) throws IOException{
-		String [][]Answer_One = new String [information2.size()][46];
-		int ansRows = 0;
-		for (int i = 0; i < Answer_One.length; i++) {
-			for (int j = 0; j < Answer_One[0].length; j++) {
-				Answer_One[i][j] = information2.get(ansRows)[j];
-			}
-			ansRows++;
-		}
 
-		FileWriter write = new FileWriter(locationCsv2);
-		PrintWriter pw = new PrintWriter(write);
-		for (int i = 0; i < Answer_One.length; i++) {
-			for (int j = 0; j < Answer_One[0].length; j++) {
-				write.append(Answer_One[i][j]);
-				write.append(",");
-			}
-			pw.println();
-		}
-		write.close();
-		System.out.println("done");
-		return Answer_One;
-	}
-
-	public static String[][] WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas) throws IOException{
+	public static void WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
 		int IndexIndex = 0;
 		int MacIndex = 1;
 		int SsidIndex = 2;
@@ -277,23 +295,23 @@ public class FindLocation {
 		int LatIndex = 6;
 		int AltIndex = 7;
 		int TimeIndex = 8;
-		
+
 		String [][]Answer_One = new String [MacsAfterFormulas.length][9];
 		int ansRows = 0;
 		for (int i = 0; i < Answer_One.length; i++) {
-				Answer_One[i][IndexIndex] = ""+ansRows;
-				Answer_One[i][MacIndex] = MacsAfterFormulas[i].Mac;
-				Answer_One[i][SsidIndex] = MacsAfterFormulas[i].ssid;
-				Answer_One[i][FreqIndex] = MacsAfterFormulas[i].frequency;
-				Answer_One[i][SignalIndex] = MacsAfterFormulas[i].Signal;
-				Answer_One[i][LonIndex] = MacsAfterFormulas[i].lon;
-				Answer_One[i][LatIndex] = MacsAfterFormulas[i].lat;
-				Answer_One[i][AltIndex] = MacsAfterFormulas[i].alt;
-				Answer_One[i][TimeIndex] = MacsAfterFormulas[i].time;
+			Answer_One[i][IndexIndex] = ""+ansRows;
+			Answer_One[i][MacIndex] = MacsAfterFormulas[i].Mac;
+			Answer_One[i][SsidIndex] = MacsAfterFormulas[i].ssid;
+			Answer_One[i][FreqIndex] = MacsAfterFormulas[i].frequency;
+			Answer_One[i][SignalIndex] = MacsAfterFormulas[i].Signal;
+			Answer_One[i][LonIndex] = MacsAfterFormulas[i].lon;
+			Answer_One[i][LatIndex] = MacsAfterFormulas[i].lat;
+			Answer_One[i][AltIndex] = MacsAfterFormulas[i].alt;
+			Answer_One[i][TimeIndex] = MacsAfterFormulas[i].time;
 			ansRows++;
 		}
 
-		FileWriter write = new FileWriter(locationCsv3);
+		FileWriter write = new FileWriter(locationAlgo1);
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.length; i++) {
 			for (int j = 0; j < Answer_One[0].length; j++) {
@@ -304,8 +322,7 @@ public class FindLocation {
 		}
 		write.close();
 		System.out.println("completed writing to csv the best macs");
-		return Answer_One;
 	}
-	
+
 
 }

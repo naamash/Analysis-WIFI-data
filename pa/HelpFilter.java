@@ -26,7 +26,7 @@ public class HelpFilter {
 	 * @param answer
 	 * @param row
 	 */
-	public static ArrayList<MacBig_Container> SaveTheLargestSIGNAL (ArrayList<MacBig_Container> macs,String [][]answer,int row){
+	public static ArrayList<MacBig_Container> SaveTheLargestSIGNAL (ArrayList<MacBig_Container> macs,ArrayList<String[]>answer,int row){
 
 		boolean isIn = true;
 		int ssidindex=FindIndex.Place(answer, "SSID1");
@@ -38,19 +38,19 @@ public class HelpFilter {
 		int AltIndex =FindIndex.Place(answer,"Alt");
 
 
-		for (int i =ssidindex; i < (Integer.parseInt(answer[row][network])*4)+ssidindex ; i=i+4) {
+		for (int i =ssidindex; i < (Integer.parseInt(answer.get(row)[network])*4)+ssidindex ; i=i+4) {
 			isIn = true;
 			int j = 0;
 			MacBig temp = new MacBig();
-			temp.time=answer[row][timeindex];
-			temp.ID=answer[row][IDindex];
-			temp.lat=answer[row][Latindex];
-			temp.lon=answer[row][Lonindex];
-			temp.alt=answer[row][AltIndex];
-			temp.ssid=answer[row][i];
-			temp.Mac=answer[row][i+1];
-			temp.frequency=answer[row][i+2];
-			temp.Signal=answer[row][i+3];
+			temp.time=answer.get(row)[timeindex];
+			temp.ID=answer.get(row)[IDindex];
+			temp.lat=answer.get(row)[Latindex];
+			temp.lon=answer.get(row)[Lonindex];
+			temp.alt=answer.get(row)[AltIndex];
+			temp.ssid=answer.get(row)[i];
+			temp.Mac=answer.get(row)[i+1];
+			temp.frequency=answer.get(row)[i+2];
+			temp.Signal=answer.get(row)[i+3];
 
 			while (j < macs.size() && isIn){
 				if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
@@ -86,6 +86,20 @@ public class HelpFilter {
 		}
 		return macs;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public static void sortMACS(MacBig_Container mac){
 		for(int i=0; i < mac.realsize; i++){  

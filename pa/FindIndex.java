@@ -1,4 +1,8 @@
 package pa;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * This class contains two functions of find the index.
  * each function find the index of the name that the function accept.
@@ -14,9 +18,11 @@ public class FindIndex {
 	 * @param name
 	 * @return the index of the name 
 	 */
-	public static int PlaceArticle (String [][]answer, String name,int row){
-		for (int i = 0; i <11; i++) {
-			if(answer[row][i].equals(name)){
+	public static int PlaceArticle (ArrayList<String[]> answer, String name,int row){
+//		System.out.println(row);
+//		System.out.println(name);
+		for (int i = 0; i <answer.get(1).length; i++) {
+			if(answer.get(row)[i].equals(name)){
 				return i;
 			}
 		}
@@ -29,9 +35,9 @@ public class FindIndex {
 	 * @param name
 	 * @return the index of the name 
 	 */
-	public static int Place (String [][]answer, String name){
+	public static int Place (ArrayList<String[]>answer, String name){
 		for (int i = 0; i <46; i++) {
-			if(answer[0][i].equals(name)){
+			if(answer.get(0)[i].equals(name)){
 				return i;
 			}
 		}
