@@ -6,8 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.crypto.MacSpi;
 
 /**
  * This class contains three sorting functions.
@@ -30,11 +33,12 @@ public class filters {
 	 */
 
 	public static void FilterByTime(File file, String start, String end) throws Exception{
-		System.out.println(HelpFilter.fromStringToDate(start));
+		//System.out.println(HelpFilter.fromStringToDate(start));
 		Date StartDate = HelpFilter.fromStringToDate(start);
-		System.out.println(StartDate);
+		//System.out.println(StartDate);
 		Date EndDate =  HelpFilter.fromStringToDate(end);
-		ArrayList<MacBig> macs=new ArrayList<MacBig>();
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
+		
 
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
@@ -64,10 +68,16 @@ public class filters {
 			System.out.println(StartDate);
 
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
-				macs = HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
+				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
 				rowSort++;
 			}
 		}
+
+		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+		//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
+		//System.out.println(macs.toString());
+		
 		ConvertToKml.ToKml(macs);
 	}
 
@@ -81,7 +91,9 @@ public class filters {
 	 * @throws IOException
 	 */
 	public static void FilterByID(File file, String ID) throws IOException{
-		ArrayList<MacBig> macs=new ArrayList<MacBig>();
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
+		//ArrayList<MacBig[]> MacsAfterFormulas=new ArrayList<MacBig[]>();
+
 
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
@@ -107,11 +119,21 @@ public class filters {
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
 			if(((answer[i][IDIndex]).equals(ID))){
-				HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
+				HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
 				rowSort++;
 			}
 		}
-		ConvertToKml.ToKml(macs);
+		//2017-10-29 11:00:08
+		//2017-10-30 10:32:34
+//		for (int i = 0; i < macs.size(); i++) {
+//		System.out.println(Arrays.toString(macs.get(i).arr_macbig));
+//	}
+		
+	MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+	MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+	//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
+	
+	ConvertToKml.ToKml(macs);
 	}
 
 	/**
@@ -126,7 +148,7 @@ public class filters {
 	 * @throws IOException
 	 */
 	public static void FilterByLocation(File file, String lat, String lon, double radius) throws IOException{
-		ArrayList<MacBig> macs=new ArrayList<MacBig>();
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
 		int m = 0;
@@ -152,31 +174,16 @@ public class filters {
 		int lonIndex = FindIndex.PlaceArticle(answer, "Lon",0);
 		int rowSort = 1;
 		for (int i = 1; i < answer.length; i++) {
-			if(Distance(lat, lon, (answer[i][latIndex]), (answer[i][lonIndex]))<=radius){
-				HelpFilter.SaveTheLargestSSID(macs, answer, rowSort);
+			if(HelpFilter.Distance(lat, lon, (answer[i][latIndex]), (answer[i][lonIndex]))<=radius){
+				HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
 				rowSort++;
 			}
 		}
+		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+		//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
 		ConvertToKml.ToKml(macs);
 	}
-
-	/**
-	 * This function get two points - two values by String type of each point. convert them to double type and calculate the distance between them both.
-	 * @param lat
-	 * @param lon
-	 * @param lat1
-	 * @param lon1
-	 * @return The distance between the two points.
-	 */
-	public static double Distance(String lat,String lon,String lat1,String lon1){
-		double x1=(Double.parseDouble(lat));
-		double x2=(Double.parseDouble(lat1));
-		double y1=(Double.parseDouble(lon));
-		double y2=(Double.parseDouble(lon1));
-		double distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-		return distance;
-	}
-	
 }
 
 

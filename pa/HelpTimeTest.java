@@ -48,7 +48,7 @@ public class HelpTimeTest {
 				"Ariel_University","1c:b9:c4:12:7d:c8","2462","-40",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 				null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}};
 		int row = 1;
-		HelpFilter.SaveTheLargestSSID(macs,answer,row);
+		HelpFilter.SaveTheLargestSIGNAL(macs,answer,row);
 		if (!((macs.get(1).Signal).equals(answer[row][9]))){
 			fail("ERR - the polynoms should be the same (equals)");
 		}

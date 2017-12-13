@@ -14,6 +14,7 @@ public class MacBig {
 	String lat;
 	String ssid;
 	String ID;
+	String alt;
 
 		/**
 		 * Default constructors
@@ -27,6 +28,7 @@ public class MacBig {
 		this.lat=null;
 		this.ssid=null;
 		this.ID=null;
+		this.alt = null;
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class MacBig {
 	 * @param ssid
 	 * @param ID
 	 */
-	public MacBig(String Mac,String Signal,String time,String frequency,String lon,String lat,String ssid,String ID){
+	public MacBig(String Mac,String Signal,String time,String frequency,String lon,String lat,String ssid,String ID,String alt){
 		this.frequency = frequency;
 		this.ID = ID;
 		this.lat = lat;
@@ -49,6 +51,7 @@ public class MacBig {
 		this.Signal = Signal;
 		this.ssid = ssid;
 		this.time = time;
+		this.alt = alt;
 	}
 		/**
 		 * Copy constructors
@@ -63,13 +66,15 @@ public class MacBig {
 		this.Signal = other.Signal;
 		this.ssid = other.ssid;
 		this.time = other.time;
+		this.alt = other.alt;
 	}
 		/**
 		 * The function print the object
 		 */
-	public String toString() {
-		return "MacBig [Mac=" + Mac + ", Signal=" + Signal + ", time=" + time + ", frequency=" + frequency + ", lon="
-				+ lon + ", lat=" + lat + ", ssid=" + ssid + ", ID=" + ID + "]";
-	}
+		public String toString() {
+			return "MacBig [Mac=" + Mac + ", Signal=" + Signal + ", time=" + time + ", frequency=" + frequency
+					+ ", lon=" + lon + ", lat=" + lat + ", ssid=" + ssid + ", ID=" + ID + ", alt=" + alt + "]";
+		}
+
 
 }

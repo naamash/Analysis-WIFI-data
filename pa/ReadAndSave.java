@@ -97,6 +97,8 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
 			}
 		}
+//		System.out.println("---------------------------------------size:  "+answer.size());
+		FindLocation.checkMac(answer);
 		return WriteToCsv(answer);
 	}
 	
@@ -164,14 +166,18 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.length; i++) {
 			for (int j = 0; j < Answer_One[0].length; j++) {
-				write.append(answer.get(i)[j]);
+				write.append(Answer_One[i][j]);
 				write.append(",");
 			}
 			pw.println();
 		}
 		write.close();
+		System.out.println("done");
 		return Answer_One;
 	}
+	//מטלה 2 סעיף 1
+	
+	
 
 	/**
 	 * This function copying all of the relevant values from information matrix to answer.
@@ -185,6 +191,7 @@ static String location = "C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv";
 		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
 		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
 		int WifiPlace = FindIndex.PlaceArticle(information,"Type",1);
+	//	int AltPlace = FindIndex.PlaceArticle(information,"Type",1);
 		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
 
 		while (r<information.length-1){

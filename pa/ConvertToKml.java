@@ -13,18 +13,19 @@ import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
  */
 public class ConvertToKml {
 
-	public static void ToKml(ArrayList<MacBig> macs){	
+	public static void ToKml(ArrayList<MacBig_Container> macs){	
 		final Kml kml = new Kml();
 		Document document = kml.createAndSetDocument();
 
 		for (int i = 0; i < macs.size(); i++) {
 			TimeStamp t = new TimeStamp();
-			t.setWhen(ConvertTimeToKmlFormat(macs.get(i).time));
+			t.setWhen(ConvertTimeToKmlFormat(macs.get(i).arr_macbig[0].time));
 
-			document.createAndAddPlacemark().withName(macs.get(i).ID).withOpen(Boolean.TRUE)
-			.withDescription(" Mac: "+macs.get(i).Mac+" Signal: "+macs.get(i).Signal+" SSID: "+macs.get(i).ssid+" Frequency: "+macs.get(i).frequency)
-			.withTimePrimitive(t).createAndSetPoint().
-			addToCoordinates(Double.parseDouble(macs.get(i).lon), Double.parseDouble(macs.get(i).lat));
+			document.createAndAddPlacemark().withName(macs.get(i).arr_macbig[0].ID).withOpen(Boolean.TRUE)
+			.withDescription(" Mac: "+macs.get(i).arr_macbig[0].Mac+" Signal: "+macs.get(i).arr_macbig[0].Signal+
+			" SSID: "+macs.get(i).arr_macbig[0].ssid+ " Frequency: "+macs.get(i).arr_macbig[0].frequency).withTimePrimitive(t).
+			createAndSetPoint().addToCoordinates(Double.parseDouble(macs.get(i).arr_macbig[0].lon),
+			Double.parseDouble(macs.get(i).arr_macbig[0].lat));
 		}
 
 		try {

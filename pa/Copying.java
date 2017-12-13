@@ -49,6 +49,7 @@ public class Copying {
 			signal=signal+4;
 		}
 		answer.add(infoofLine);
+		
 	}
 	
 	/**
