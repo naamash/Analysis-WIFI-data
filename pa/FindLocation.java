@@ -213,8 +213,9 @@ public class FindLocation {
 			for (int j = IndexMacAnswer; j <(Integer.parseInt(answer.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
 				for (int k = 0; k < MacAndSigInfo2[0].length; k++) {
 					flag = false;
-					//System.out.println("MacAndSigInfo2[0][k]   "+MacAndSigInfo2[0][k] + "       answer.get(i)[j]   "+answer.get(i)[j]);
-					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])&&isTuched[i]==false){
+			//	System.out.println("MacAndSigInfo2[0][k]   "+MacAndSigInfo2[0][k] + "       answer.get(i)[j]   "+answer.get(i)[j]);
+				//&&isTuched[i]==false
+					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])){
 						System.out.println("============");
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));

@@ -14,6 +14,7 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<String[]> answer = new ArrayList<String[]>();
+		String file = "C:\\Users\\hadar\\Desktop\\CsvFilesOfMatala\\Answer_Of_Matala_Zero.csv";
 
 		boolean flag1 = true;
 		while(flag1){
@@ -23,12 +24,12 @@ public class ChooseFilter {
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
 				answer = ReadAndSave.readingFile(folder);
+				ReadAndSave.WriteToCsv(answer, file);
 				flag1 = false;
 			} catch (Exception e) {
 				System.err.println("This folder does'nt exist! try again.");
 			}
 		}
-		File file = new File("C:\\Users\\hadar\\Desktop\\Answer_Of_Matala_Zero.csv");
 		boolean flag = true;
 		while (flag){
 
@@ -55,7 +56,7 @@ public class ChooseFilter {
 	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
 	 * @return
 	 */
-	public static boolean time(File file, boolean flag){
+	public static boolean time(String file, boolean flag){
 		Scanner timeSt = new Scanner((System.in));
 		Scanner timeEn = new Scanner((System.in));
 		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
@@ -90,7 +91,7 @@ public class ChooseFilter {
 	 * @param file
 	 * @param flag - after user enter the lat, lon and radious, the function return flag = false in order to the function not ask the user again.  
 	 */
-	public static boolean location(File file, boolean flag){
+	public static boolean location(String file, boolean flag){
 		Scanner location = new Scanner((System.in));
 		System.out.println("enter lat");
 		String locationstart = location.nextLine();
@@ -112,7 +113,7 @@ public class ChooseFilter {
 	 * @param file
 	 * @param flag - after user enter the id, the function return flag = false in order to the function not ask the user again.  
 	 */
-	public static boolean id(File file, boolean flag){
+	public static boolean id(String file, boolean flag){
 		Scanner id = new Scanner((System.in));
 		System.out.println("enter id");
 		String idName = id.nextLine();

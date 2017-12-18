@@ -32,31 +32,23 @@ public class filters {
 	 * @throws IOException
 	 */
 
-	public static void FilterByTime(File file, String start, String end) throws Exception{
+	public static void FilterByTime(String file1, String start, String end) throws Exception{
 		//System.out.println(HelpFilter.fromStringToDate(start));
 		Date StartDate = HelpFilter.fromStringToDate(start);
 		//System.out.println(StartDate);
 		Date EndDate =  HelpFilter.fromStringToDate(end);
 		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
-		
+		File file = new File(file1);
+
 
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-	//	int m = 0;
-		int r=0;
-		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
-		while(read.readLine()!=null){
-			r++;
-		}
-		read.close();
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
-		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
 			answer.add(str.split(","));
-		//	m++;
 		}
 		sc.close();
 		fi.close();
@@ -65,7 +57,6 @@ public class filters {
 		int rowSort = 1;
 		for (int i = 1; i < answer.size(); i++) {
 			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i)[timeIndex]));
-			System.out.println(StartDate);
 
 			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
 				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, rowSort);
@@ -90,30 +81,18 @@ public class filters {
 	 * @param ID
 	 * @throws IOException
 	 */
-	public static void FilterByID(File file, String ID) throws IOException{
+	public static void FilterByID(String file1, String ID) throws IOException{
 		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 		//ArrayList<MacBig[]> MacsAfterFormulas=new ArrayList<MacBig[]>();
-
-
+		File file = new File(file1);
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-		//int m = 0;
-		int r=0;
-		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
-		while(read.readLine()!=null){
-			r++;
-		}
-		read.close();
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
-		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
-			String[] a = str.split(",");
-			System.out.println("******   "  +Arrays.toString(a));
-			answer.add(a);
-		//	m++;
+			answer.add(str.split(","));
 		}
 		sc.close();
 		fi.close();
@@ -149,25 +128,18 @@ public class filters {
 	 * @param radious
 	 * @throws IOException
 	 */
-	public static void FilterByLocation(File file, String lat, String lon, double radius) throws IOException{
+	public static void FilterByLocation(String file1, String lat, String lon, double radius) throws IOException{
 		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
+		File file = new File(file1);
+
 		FileInputStream fi = new FileInputStream(file);
 		Scanner sc = new Scanner(fi);
-		//int m = 0;
-		int r=0;
-		BufferedReader read= new BufferedReader(new FileReader(file.getPath()));
-//		while(read.readLine()!=null){
-//			r++;
-//		}
-		read.close();
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
-		r=1;
 
 		while (sc.hasNext()) {
 			String str = sc.nextLine();
 			answer.add(str.split(","));
-			//m++;
 		}
 		sc.close();
 		fi.close();
