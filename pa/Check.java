@@ -24,15 +24,15 @@ public class Check {
 		
 //		String foldername1 = "boaz";
 //		File folder1 = new File(foldername1);
-//		
+////		
 //		String foldername2 = "matala two";
 //		File folder2=new File(foldername2);
 //
 //		
-//		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\CsvFilesOfMatala\\Answer_Of_Matala_two_algo1.csv";
+//		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_two_algo1.csv";
 //		FindLocation.Matala2_Algo1 (folder1, locationAlgo1);
 //		
-//		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\CsvFilesOfMatala\\Answer_Of_Matala_two_algo2.csv";
+//		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_two_algo2.csv";
 //		FindLocation.Matala2_Algo2 (folder1,folder2,locationAlgo2);
 
 		

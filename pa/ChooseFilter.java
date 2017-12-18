@@ -5,6 +5,7 @@ package pa;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ChooseFilter {
@@ -14,7 +15,7 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<String[]> answer = new ArrayList<String[]>();
-		String file = "C:\\Users\\hadar\\Desktop\\CsvFilesOfMatala\\Answer_Of_Matala_Zero.csv";
+		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.csv";
 
 		boolean flag1 = true;
 		while(flag1){
@@ -24,6 +25,9 @@ public class ChooseFilter {
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
 				answer = ReadAndSave.readingFile(folder);
+//				for (int i = 0; i < answer.size(); i++) {
+//					System.out.println(Arrays.toString(answer.get(i)));
+//				}
 				ReadAndSave.WriteToCsv(answer, file);
 				flag1 = false;
 			} catch (Exception e) {

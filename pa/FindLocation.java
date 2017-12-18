@@ -216,7 +216,6 @@ public class FindLocation {
 			//	System.out.println("MacAndSigInfo2[0][k]   "+MacAndSigInfo2[0][k] + "       answer.get(i)[j]   "+answer.get(i)[j]);
 				//&&isTuched[i]==false
 					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])){
-						System.out.println("============");
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));
 						isTuched[i] = true;
@@ -263,7 +262,7 @@ return ArrAnswerLine;
 			line.Lat=ArrAnswerLine.get(i)[IndexLatAnswer];
 			line.Lon=ArrAnswerLine.get(i)[IndexLonAnswer];
 			ArrLocation.add(line);
-			System.out.println("line"+line.toString());
+			//System.out.println("line"+line.toString());
 			//			System.out.println("888888888888888888888888888888888888");
 		}
 		//		for (int i = 0; i < ArrLocation.size(); i++) {

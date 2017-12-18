@@ -34,7 +34,7 @@ public class ReadAndSave {
 	 * @throws IOException
 	 */
 
-	public static ArrayList<String[]> readingFile(File folder) throws IOException  {	
+	public static ArrayList<String[]> readingFile(File folder)  {	
 
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 
@@ -47,18 +47,20 @@ public class ReadAndSave {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			flag = false;
+			
 			try {
+				
 				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
 					int m = 0;
-					int row = 0;
-					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
-					while (read.readLine() != null) {
-						row++;
-					}
-					read.close();
+//					int row = 0;
+//					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
+//					while (read.readLine() != null) {
+//						row++;
+//					}
+//					read.close();
 
 					//information = new String[row][12];
 					r = 2;
@@ -86,6 +88,8 @@ public class ReadAndSave {
 						continue;
 
 					Save_info(information, answer, r);
+					information = new ArrayList<String[]>(); 
+					System.out.println("*******************");
 					sc.close();
 					fi.close();
 				}
@@ -168,7 +172,7 @@ public class ReadAndSave {
 			pw.println();
 		}
 		write.close();
-		System.out.println("done");
+		System.out.println("completed Csv");
 		return Answer_One;
 	}
 
@@ -180,6 +184,7 @@ public class ReadAndSave {
 	 * @param r
 	 */
 	public static void Save_info(ArrayList<String[]> information,ArrayList<String[]> answer,int r){
+		System.out.println("---------------------------------------");
 		int TimePlace = FindIndex.PlaceArticle(information,"FirstSeen",1);
 		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
 		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
@@ -189,7 +194,8 @@ public class ReadAndSave {
 
 		while (r<information.size()-1){
 
-			if (information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace]) && information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
+			if (information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
+					&& information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
 					&& information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]) && (information.get(r)[WifiPlace]).equals("WIFI")){
 
 				LineOfInfo line= new LineOfInfo(information,r);
@@ -203,12 +209,16 @@ public class ReadAndSave {
 				if(arrLineOfInfo.size() >= 10){
 					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size(),infoofLine);
-					arrLineOfInfo = new ArrayList<LineOfInfo>();
+
+					//arrLineOfInfo = new ArrayList<LineOfInfo>();
+					arrLineOfInfo.clear();
 				}
 				else{
 					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
 					Copying.CopyingToAnswer(arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size(),infoofLine);
-					arrLineOfInfo = new ArrayList<LineOfInfo>();
+					arrLineOfInfo.clear();
+
+					//arrLineOfInfo = new ArrayList<LineOfInfo>();
 				}
 			}
 			r++;
