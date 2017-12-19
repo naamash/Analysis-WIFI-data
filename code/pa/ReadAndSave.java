@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import objects.LineOfInfo;
+import objects.*;
 
 
 /**

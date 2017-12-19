@@ -1,4 +1,4 @@
-package pa;
+package algo1and2;
 
 import objects.MacBig;
 

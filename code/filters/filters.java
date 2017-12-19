@@ -12,10 +12,8 @@ import java.util.Scanner;
 
 import javax.crypto.MacSpi;
 
-import objects.MacBig;
-import objects.MacBig_Container;
-import pa.ConvertToKml;
-import pa.FindIndex;
+import objects.*;
+import pa.*;
 
 /**
  * This class contains three sorting functions.

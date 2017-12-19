@@ -1,7 +1,7 @@
 package algo1and2;
 
 import pa.*;
-
+import objects.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,9 +15,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import filters.HelpFilter;
-import objects.Location;
-import objects.MacBig;
-import objects.MacBig_Container;
 
 public class FindLocation {
 
