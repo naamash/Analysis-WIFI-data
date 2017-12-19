@@ -1,7 +1,5 @@
 package algo1and2;
 
-import pa.*;
-import objects.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,11 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 import filters.HelpFilter;
+import objects.Location;
+import objects.MacBig;
+import objects.MacBig_Container;
+import writeTo.HelpersBeforeWrite;
+import writeTo.ReadAndWrite;
 
 public class FindLocation {
 
@@ -44,13 +45,13 @@ public class FindLocation {
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 
-		answer = ReadAndSave.readingFile(folder);
+		answer = ReadAndWrite.readingFile(folder);
 
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
@@ -59,7 +60,7 @@ public class FindLocation {
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 		ArrayList<String[]> information2 = new ArrayList<String[]>();
 
-		answer = ReadAndSave.readingFile(folder1);
+		answer = ReadAndWrite.readingFile(folder1);
 //		for (int h = 0; h < answer.size(); h++) {
 //			System.out.println(Arrays.toString(answer.get(h))+" ");
 //		}
@@ -112,7 +113,7 @@ public class FindLocation {
 			information2.get(j)[IndexAltInfo] = W_sum.Alt;
 			information2.get(j)[IndexLonInfo] = W_sum.Lon;
 		}
-		ReadAndSave.WriteToCsv(information2,locationAlgo2);
+		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 //				for (int i = 0; i < information2.size(); i++) {
 //					for (int j = 0; j < information2.get(i).length; j++) {
 //						System.out.print((information2.get(i)[j])+" ");
@@ -240,10 +241,10 @@ return ArrAnswerLine;
 			for (int j = IndexMacAnswer; j <(Integer.parseInt(ArrAnswerLine.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
 				for (int h = 0; h < MacAndSigInfo2[0].length; h++) {
 					if(ArrAnswerLine.get(i)[j].equals(MacAndSigInfo2[0][h])){
-						PI=CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),Integer.parseInt(ArrAnswerLine.get(i)[j+2]),PI);
+						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),Integer.parseInt(ArrAnswerLine.get(i)[j+2]),PI);
 					}
 					else{
-						PI=CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),no_signal,PI);
+						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),no_signal,PI);
 					}
 				}
 			}
@@ -260,20 +261,7 @@ return ArrAnswerLine;
 	}
 
 
-	public static double CalculatePI(int inputSignal, int signalOfUs,double PI){
-		int diff;
-		double w;
-		if (Math.abs(inputSignal-signalOfUs)==0){
-			diff=min_diff;
-		}
-		else{
-			diff = Math.abs(inputSignal-signalOfUs);
-		}
-		w=(norm/(Math.pow(diff, sig_diff)))*(1/(Math.pow(inputSignal, power)));
-		PI = PI*w;
-		return PI;
-	}
-
+	
 	public static void WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
 		int IndexIndex = 0;
 		int MacIndex = 1;

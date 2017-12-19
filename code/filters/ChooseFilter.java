@@ -7,7 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import pa.*;
+
+import writeTo.ReadAndWrite;
 
 public class ChooseFilter {
 	
@@ -25,11 +26,11 @@ public class ChooseFilter {
 				System.out.println("enter folder name");
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
-				answer = ReadAndSave.readingFile(folder);
+				answer = ReadAndWrite.readingFile(folder);
 //				for (int i = 0; i < answer.size(); i++) {
 //					System.out.println(Arrays.toString(answer.get(i)));
 //				}
-				ReadAndSave.WriteToCsv(answer, file);
+				ReadAndWrite.WriteToCsv(answer, file);
 				flag1 = false;
 			} catch (Exception e) {
 				System.err.println("This folder does'nt exist! try again.");

@@ -1,20 +1,17 @@
 package filters;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
-import javax.crypto.MacSpi;
-
-import objects.*;
-import pa.*;
-
+import objects.MacBig;
+import objects.MacBig_Container;
+import writeTo.ConvertToKml;
+import writeTo.FindIndex;
+import writeTo.HelpersBeforeWrite;
 /**
  * This class contains three sorting functions.
  * each function sort by a different thing.
@@ -114,7 +111,7 @@ public class filters {
 //	}
 		
 	MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-	MacsAfterFormulas = HelpFilter.FixingBeforeCsv(macs);
+	MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 	//ReadAndSave.WriteToCsvTheBetterMac(MacsAfterFormulas);
 	
 	ConvertToKml.ToKml(macs);

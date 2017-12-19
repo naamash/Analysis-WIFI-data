@@ -1,20 +1,16 @@
-package pa;
+package mainClass;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 import filters.ChooseFilter;
 
 /**
- * This class check and use the classes on this package.
+ * This class check and use the classes of all of packages.
  * the class contains main.
  * @author 
  *
  */
-public class Check {
+public class main {
 
 	public static void main(String[] args) throws IOException {
 

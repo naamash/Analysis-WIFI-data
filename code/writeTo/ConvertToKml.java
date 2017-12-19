@@ -1,4 +1,4 @@
-package pa;
+package writeTo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
 import objects.MacBig_Container;
 /**
- * The function accept ArrayList<MacBig> macs and convert to kml file with all the Values
+ * The function accept ArrayList<MacBig_Container> macs and convert to kml file with all the Values
  * @author 
  *
  */
@@ -40,7 +40,7 @@ public class ConvertToKml {
 	/**
 	 * The function accept String date and convert this to format of kml
 	 * @param date
-	 * @return - the function return String of the new format of time acording to the kml
+	 * @return  String of the new format of time according to the kml
 	 */
 	public static String ConvertTimeToKmlFormat(String date){
 		date= date.replace('-', '/');

@@ -1,5 +1,4 @@
 package filters;
-import pa.*;
 /**
  * This class contains function that "help" to three functions filters (filters class).
  * The functions of the filters call to this functions.
@@ -12,13 +11,11 @@ import pa.*;
  */
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
-import algo1and2.Formulas;
 import objects.MacBig;
 import objects.MacBig_Container;
-
+import writeTo.FindIndex;
 public class HelpFilter {
 
 	static int ARR_SIZE = 3;
@@ -91,20 +88,6 @@ public class HelpFilter {
 		return macs;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	public static void sortMACS(MacBig_Container mac){
 		for(int i=0; i < mac.realsize; i++){  
 			for(int j=i+1; j < mac.realsize-1; j++){  
@@ -183,49 +166,7 @@ public class HelpFilter {
 		return distance;
 	}
 
-	public static MacBig[] FixingBeforeCsv (ArrayList<MacBig_Container> macs){
-		double weight;
-		double walt;
-		double wlon;
-		double wlat;
-		MacBig []fixed = new MacBig[macs.size()];
-		MacBig []helper ;
-		int k=0;
-
-		for (int i = 0; i < macs.size(); i++) {
-			helper = new MacBig[macs.get(i).realsize];
-			k=0;
-			for (int j = 0; j < macs.get(i).realsize; j++) {
-				weight=Formulas.weight(Integer.parseInt(macs.get(i).arr_macbig[j].Signal));
-				wlat=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lat));
-				wlon=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lon));
-				walt=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].alt));
-				MacBig t = new MacBig();
-				t.alt = ""+walt;
-				t.lat = ""+wlat;
-				t.lon = ""+wlon;
-				t.Signal = ""+weight;
-				helper[k]=t;
-
-				k++;
-			}
-			//MMB29K.A520FXXU1AQF3
-			MacBig hel = new MacBig();
-			hel.lat = ""+Formulas.sumOfLat(helper,macs.get(i).realsize);
-			hel.lon = ""+Formulas.sumOfLon(helper,macs.get(i).realsize);
-			hel.alt = ""+Formulas.sumOfAlt(helper,macs.get(i).realsize);
-			hel.Signal = ""+Formulas.sumOfWeight(helper,macs.get(i).realsize);
-			hel.Mac = ""+macs.get(i).arr_macbig[0].Mac;
-			hel.ssid = ""+macs.get(i).arr_macbig[0].ssid;
-			hel.ID = ""+macs.get(i).arr_macbig[0].ID;
-			hel.time = ""+macs.get(i).arr_macbig[0].time;
-			hel.frequency = ""+macs.get(i).arr_macbig[0].frequency;
-			fixed[i] = hel;
-			//System.out.println((fixed[i].toString()));
-
-		}
-		return fixed;
-	}
+	
 
 
 }
