@@ -1,8 +1,10 @@
-package pa;
+package tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import objects.LineOfInfo;
 
 public class LineOfInfoTest {
 	

@@ -1,14 +1,14 @@
-package pa;
+package objects;
 
 import java.util.Comparator;
 
 public class Location implements Comparable<Location> {
 	
-	String Mac;
-	String PI;
-	String Alt;
-	String Lat;
-	String Lon;
+	public String Mac;
+	public String PI;
+	public String Alt;
+	public String Lat;
+	public String Lon;
 	
 	public Location(){
 		this.Mac = null;

@@ -1,10 +1,10 @@
-package pa;
+package objects;
 
 import java.util.Arrays;
 
 public class MacBig_Container {
-	MacBig []arr_macbig;
-	int realsize;
+	public MacBig []arr_macbig;
+	public int realsize;
 	
 	public MacBig_Container() {
 		this.arr_macbig = null;

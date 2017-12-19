@@ -1,10 +1,12 @@
-package pa;
+package tests;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import pa.ReadAndSave;
 
 public class ReadAndSaveTest {
 

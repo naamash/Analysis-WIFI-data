@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import objects.LineOfInfo;
+
 
 /**
  * This class get folder of files, read them, sort them, and convert them to one CSV sorted file.

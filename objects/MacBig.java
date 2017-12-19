@@ -1,4 +1,4 @@
-package pa;
+package objects;
 /**
  * * This class creates object that contain Values of each sample.
  */
@@ -6,15 +6,15 @@ package pa;
  */
 public class MacBig {
 
-	String Mac;
-	String Signal;
-	String time;
-	String frequency;
-	String lon;
-	String lat;
-	String ssid;
-	String ID;
-	String alt;
+	public String Mac;
+	public String Signal;
+	public String time;
+	public String frequency;
+	public String lon;
+	public String lat;
+	public String ssid;
+	public String ID;
+	public String alt;
 
 		/**
 		 * Default constructors

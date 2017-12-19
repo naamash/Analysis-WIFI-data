@@ -1,4 +1,5 @@
-package pa;
+package filters;
+import pa.*;
  /**
  * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location 
  */
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import pa.ReadAndSave;
 
 public class ChooseFilter {
 	

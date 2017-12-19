@@ -1,5 +1,7 @@
 package pa;
 
+import objects.MacBig;
+
 public class Formulas {
 
 	public static double weight (int signal){

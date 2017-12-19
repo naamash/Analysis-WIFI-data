@@ -1,8 +1,10 @@
-package pa;
+package tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import pa.FindIndex;
 
 public class FindIndexTest {
 

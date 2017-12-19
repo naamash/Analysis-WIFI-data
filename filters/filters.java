@@ -1,4 +1,4 @@
-package pa;
+package filters;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,6 +11,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 import javax.crypto.MacSpi;
+
+import objects.MacBig;
+import objects.MacBig_Container;
+import pa.ConvertToKml;
+import pa.FindIndex;
 
 /**
  * This class contains three sorting functions.

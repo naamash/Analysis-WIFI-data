@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
+import objects.MacBig_Container;
 /**
  * The function accept ArrayList<MacBig> macs and convert to kml file with all the Values
  * @author 

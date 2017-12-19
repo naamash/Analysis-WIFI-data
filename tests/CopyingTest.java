@@ -1,8 +1,10 @@
-package pa;
-
+package tests;
+import pa.*;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.Test;
+
+import pa.Copying;
 
 public class CopyingTest {
 

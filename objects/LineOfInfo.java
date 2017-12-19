@@ -1,4 +1,4 @@
-package pa;
+package objects;
 
 import java.util.ArrayList;
 
@@ -12,19 +12,19 @@ import java.util.ArrayList;
  */
 
 public class LineOfInfo implements Comparable<LineOfInfo>  {
-	ArrayList<LineOfInfo> lines = new ArrayList<LineOfInfo>();
+	public ArrayList<LineOfInfo> lines = new ArrayList<LineOfInfo>();
 	
-	String Type;
-	String AccuracyMeters;
-	String AltitudeMeters;
-	String CurrentLongitude;
-	String CurrentLatitude;
-	String RSSI;
-	String Channel;
-	String FirstSeen;
-	String AuthMode;
-	String SSID;
-	String MAC;
+	public String Type;
+	public String AccuracyMeters;
+	public String AltitudeMeters;
+	public String CurrentLongitude;
+	public String CurrentLatitude;
+	public String RSSI;
+	public String Channel;
+	public String FirstSeen;
+	public String AuthMode;
+	public String SSID;
+	public String MAC;
 
 
 		/**

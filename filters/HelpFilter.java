@@ -1,5 +1,5 @@
-package pa;
-
+package filters;
+import pa.*;
 /**
  * This class contains function that "help" to three functions filters (filters class).
  * The functions of the filters call to this functions.
@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+
+import objects.MacBig;
+import objects.MacBig_Container;
 
 public class HelpFilter {
 

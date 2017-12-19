@@ -2,6 +2,8 @@ package pa;
 
 import java.util.ArrayList;
 
+import objects.LineOfInfo;
+
 /**
  * This class using function for copying relevant values to answer. 
  * @author 
