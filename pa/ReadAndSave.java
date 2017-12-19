@@ -47,20 +47,20 @@ public class ReadAndSave {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			flag = false;
-			
+
 			try {
-				
+
 				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
 					int m = 0;
-//					int row = 0;
-//					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
-//					while (read.readLine() != null) {
-//						row++;
-//					}
-//					read.close();
+					//					int row = 0;
+					//					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
+					//					while (read.readLine() != null) {
+					//						row++;
+					//					}
+					//					read.close();
 
 					//information = new String[row][12];
 					r = 2;
@@ -87,9 +87,8 @@ public class ReadAndSave {
 					if(flag)
 						continue;
 
-					Save_info(information, answer, r);
+					Save_info(information, answer);
 					information = new ArrayList<String[]>(); 
-					System.out.println("*******************");
 					sc.close();
 					fi.close();
 				}
@@ -102,12 +101,12 @@ public class ReadAndSave {
 				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
 			}
 		}
-//		System.out.println("---------------------------------------size:  "+answer.size());
-//		FindLocation.checkMac(answer);
+		//		System.out.println("---------------------------------------size:  "+answer.size());
+		//		FindLocation.checkMac(answer);
 		//return WriteToCsv(answer);
 		return answer;
 	}
-	
+
 	/**
 	 * The function create line of the Headers of values
 	 * @return the line with the Headers of values
@@ -183,42 +182,44 @@ public class ReadAndSave {
 	 * @param answer
 	 * @param r
 	 */
-	public static void Save_info(ArrayList<String[]> information,ArrayList<String[]> answer,int r){
-		System.out.println("---------------------------------------");
+	public static void Save_info(ArrayList<String[]> information,ArrayList<String[]> answer){
 		int TimePlace = FindIndex.PlaceArticle(information,"FirstSeen",1);
 		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
 		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
 		int WifiPlace = FindIndex.PlaceArticle(information,"Type",1);
-	//	int AltPlace = FindIndex.PlaceArticle(information,"Type",1);
 		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
+		int r=1;
+		while (r<information.size()){
+			if ((information.get(r)[WifiPlace]).equals("WIFI")){
+				if (r<information.size()-1&&(information.get(r+1)[WifiPlace]).equals("WIFI")&&information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
+						&& information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
+						&& information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace])){
 
-		while (r<information.size()-1){
+					LineOfInfo line= new LineOfInfo(information,r);
+					arrLineOfInfo.add(line);
 
-			if (information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
-					&& information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
-					&& information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]) && (information.get(r)[WifiPlace]).equals("WIFI")){
-
-				LineOfInfo line= new LineOfInfo(information,r);
-				arrLineOfInfo.add(line);
-			}
-
-			else if ((information.get(r)[WifiPlace]).equals("WIFI")){
-				LineOfInfo line= new LineOfInfo(information,r+1);
-				arrLineOfInfo.add(line);
-
-				if(arrLineOfInfo.size() >= 10){
-					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
-					Copying.CopyingToAnswer(arrLineOfInfo ,answer,r+1,10,arrLineOfInfo.size(),infoofLine);
-
-					//arrLineOfInfo = new ArrayList<LineOfInfo>();
-					arrLineOfInfo.clear();
 				}
-				else{
-					String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r+1,arrLineOfInfo.size());
-					Copying.CopyingToAnswer(arrLineOfInfo,answer,r+1,arrLineOfInfo.size(),arrLineOfInfo.size(),infoofLine);
-					arrLineOfInfo.clear();
 
-					//arrLineOfInfo = new ArrayList<LineOfInfo>();
+//				else if (((r<=information.size()-1)&&(information.get(r)[WifiPlace]).equals("WIFI"))&&
+//						(information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
+//								|| information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
+//								|| information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]))){
+				else{
+					LineOfInfo line= new LineOfInfo(information,r);
+					arrLineOfInfo.add(line);
+
+					if(arrLineOfInfo.size() >= 10){
+						String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r,arrLineOfInfo.size());
+						Copying.CopyingToAnswer(arrLineOfInfo ,answer,r,10,arrLineOfInfo.size(),infoofLine);
+
+						arrLineOfInfo.clear();
+					}
+					else{
+						String infoofLine[]=Copying.CopyingToAnswerFirst(information,answer,r,arrLineOfInfo.size());
+						Copying.CopyingToAnswer(arrLineOfInfo,answer,r,arrLineOfInfo.size(),arrLineOfInfo.size(),infoofLine);
+						arrLineOfInfo.clear();
+
+					}
 				}
 			}
 			r++;

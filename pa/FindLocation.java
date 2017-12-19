@@ -149,17 +149,6 @@ public class FindLocation {
 		return W_sum;	
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 	public static ArrayList<String[]> readingFileOfTwo_(File folder) throws IOException  {	
 
 		ArrayList<String[]> information2 = new ArrayList<String[]>();
@@ -191,16 +180,13 @@ public class FindLocation {
 			}
 		}
 
-		//		System.out.println("---------------------------------------size:  "+answer.size());
-		//		FindLocation.checkMac(answer);
-
-		for (int i = 0; i < information2.size(); i++) {
-			for (int j = 0; j < information2.get(i).length; j++) {
-				System.out.print((information2.get(i)[j])+" ");
-			}
-			System.out.println();
-		}
-		System.out.println("*************************");
+//		for (int i = 0; i < information2.size(); i++) {
+//			for (int j = 0; j < information2.get(i).length; j++) {
+//				System.out.print((information2.get(i)[j])+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("*************************");
 		return information2;
 	}
 
@@ -263,7 +249,6 @@ return ArrAnswerLine;
 			line.Lon=ArrAnswerLine.get(i)[IndexLonAnswer];
 			ArrLocation.add(line);
 			//System.out.println("line"+line.toString());
-			//			System.out.println("888888888888888888888888888888888888");
 		}
 		//		for (int i = 0; i < ArrLocation.size(); i++) {
 		//			System.out.println(ArrLocation.get(i).toString());
