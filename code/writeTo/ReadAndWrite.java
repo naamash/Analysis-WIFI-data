@@ -106,7 +106,6 @@ public class ReadAndWrite {
 	public static ArrayList<String[]> WriteToCsv(ArrayList<String[]> answer,String location) throws IOException{
 		ArrayList<String[]> Answer_One = new ArrayList<String[]>();
 		Answer_One.addAll(answer);
-		System.out.println(Answer_One.size()+ "  *******");
 		FileWriter write = new FileWriter(location);
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.size(); i++) {
