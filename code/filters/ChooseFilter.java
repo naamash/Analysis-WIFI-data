@@ -1,7 +1,7 @@
 package filters;
 
  /**
- * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location 
+ * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location. 
  */
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import writeTo.ReadAndWrite;
 public class ChooseFilter {
 	
 	/**
-	 * This function ask user to enter folder name and choose acoording to what to sort until the user enter correct input
+	 * This function ask the user to enter folder name and choose type of sorting(time,ID or location).
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<String[]> answer = new ArrayList<String[]>();
@@ -56,8 +56,8 @@ public class ChooseFilter {
 	}
 	
 	/**
-	 * The function accepts file and boolean flag. 
-	 * The function ask user to enter time start and time end that acoording to this, the function sort.
+	 * The function accepts String file and boolean flag. 
+	 * The function ask user to enter time start and time end so that the function will sort according to this .
 	 * @param file
 	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
 	 * @return
@@ -92,8 +92,8 @@ public class ChooseFilter {
 	}
 	
 	/**
-	 * The function accepts file and boolean flag. 
-	 * The function ask user to enter lat, lon and radious that acoording to this, the function sort.
+	 * The function accepts String file and boolean flag. 
+	 * The function ask user to enter lat, lon and radious so that the function will sort according to this .
 	 * @param file
 	 * @param flag - after user enter the lat, lon and radious, the function return flag = false in order to the function not ask the user again.  
 	 */
@@ -114,8 +114,8 @@ public class ChooseFilter {
 	}
 	
 	/**
-	 * The function accepts file and boolean flag. 
-	 * The function ask user to enter id that acoording to this, the function sort.
+	 * The function accepts String file and boolean flag. 
+	 * The function ask user to enter id so that the function will sort according to this .
 	 * @param file
 	 * @param flag - after user enter the id, the function return flag = false in order to the function not ask the user again.  
 	 */

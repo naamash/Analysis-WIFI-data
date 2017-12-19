@@ -17,7 +17,8 @@ public class main {
 		//				2017/10/27 16:34:00
 		//				2017/11/03 17:25:26
 
-		
+		//MMB29K.A520FXXU1AQF3
+
 		ChooseFilter.Decide();//מטלה 0+1
 		
 //		String foldername1 = "boaz";

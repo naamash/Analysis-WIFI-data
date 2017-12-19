@@ -8,8 +8,7 @@ import objects.MacBig;
 import objects.MacBig_Container;
 
 /**
- * This class using function for copying relevant values to answer. 
- * @author 
+ * This class contains functions that previous and helps the writing to csv.
  *
  */
 
@@ -58,7 +57,7 @@ public class HelpersBeforeWrite {
 	}
 	
 	/**
-	 * This function copying values from information matrix to array of String type.
+	 * This function copying values from information (in type ArrayList<String[]>) to array of String type.
 	 * @param information
 	 * @param answer
 	 * @param indexOfRow
@@ -142,7 +141,7 @@ public class HelpersBeforeWrite {
 	}
 	
 	/**
-	 * This function copying all of the relevant values from information matrix to answer.
+	 * This function copying all of the relevant values from information to answer.
 	 * this function use arraylist of String[] type. so it call another functions for doing it.
 	 * @param information
 	 * @param answer
@@ -191,6 +190,13 @@ public class HelpersBeforeWrite {
 			r++;
 		}
 	}
+	
+	/**
+	 * This function help algo1 before converting to csv.
+	 * it calculate Weighted average for any mac(value numbers of any X better mac was given) .
+	 * @param macs
+	 * @return
+	 */
 	public static MacBig[] FixingBeforeCsv (ArrayList<MacBig_Container> macs){
 		double weight;
 		double walt;
@@ -199,7 +205,6 @@ public class HelpersBeforeWrite {
 		MacBig []fixed = new MacBig[macs.size()];
 		MacBig []helper ;
 		int k=0;
-
 		for (int i = 0; i < macs.size(); i++) {
 			helper = new MacBig[macs.get(i).realsize];
 			k=0;
@@ -217,7 +222,6 @@ public class HelpersBeforeWrite {
 
 				k++;
 			}
-			//MMB29K.A520FXXU1AQF3
 			MacBig hel = new MacBig();
 			hel.lat = ""+Formulas.sumOfLat(helper,macs.get(i).realsize);
 			hel.lon = ""+Formulas.sumOfLon(helper,macs.get(i).realsize);
@@ -235,10 +239,4 @@ public class HelpersBeforeWrite {
 		return fixed;
 	}
 	
-	
-	
-	
-	
-	
-
 }

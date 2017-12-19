@@ -1,14 +1,4 @@
 package filters;
-/**
- * This class contains function that "help" to three functions filters (filters class).
- * The functions of the filters call to this functions.
- * function that save the largest SSID.
- * function swap.
- * function that convert from String To Date.
- * function that calculate the distance between two points.
- * @author 
- *
- */
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,11 +6,21 @@ import java.util.Date;
 import objects.MacBig;
 import objects.MacBig_Container;
 import writeTo.FindIndex;
+/**
+ * This class contains function that "help" to the three functions filters (filters class).
+ * The functions of the filters use those functions.
+ * function that save the largest signal.
+ * function swap.
+ * function that convert from String To Date.
+ * function that calculate the distance between two points.
+ * @author 
+ *
+ */
 public class HelpFilter {
 
 	static int ARR_SIZE = 3;
 	/**
-	 * The function accept ArrayList of MacBig type , matrix of String type and int row.
+	 * The function accept ArrayList of MacBig_Container type , ArrayList of String[] type and int row.
 	 * The function save the largest SSID of each Mac.
 	 * The function copying all the Values to ArrayList of MacBig type 
 	 * @param macs
@@ -37,8 +37,6 @@ public class HelpFilter {
 		int Lonindex=FindIndex.Place(answer, "Lon");
 		int network =FindIndex.Place(answer,"#WiFi networks");
 		int AltIndex =FindIndex.Place(answer,"Alt");
-
-
 		for (int i =ssidindex; i < (Integer.parseInt(answer.get(row)[network])*4)+ssidindex ; i=i+4) {
 			isIn = true;
 			int j = 0;
@@ -88,6 +86,10 @@ public class HelpFilter {
 		return macs;
 	}
 	
+	/**
+	 * This function gets array of MacBig and sort it so that the largest is in the lowest index.
+	 * @param mac
+	 */
 	public static void sortMACS(MacBig_Container mac){
 		for(int i=0; i < mac.realsize; i++){  
 			for(int j=i+1; j < mac.realsize-1; j++){  
@@ -98,7 +100,7 @@ public class HelpFilter {
 		}  
 	}
 	/**
-	 * The function accept two MacBig type and copying all the Values of one another
+	 * The function accept two MacBig type and swap them.
 	 * @param temp
 	 * @param original
 	 */
@@ -165,9 +167,6 @@ public class HelpFilter {
 		double distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 		return distance;
 	}
-
-	
-
 
 }
 

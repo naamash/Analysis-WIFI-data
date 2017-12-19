@@ -1,6 +1,4 @@
 package writeTo;
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -9,10 +7,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import objects.LineOfInfo;
 
 /**
- * This class get folder of files, read them, sort them, and convert them to one CSV sorted file.
+ * This class get folder of files, read them and convert them to one CSV file after filtering them.
  * @author 
  *
  */
@@ -20,8 +17,8 @@ import objects.LineOfInfo;
 public class ReadAndWrite {
 
 	/**
-	 * This function get folder of files and sort it for getting only relevant files of CSV type.
-	 * for doing that the function call another functions from it's class and from another classes on relevents package.
+	 * This function get folder of files and filter it for getting only relevant files of CSV type.
+	 * for doing that the function call another functions from it's class and from another classes from relevents package.
 	 * 
 	 * https://stackoverflow.com/questions/11496700/how-to-use-printwriter-and-file-classes-in-java
 	 * https://stackoverflow.com/questions/11485311/how-can-a-fileinputstream-get-the-content-of-file
@@ -30,23 +27,19 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-
 	public static ArrayList<String[]> readingFile(File folder)  {	
-
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 
 		File[] listOfFiles = folder.listFiles();
 		ArrayList<String[]> information = new ArrayList<String[]>();
-
+		
 		answer.add(HelpersBeforeWrite.MadeLine());
 		int r=2;
 		boolean flag = false;
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			flag = false;
-
 			try {
-
 				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
@@ -61,7 +54,6 @@ public class ReadAndWrite {
 
 					//information = new String[row][12];
 					r = 2;
-
 					while (sc.hasNext()) {
 						String str = sc.nextLine();
 						String []a = str.split(",");
@@ -89,7 +81,6 @@ public class ReadAndWrite {
 					sc.close();
 					fi.close();
 				}
-
 				else {
 					throw new IOException(); 
 				}
@@ -103,18 +94,16 @@ public class ReadAndWrite {
 		//return WriteToCsv(answer);
 		return answer;
 	}
-
 	
 
 	/**
-	 * The function accept array of String [] type and write this to csv file.
-	 * The function return the matrix after if create csv file 
+	 * The function accept array of String [] type and write it to csv file.
+	 * The function return the ArrayList<String[]> after creating csv file 
 	 * @param answer
 	 * @return
 	 * @throws IOException
 	 */
 	public static ArrayList<String[]> WriteToCsv(ArrayList<String[]> answer,String location) throws IOException{
-
 		ArrayList<String[]> Answer_One = new ArrayList<String[]>();
 		Answer_One.addAll(answer);
 		System.out.println(Answer_One.size()+ "  *******");

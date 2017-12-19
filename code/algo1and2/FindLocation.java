@@ -40,7 +40,14 @@ public class FindLocation {
 	static int min_diff = 3;
 	static int no_signal = -120;
 	static int Number_of_loc = 3;
-
+	/**
+	 * This function get folder and String location.
+	 * The function read the files from the folder calculate the Weighted average for any MAC and convert it to csv file.
+	 * it calls to another function for doing this.
+	 * @param folder
+	 * @param locationAlgo1
+	 * @throws IOException
+	 */
 	public static void Matala2_Algo1 (File folder,String locationAlgo1) throws IOException{
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
@@ -50,28 +57,44 @@ public class FindLocation {
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
+		
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
 
+	/**
+	 * This function get two folders-one with dataBase and the second with the lesses values.
+	 * The function take all MACs in line on files in the second folder, and calculate the Weighted 
+	 * average after searching the values of them in the dataBase folder.
+	 * it calls to another function for doing this.
+	 * @param folder1
+	 * @param folder2
+	 * @param locationAlgo2
+	 * @throws IOException
+	 */
 	public static void Matala2_Algo2 (File folder1 ,File folder2, String locationAlgo2) throws IOException{
 		ArrayList<String[]> answer = new ArrayList<String[]>();
 		ArrayList<String[]> information2 = new ArrayList<String[]>();
 
 		answer = ReadAndWrite.readingFile(folder1);
-//		for (int h = 0; h < answer.size(); h++) {
-//			System.out.println(Arrays.toString(answer.get(h))+" ");
-//		}
 		information2 = readingFileOfTwo_(folder2);
 
 		checkMac(answer,information2,locationAlgo2);
 
 	}
 
+	/**
+	 * The function check the MACs for each line and search the values in answer about it. 
+	 * The function take the three biggest values and calculate the Weighted average. 
+	 * after that, it enter to information2 the values after calculating.
+	 * At the end, the function convert information2 to csv file. 
+	 * @param answer -  all the database
+	 * @param information2 -  the file with the lesses values
+	 * @param locationAlgo2 - the location that the file will be saved there
+	 * @throws IOException
+	 */
 	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2,String locationAlgo2 ) throws IOException{
-		//ArrayList<String[]> information2 = readingFileOfTwo_(folder);
 		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
 		ArrayList<Location> ArrLocation = new ArrayList<Location>();
 		boolean []isTuched = new boolean[answer.size()];
@@ -96,43 +119,30 @@ public class FindLocation {
 				row=0;
 				colm++;
 			}
-//			for (int h = 0; h < answer.size(); h++) {
-//			System.out.println(Arrays.toString(answer.get(h))+" ");
-//		}
 			ArrAnswerLine = SearchMacInAnswer(MacAndSigInfo2,ArrLocation,answer,ArrAnswerLine,isTuched);
 			CreateArrLocation(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
-
-			//System.out.println("before:   " + ArrLocation.toString());
-
-			//			Collections.sort(ArrLocation,Location.loc());
 			ArrLocation.sort(null);
-			//sSystem.out.println("after:  " + ArrLocation.toString());
-			//System.out.println("---------------------------------");
 			Location W_sum = WSUM(ArrLocation);
 			information2.get(j)[IndexLatInfo] = W_sum.Lat;
 			information2.get(j)[IndexAltInfo] = W_sum.Alt;
 			information2.get(j)[IndexLonInfo] = W_sum.Lon;
 		}
 		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
-//				for (int i = 0; i < information2.size(); i++) {
-//					for (int j = 0; j < information2.get(i).length; j++) {
-//						System.out.print((information2.get(i)[j])+" ");
-//					}
-//					System.out.println("*-*-*-*-*");
-//				}
 	}
 
+	/**
+	 * The function get ArrayList<Location> ArrLocation and calculate WSUM by using Formulas. 
+	 * @param ArrLocation - arraylist of Location type
+	 * @return object of Location type with the calculated values.
+	 */
 	public static Location WSUM (ArrayList<Location> ArrLocation){
 		Location W_sum = new Location();
 		double sumAlt=0;
 		double sumLat=0.0;
 		double sumLon=0.0;
 		double weight=0.0;
-
-		//		for (int i = 0; i < ArrLocation.size(); i++) {
-		//System.out.println(ArrLocation.toString());
-		//		}
 		int size;
+		
 		if (ArrLocation.size()>=Number_of_loc){
 			size = Number_of_loc;
 		}
@@ -146,16 +156,21 @@ public class FindLocation {
 			weight+=Double.parseDouble(ArrLocation.get(i).PI);
 		}
 
-
 		W_sum.Alt=""+sumAlt/weight;
 		W_sum.Lat=""+sumLat/weight;
 		W_sum.Lon=""+sumLon/weight;
-		//System.out.println(W_sum.toString());
 		return W_sum;	
 	}
 
+	/**
+	 *This function get folder of files and filter it for getting only relevant files of CSV type.
+	 *for doing that the function call another functions from it's class and from another classes from relevents package.
+	 * 
+	 * @param folder
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<String[]> readingFileOfTwo_(File folder) throws IOException  {	
-
 		ArrayList<String[]> information2 = new ArrayList<String[]>();
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
@@ -175,7 +190,6 @@ public class FindLocation {
 					sc.close();
 					fi.close();
 				}
-
 				else {
 					throw new IOException(); 
 				}
@@ -184,19 +198,21 @@ public class FindLocation {
 				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
 			}
 		}
-
-//		for (int i = 0; i < information2.size(); i++) {
-//			for (int j = 0; j < information2.get(i).length; j++) {
-//				System.out.print((information2.get(i)[j])+" ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("*************************");
 		return information2;
 	}
 
 
-
+	/**
+	 * This function search the MACs of the line(information2) in the dataBase files(answer) 
+	 * and add each line that contains at least one of the Macs to ArrAnswerLine  
+	 * @param MacAndSigInfo2
+	 * @param ArrLocation
+	 * @param answer
+	 * @param ArrAnswerLine
+	 * @param isTuched
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<String[]> SearchMacInAnswer (String [][]MacAndSigInfo2,ArrayList<Location> ArrLocation,
 			ArrayList<String[]> answer, ArrayList<String[]> ArrAnswerLine,boolean []isTuched) throws IOException{
 		for (int i = 1; i < answer.size(); i++) {
@@ -204,8 +220,6 @@ public class FindLocation {
 			for (int j = IndexMacAnswer; j <(Integer.parseInt(answer.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
 				for (int k = 0; k < MacAndSigInfo2[0].length; k++) {
 					flag = false;
-			//	System.out.println("MacAndSigInfo2[0][k]   "+MacAndSigInfo2[0][k] + "       answer.get(i)[j]   "+answer.get(i)[j]);
-				//&&isTuched[i]==false
 					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])){
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));
@@ -213,25 +227,18 @@ public class FindLocation {
 					}
 				}
 			}
-//			for (int h = 0; h < ArrAnswerLine.size(); h++) {
-//				System.out.println("aaaaaaaaaaa     "+Arrays.toString(ArrAnswerLine.get(h)));
-//			}
 		}
 
-		//		naama(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
-
-		//System.out.println("ArrAnswerLine.size()  "+ArrAnswerLine.size());
-//				for (int i = 0; i < ArrAnswerLine.size(); i++) {
-//					System.out.println(Arrays.toString(ArrAnswerLine.get(i)));
-//				}
-		//		for (int i = 0; i < MacAndSigInfo2.length; i++) {
-		//			for (int j = 0; j < MacAndSigInfo2[0].length; j++) {
-		//				System.out.print(MacAndSigInfo2[i][j]+" ");
-		//			}
-		//			System.out.println();
-		//		}
-return ArrAnswerLine;
+		return ArrAnswerLine;
 	}
+	
+	/**
+	 * The function create arraylist of Location type.
+	 * the function scanning ArrAnswerLine ,calculate PI and copying the relevant values (alt, lat, lon and PI) to ArrayList<Location> ArrLocation.
+	 * @param ArrLocation
+	 * @param ArrAnswerLine
+	 * @param MacAndSigInfo2
+	 */
 	public static void CreateArrLocation (ArrayList<Location> ArrLocation,  ArrayList<String[]> ArrAnswerLine,String [][]MacAndSigInfo2){
 		Location line = new Location();
 
@@ -253,15 +260,15 @@ return ArrAnswerLine;
 			line.Lat=ArrAnswerLine.get(i)[IndexLatAnswer];
 			line.Lon=ArrAnswerLine.get(i)[IndexLonAnswer];
 			ArrLocation.add(line);
-			//System.out.println("line"+line.toString());
 		}
-		//		for (int i = 0; i < ArrLocation.size(); i++) {
-		//			System.out.println(ArrLocation.get(i).toString());
-		//		}
 	}
 
-
-	
+/**
+ * The function write to csv file the algo1 after calculation.
+ * @param MacsAfterFormulas
+ * @param locationAlgo1
+ * @throws IOException
+ */
 	public static void WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
 		int IndexIndex = 0;
 		int MacIndex = 1;
@@ -300,6 +307,4 @@ return ArrAnswerLine;
 		write.close();
 		System.out.println("completed writing to csv the best macs");
 	}
-
-
 }

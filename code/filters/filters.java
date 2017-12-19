@@ -23,7 +23,7 @@ public class filters {
 
 	/**
 	 * This function sort the file it gets by time.
-	 * the function gets file ,Start point and End point.
+	 * the function gets String file ,Start point and End point.
 	 * it save only values who is at the defined time.
 	 * After sorting, the function use another class for converting to KML file.
 	 * @param file
@@ -74,7 +74,7 @@ public class filters {
 
 	/**
 	 * This function sort the file it gets by ID.
-	 * the function gets file and String ID .
+	 * the function gets String file and String ID .
 	 * it save only values who have the same ID.
 	 * After sorting, the function use another class for converting to KML file.
 	 * @param file
@@ -119,7 +119,7 @@ public class filters {
 
 	/**
 	 * This function sort the file it gets by location.
-	 * the function gets file, lat, lon, and radius .
+	 * the function gets String file, lat, lon, and radius .
 	 * it save only values within the radius range.
 	 * After sorting, the function use another class for converting to KML file.
 	 * @param file
