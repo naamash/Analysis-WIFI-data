@@ -6,9 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import pa.ReadAndSave;
-
-public class HelpersBeforeWriteTest {
+	public class HelpersBeforeWriteTest {
 
 //	@Test
 //	public void testReadingFile() {
