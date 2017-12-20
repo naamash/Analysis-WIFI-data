@@ -219,6 +219,7 @@ public class HelpersBeforeWrite {
 				t.lon = ""+wlon;
 				t.Signal = ""+weight;
 				helper[k]=t;
+
 				k++;
 			}
 			MacBig hel = new MacBig();
@@ -232,8 +233,10 @@ public class HelpersBeforeWrite {
 			hel.time = ""+macs.get(i).arr_macbig[0].time;
 			hel.frequency = ""+macs.get(i).arr_macbig[0].frequency;
 			fixed[i] = hel;
-			//System.out.println((fixed[i].toString()));
+			System.out.println((fixed[i].toString()));
+
 		}
+		System.out.println("**");
 		return fixed;
 	}
 	

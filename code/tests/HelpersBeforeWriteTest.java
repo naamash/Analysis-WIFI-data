@@ -9,6 +9,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import objects.LineOfInfo;
+import objects.MacBig;
+import objects.MacBig_Container;
 
 public class HelpersBeforeWriteTest {
 
@@ -92,7 +94,32 @@ public class HelpersBeforeWriteTest {
 	
 	@Test
 	public void testFixingBeforeCsv() {
+		MacBig[] a = new MacBig[1];
+		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
+				,"32.10551925","Naama","NRD90U","46");
+		a[0]=s;
+		int realsize = 1;
+		MacBig[] a1 = new MacBig[1];
+		MacBig	s1 = new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
+				,"32.10551925","ABC","NRD90U","46");
+		MacBig_Container m = new MacBig_Container(a,1);
+		MacBig_Container m1 = new MacBig_Container(a1,1);
+
+		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
+		macs.add(m);
+		macs.add(m1);
+		MacBig []fixed = new MacBig[macs.size()];
+		MacBig[] same = HelpersBeforeWrite.FixingBeforeCsv(macs);
+//		double lat = 0.015172740666351608;
+//		double lon = 0.016641024376181472;
+//		double alt = 0.021739130434782608;
+//		double signal = 4.725897920604915E-4;
 		
+		MacBig[] ans = new MacBig[1];
+		MacBig ma = new MacBig("1c:b9:c4:12:7d:c8", "4.725897920604915E-4","2017/11/03 16:10:50", "2462", "0.016641024376181472", "0.015172740666351608",
+				"ABC", "NRD90U", "0.021739130434782608");
+		ans[0] = ma;
+		assertArrayEquals(ans, same);
 		
 	}
 	

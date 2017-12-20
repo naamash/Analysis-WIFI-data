@@ -1,10 +1,8 @@
 package tests;
-
+import writeTo.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import pa.ConvertToKml;
 
 public class ConvertToKmlTest {
 

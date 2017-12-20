@@ -1,24 +1,37 @@
 package tests;
+import writeTo.*;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import java.util.ArrayList;
 
-import pa.FindIndex;
+import org.junit.Test;
 
 public class FindIndexTest {
 
 	
 	@Test 
 	public void testPlaceArticle(){
-		String answer[][]={{"1","2","3"},{"4","5","6"},{"7","8","9"}};
+		String []a = {"1","2","3"};
+		String []b = {"4","5","6"};
+		String []c = {"7","8","9"};
+		ArrayList<String[]> answer = new ArrayList<String[]>();
+		answer.add(a);
+		answer.add(b);
+		answer.add(c);
 		assertEquals(1, FindIndex.PlaceArticle(answer, "2", 0));
 
 	}
 	
 	@Test 
 	public void testPlace(){
-		String answer[][]={{"1","2","3"},{"4","5","6"},{"7","8","9"}};
+		String []a = {"1","2","3"};
+		String []b = {"4","5","6"};
+		String []c = {"7","8","9"};
+		ArrayList<String[]> answer = new ArrayList<String[]>();
+		answer.add(a);
+		answer.add(b);
+		answer.add(c);
 		assertEquals(1, FindIndex.Place(answer, "2"));
 
 	}
