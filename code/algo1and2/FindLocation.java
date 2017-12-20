@@ -39,7 +39,7 @@ public class FindLocation {
 	static int norm = 10000;
 	static int min_diff = 3;
 	static int no_signal = -120;
-	static int Number_of_loc = 3;
+	static int Number_of_loc = 4;
 	/**
 	 * This function get folder and String location.
 	 * The function read the files from the folder calculate the Weighted average for any MAC and convert it to csv file.
@@ -57,9 +57,12 @@ public class FindLocation {
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
-		
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+		for (int i = 0; i < MacsAfterFormulas.length; i++) {
+			System.out.println(MacsAfterFormulas[i].toString());
+		}
+
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
 
@@ -80,7 +83,8 @@ public class FindLocation {
 		answer = ReadAndWrite.readingFile(folder1);
 		information2 = readingFileOfTwo_(folder2);
 
-		checkMac(answer,information2,locationAlgo2);
+		checkMac(answer,information2);
+		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 
 	}
 
@@ -94,7 +98,7 @@ public class FindLocation {
 	 * @param locationAlgo2 - the location that the file will be saved there
 	 * @throws IOException
 	 */
-	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2,String locationAlgo2 ) throws IOException{
+	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2) throws IOException{
 		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
 		ArrayList<Location> ArrLocation = new ArrayList<Location>();
 		boolean []isTuched = new boolean[answer.size()];
@@ -127,7 +131,6 @@ public class FindLocation {
 			information2.get(j)[IndexAltInfo] = W_sum.Alt;
 			information2.get(j)[IndexLonInfo] = W_sum.Lon;
 		}
-		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 	}
 
 	/**

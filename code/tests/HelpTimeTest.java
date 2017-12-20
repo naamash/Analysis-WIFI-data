@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import filters.HelpFilter;
 import objects.MacBig;
+import objects.MacBig_Container;
 
 public class HelpTimeTest {
 
@@ -21,9 +22,9 @@ public class HelpTimeTest {
 	@Test
 	public void testswap(){
 		MacBig temp=new MacBig("1c:b9:c4:12:7c:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U");
+				,"32.10551925","Naama","NRD90U","46");
 		MacBig original=new MacBig("1c:b9:c4:12:7c:c8","-68","2017/10/03 16:15:50","2262","35.21140758"
-				,"32.10651925","Naama1","NRD900U");
+				,"32.10651925","Naama1","NRD900U","46");
 
 		HelpFilter.swap(temp,original);
 		if(!(original.Signal.equals(temp.Signal))&&(original.Mac.equals(temp.Mac))
@@ -36,11 +37,13 @@ public class HelpTimeTest {
 
 	@Test
 	public void testSaveTheLargestSSID (){
-		ArrayList<MacBig> macs = new ArrayList<MacBig>();
-		MacBig m = new MacBig("1c:b9:c4:12:7c:c8","-68","2017/10/03 16:15:50","2262","35.21140758"
-				,"32.10651925","Naama1","STD90U");
-		MacBig a = new  MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U");
+		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
+//		MacBig_Container m = ({new MacBig("1c:b9:c4:12:7c:c8","-68","2017/10/03 16:15:50","2262","35.21140758"
+//				,"32.10651925","Naama1","STD90U","46")},1);
+//		
+		MacBig[] a = new MacBig[1];
+//				("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
+//				,"32.10551925","Naama","NRD90U","46");
 		macs.add(m);
 		macs.add(a);
 

@@ -1,14 +1,14 @@
 package tests;
 
 import static org.junit.Assert.*;
-
+import writeTo.*;
 import java.util.Arrays;
 
 import org.junit.Test;
 
 import pa.ReadAndSave;
 
-public class ReadAndSaveTest {
+public class HelpersBeforeWriteTest {
 
 //	@Test
 //	public void testReadingFile() {
@@ -21,7 +21,7 @@ public class ReadAndSaveTest {
 				,"SSID3","MAC3","Frequncy3","Signal3","SSID4","MAC4","Frequncy4","Signal4","SSID5","MAC5","Frequncy5","Signal5","SSID6","MAC6"
 				,"Frequncy6","Signal6","SSID7","MAC7","Frequncy7","Signal7","SSID8","MAC8","Frequncy8","Signal8","SSID9","MAC9","Frequncy9"
 				,"Signal9","SSID10","MAC10","Frequncy10","Signal10"};
-		assertTrue(Arrays.equals(line,ReadAndSave.MadeLine()));
+		assertTrue(Arrays.equals(line,HelpersBeforeWrite.MadeLine()));
 	}
 
 //	@Test
