@@ -2,15 +2,9 @@ package mainClass;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import algo1and2.FindLocation;
-import algo1and2.Formulas;
 import filtersPack.ChooseFilter;
-import filtersPack.filters;
-import objects.Location;
-import objects.MacBig;
 
 /**
  * This class check and use the classes of all of packages.
