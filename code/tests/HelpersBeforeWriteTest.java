@@ -96,32 +96,39 @@ public class HelpersBeforeWriteTest {
 	public void testFixingBeforeCsv() {
 		MacBig[] a = new MacBig[1];
 		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U","46");
+				,"32.10551925","ABC","NRD90U","46");
 		a[0]=s;
 		int realsize = 1;
 		MacBig[] a1 = new MacBig[1];
-		MacBig	s1 = new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","ABC","NRD90U","46");
+		MacBig	s1 = new MacBig("1c:b9:c4:12:7d:c8","-20","2017/11/03 16:10:50","2462","35.21240345"
+				,"32.10551215","ABC","NRD90U","46");
+		a1[0]=s1;
 		MacBig_Container m = new MacBig_Container(a,1);
 		MacBig_Container m1 = new MacBig_Container(a1,1);
-
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 		macs.add(m);
 		macs.add(m1);
 		MacBig []fixed = new MacBig[macs.size()];
-		MacBig[] same = HelpersBeforeWrite.FixingBeforeCsv(macs);
-//		double lat = 0.015172740666351608;
-//		double lon = 0.016641024376181472;
-//		double alt = 0.021739130434782608;
-//		double signal = 4.725897920604915E-4;
-		
-		MacBig[] ans = new MacBig[1];
+		MacBig[] same = HelpersBeforeWrite.FixingBeforeCsv(macs); 
+		MacBig[] ans = new MacBig[2];
 		MacBig ma = new MacBig("1c:b9:c4:12:7d:c8", "4.725897920604915E-4","2017/11/03 16:10:50", "2462", "0.016641024376181472", "0.015172740666351608",
 				"ABC", "NRD90U", "0.021739130434782608");
+		MacBig mb = new MacBig("1c:b9:c4:12:7d:c8", "0.0025","2017/11/03 16:10:50", "2462", "0.08803100862499999", "0.08026378037500001",
+				"ABC", "NRD90U", "0.115");
 		ans[0] = ma;
-		assertArrayEquals(ans, same);
-		
-	}
-	
+		ans[1] = mb;
+		System.out.println((ans[1]).lat.toString());
+		System.out.println((same[1]).lat.toString());
+		for (int i = 0; i < same.length; i++) {
+			if(!(ans[0].alt.equals(same[0].alt)&&ans[0].lat.equals(same[0].lat)&&ans[0].lon.equals(same[0].lon)&&ans[0].Mac.equals(same[0].Mac)
+					&&ans[0].frequency.equals(same[0].frequency)&&ans[0].ID.equals(same[0].ID)&&ans[0].time.equals(same[0].time)&&
+					ans[0].Signal.equals(same[0].Signal)&&ans[0].ssid.equals(same[0].ssid)&&ans[1].alt.equals(same[1].alt)&&ans[1].lat.equals(same[1].lat)&&
+					ans[1].lon.equals(same[1].lon)&&ans[1].Mac.equals(same[1].Mac)
+					&&ans[1].frequency.equals(same[1].frequency)&&ans[1].ID.equals(same[1].ID)&&ans[1].time.equals(same[1].time)&&
+					ans[1].Signal.equals(same[1].Signal)&&ans[1].ssid.equals(same[1].ssid))){
+				fail("ERR - the polynoms should be the same (equals)");
 
+			}
+		}
+	}
 }
