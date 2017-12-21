@@ -60,7 +60,7 @@ matala two - contain the files with the lesses values(the user can editing this 
 --  
 * test - contains all of the Junits we made for this program.
 * algo1and2 - contain the mains functions of matala2. 
-* filters - contain the classes that filters the networks by the user's choice of time, device ID or location - checking if a point is withing the user's radius input.
+* filtersPack - contain the classes that filters the networks by the user's choice of time, device ID or location - checking if a point is withing the user's radius input.
 * objects - contain all of the objects we made for this project.
 * write to - contain the classes that actually convert files to KML and to CSV.
 * mainClass - contain the main. (the user have to decide matala0+1 or matala2).
