@@ -25,7 +25,7 @@ public class main {
 
 		// Matala zero+one: {
 		
-//		ChooseFilter.Decide();  
+		ChooseFilter.Decide();  
 		
 		// } end of Matala zero+one
 		
