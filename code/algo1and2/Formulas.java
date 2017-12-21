@@ -12,8 +12,8 @@ public class Formulas {
 	 * @param signal
 	 * @return
 	 */
-	public static double weight (int signal){
-		return (double)1/(signal*signal);
+	public static double weight (double signal){
+		return (double)1.0/(signal*signal);
 	}
 	
 	/**

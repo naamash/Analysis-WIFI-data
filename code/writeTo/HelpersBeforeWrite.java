@@ -209,7 +209,7 @@ public class HelpersBeforeWrite {
 			helper = new MacBig[macs.get(i).realsize];
 			k=0;
 			for (int j = 0; j < macs.get(i).realsize; j++) {
-				weight=Formulas.weight(Integer.parseInt(macs.get(i).arr_macbig[j].Signal));
+				weight=Formulas.weight(Double.parseDouble(macs.get(i).arr_macbig[j].Signal));
 				wlat=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lat));
 				wlon=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lon));
 				walt=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].alt));
@@ -223,10 +223,10 @@ public class HelpersBeforeWrite {
 				k++;
 			}
 			MacBig hel = new MacBig();
-			hel.lat = ""+Formulas.sumOfLat(helper,macs.get(i).realsize);
-			hel.lon = ""+Formulas.sumOfLon(helper,macs.get(i).realsize);
-			hel.alt = ""+Formulas.sumOfAlt(helper,macs.get(i).realsize);
 			hel.Signal = ""+Formulas.sumOfWeight(helper,macs.get(i).realsize);
+			hel.lat = ""+Formulas.sumOfLat(helper,macs.get(i).realsize)/Double.parseDouble(hel.Signal);
+			hel.lon = ""+Formulas.sumOfLon(helper,macs.get(i).realsize)/Double.parseDouble(hel.Signal);
+			hel.alt = ""+Formulas.sumOfAlt(helper,macs.get(i).realsize)/Double.parseDouble(hel.Signal);
 			hel.Mac = ""+macs.get(i).arr_macbig[0].Mac;
 			hel.ssid = ""+macs.get(i).arr_macbig[0].ssid;
 			hel.ID = ""+macs.get(i).arr_macbig[0].ID;

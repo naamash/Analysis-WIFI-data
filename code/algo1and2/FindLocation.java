@@ -278,8 +278,8 @@ public class FindLocation {
 		int SsidIndex = 2;
 		int FreqIndex = 3;
 		int SignalIndex = 4;
-		int LonIndex = 5;
-		int LatIndex = 6;
+		int LonIndex = 6;
+		int LatIndex = 5;
 		int AltIndex = 7;
 		int TimeIndex = 8;
 
