@@ -108,7 +108,6 @@ public class HelpersBeforeWriteTest {
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 		macs.add(m);
 		macs.add(m1);
-		MacBig []fixed = new MacBig[macs.size()];
 		MacBig[] same = HelpersBeforeWrite.FixingBeforeCsv(macs); 
 		MacBig[] ans = new MacBig[2];
 		MacBig ma = new MacBig("1c:b9:c4:12:7d:c8", "4.725897920604915E-4","2017/11/03 16:10:50", "2462", "0.016641024376181472", "0.015172740666351608",
