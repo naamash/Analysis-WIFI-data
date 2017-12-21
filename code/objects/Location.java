@@ -1,6 +1,5 @@
 package objects;
 
-import java.util.Comparator;
 /**
  * this class contains four strings that describes the lesses values in algo2.
  * 
