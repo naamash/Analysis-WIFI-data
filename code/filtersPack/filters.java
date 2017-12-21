@@ -1,4 +1,4 @@
-package filters;
+package filtersPack;
 
 import java.io.File;
 import java.io.FileInputStream;

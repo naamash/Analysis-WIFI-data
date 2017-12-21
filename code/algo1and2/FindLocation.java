@@ -8,9 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
-import filters.HelpFilter;
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
+import filtersPack.HelpFilter;
 import objects.Location;
 import objects.MacBig;
 import objects.MacBig_Container;
@@ -18,7 +21,7 @@ import writeTo.HelpersBeforeWrite;
 import writeTo.ReadAndWrite;
 
 public class FindLocation {
-    int test =5 ;
+
 	static int IndexSignalInfo=9;
 	static int IndexMacInfo=7;
 	static int IndexWifiNetworkInfo=5;
@@ -39,7 +42,7 @@ public class FindLocation {
 	static int norm = 10000;
 	static int min_diff = 3;
 	static int no_signal = -120;
-	static int Number_of_loc = 4;
+	static int Number_of_loc = 3;
 	/**
 	 * This function get folder and String location.
 	 * The function read the files from the folder calculate the Weighted average for any MAC and convert it to csv file.
@@ -57,12 +60,9 @@ public class FindLocation {
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
+		
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-		for (int i = 0; i < MacsAfterFormulas.length; i++) {
-			System.out.println(MacsAfterFormulas[i].toString());
-		}
-
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
 
@@ -83,8 +83,7 @@ public class FindLocation {
 		answer = ReadAndWrite.readingFile(folder1);
 		information2 = readingFileOfTwo_(folder2);
 
-		checkMac(answer,information2);
-		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
+		checkMac(answer,information2,locationAlgo2);
 
 	}
 
@@ -98,7 +97,7 @@ public class FindLocation {
 	 * @param locationAlgo2 - the location that the file will be saved there
 	 * @throws IOException
 	 */
-	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2) throws IOException{
+	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2,String locationAlgo2 ) throws IOException{
 		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
 		ArrayList<Location> ArrLocation = new ArrayList<Location>();
 		boolean []isTuched = new boolean[answer.size()];
@@ -115,6 +114,7 @@ public class FindLocation {
 			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])];
 			colm=0;
 			row=0;
+			
 			for (int i = IndexMacInfo; i < ((Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])*4)+IndexWifiNetworkInfo) ; i=i+4) {
 				MacInfo=information2.get(j)[i];
 				SignalInfo=information2.get(j)[i+2];
@@ -131,6 +131,7 @@ public class FindLocation {
 			information2.get(j)[IndexAltInfo] = W_sum.Alt;
 			information2.get(j)[IndexLonInfo] = W_sum.Lon;
 		}
+		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 	}
 
 	/**
@@ -158,7 +159,6 @@ public class FindLocation {
 			sumLon+=Formulas.walt(Double.parseDouble(ArrLocation.get(i).PI), Double.parseDouble(ArrLocation.get(i).Lon));
 			weight+=Double.parseDouble(ArrLocation.get(i).PI);
 		}
-
 		W_sum.Alt=""+sumAlt/weight;
 		W_sum.Lat=""+sumLat/weight;
 		W_sum.Lon=""+sumLon/weight;
@@ -272,7 +272,7 @@ public class FindLocation {
  * @param locationAlgo1
  * @throws IOException
  */
-	public static void WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
+	public static String[][] WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
 		int IndexIndex = 0;
 		int MacIndex = 1;
 		int SsidIndex = 2;
@@ -309,5 +309,7 @@ public class FindLocation {
 		}
 		write.close();
 		System.out.println("completed writing to csv the best macs");
+		return Answer_One;
 	}
+	
 }

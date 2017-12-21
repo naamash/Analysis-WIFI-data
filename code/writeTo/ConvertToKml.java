@@ -14,7 +14,7 @@ import objects.MacBig_Container;
  */
 public class ConvertToKml {
 
-	public static void ToKml(ArrayList<MacBig_Container> macs){	
+	public static Document ToKml(ArrayList<MacBig_Container> macs){	
 		final Kml kml = new Kml();
 		Document document = kml.createAndSetDocument();
 
@@ -30,11 +30,14 @@ public class ConvertToKml {
 		}
 
 		try {
-			kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
+			//kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
+			kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\testfunction\\Matala_Zero_test.kml"));
+
 			System.out.println("completed Kml");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		return document;
 	}
 
 	/**

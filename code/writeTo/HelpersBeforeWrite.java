@@ -209,7 +209,6 @@ public class HelpersBeforeWrite {
 			helper = new MacBig[macs.get(i).realsize];
 			k=0;
 			for (int j = 0; j < macs.get(i).realsize; j++) {
-				//System.out.println(macs.get(i).arr_macbig[j].Signal);
 				weight=Formulas.weight(Integer.parseInt(macs.get(i).arr_macbig[j].Signal));
 				wlat=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lat));
 				wlon=Formulas.walt(weight, Double.parseDouble(macs.get(i).arr_macbig[j].lon));
@@ -236,7 +235,7 @@ public class HelpersBeforeWrite {
 			fixed[i] = hel;
 			//System.out.println((fixed[i].toString()));
 
-		}	
+		}
 		return fixed;
 	}
 	

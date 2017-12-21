@@ -45,14 +45,6 @@ public class ReadAndWrite {
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
 					int m = 0;
-					//					int row = 0;
-					//					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
-					//					while (read.readLine() != null) {
-					//						row++;
-					//					}
-					//					read.close();
-
-					//information = new String[row][12];
 					r = 2;
 					while (sc.hasNext()) {
 						String str = sc.nextLine();

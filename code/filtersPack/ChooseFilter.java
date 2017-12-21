@@ -1,4 +1,4 @@
-package filters;
+package filtersPack;
 
  /**
  * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location. 

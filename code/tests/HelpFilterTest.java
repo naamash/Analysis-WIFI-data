@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import filters.HelpFilter;
-import filters.filters;
+import filtersPack.HelpFilter;
+import filtersPack.filters;
 import objects.MacBig;
 import objects.MacBig_Container;
 
