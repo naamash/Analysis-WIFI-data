@@ -18,11 +18,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/JavaAPIforKml-2.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/jaxb-api-2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/jaxb-impl-2.1.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/jsr173_api-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/נעמה שטאובר/Documents/מדעי המחשב/שנה א/סמסטר א/גאווה/תכנות - java/KmlAndCsv-files-master/Jak/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/נעמה שטאובר/Documents/מדעי המחשב/שנה א/סמסטר א/גאווה/תכנות - java/KmlAndCsv-files-master/Jak/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/נעמה שטאובר/Documents/מדעי המחשב/שנה א/סמסטר א/גאווה/תכנות - java/KmlAndCsv-files-master/Jak/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/נעמה שטאובר/Documents/מדעי המחשב/שנה א/סמסטר א/גאווה/תכנות - java/KmlAndCsv-files-master/Jak/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/נעמה שטאובר/Documents/מדעי המחשב/שנה א/סמסטר א/גאווה/תכנות - java/KmlAndCsv-files-master/Jak/jsr173_api-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

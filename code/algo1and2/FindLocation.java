@@ -18,7 +18,7 @@ import writeTo.HelpersBeforeWrite;
 import writeTo.ReadAndWrite;
 
 public class FindLocation {
-
+    int test =5 ;
 	static int IndexSignalInfo=9;
 	static int IndexMacInfo=7;
 	static int IndexWifiNetworkInfo=5;
