@@ -170,7 +170,34 @@ public class HelpFilter {
 		double distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 		return distance;
 	}
+	public static void FromAnsToAnswer(ArrayList<String[]> ans,
+			ArrayList<MacBig_Container> answer,int indexOfRowAns,int counterWifi,int realsize){
 
+		MacBig[] infoofLine = new MacBig[10];
+		int indexInfoOfLine=0;
+
+		for (int i = 6; i < counterWifi; i=i+4) {
+			MacBig With4values = new MacBig();
+			With4values.time = ans.get(indexOfRowAns)[0];
+			With4values.ID = ans.get(indexOfRowAns)[1];
+			With4values.lat = ans.get(indexOfRowAns)[2];
+			With4values.lon = ans.get(indexOfRowAns)[3];
+			With4values.alt = ans.get(indexOfRowAns)[4];
+			With4values.WIFI_Network = ans.get(indexOfRowAns)[5];
+			With4values.ssid=ans.get(indexOfRowAns)[i];
+			With4values.Mac=ans.get(indexOfRowAns)[i+1];
+			With4values.frequency=ans.get(indexOfRowAns)[i+2];
+			With4values.Signal=ans.get(indexOfRowAns)[i+3];
+			infoofLine[indexInfoOfLine]=With4values;
+			indexInfoOfLine++;	
+		}
+		MacBig_Container added = new MacBig_Container(infoofLine,realsize);
+		answer.add(added);
+		//		for (int i = 0; i < answer.size(); i++) {
+		//			System.out.println(Arrays.toString(answer.get(i).arr_macbig));
+		//
+		//		}
+	}
 }
 
 

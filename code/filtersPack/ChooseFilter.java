@@ -18,7 +18,8 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
-		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
+		//String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
+		String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
 
 		boolean flag1 = true;
 		while(flag1){
@@ -43,14 +44,14 @@ public class ChooseFilter {
 			Scanner sc = new Scanner((System.in));
 			System.out.println("enter: 1 to sortByTime , 2 to sortByLocation or 3 to sortById");
 			int a = sc.nextInt();
-//
-//			if (a == 1) {
-//				flag=time(file, flag);
-//			}
-//			else if (a == 2) {
-//				flag=location(file, flag);
-//			}
-			 if (a == 3) {
+
+			if (a == 1) {
+				flag=time(file, flag);
+			}
+			else if (a == 2) {
+				flag=location(file, flag);
+			}
+			else if (a == 3) {
 				flag=id(file, flag);			
 			} 
 		}
@@ -63,34 +64,34 @@ public class ChooseFilter {
 	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
 	 * @return
 	 */
-//	public static boolean time(String file, boolean flag){
-//		Scanner timeSt = new Scanner((System.in));
-//		Scanner timeEn = new Scanner((System.in));
-//		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-//		String timestart = timeSt.nextLine();
-//		while(timestart.length()!=19)
-//		{
-//			timeSt = new Scanner((System.in));
-//			
-//			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-//			timestart = timeSt.nextLine();
-//		}
-//		System.out.println("enter end");
-//		String timeend = timeEn.nextLine();
-//		while(timeend.length()!=19)
-//		{
-//			timeEn = new Scanner((System.in));
-//			
-//			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
-//			timeend = timeEn.nextLine();
-//		}
-//		try {
-//			filters.FilterByTime(file, timestart, timeend);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
+	public static boolean time(String file, boolean flag){
+		Scanner timeSt = new Scanner((System.in));
+		Scanner timeEn = new Scanner((System.in));
+		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+		String timestart = timeSt.nextLine();
+		while(timestart.length()!=19)
+		{
+			timeSt = new Scanner((System.in));
+			
+			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+			timestart = timeSt.nextLine();
+		}
+		System.out.println("enter end");
+		String timeend = timeEn.nextLine();
+		while(timeend.length()!=19)
+		{
+			timeEn = new Scanner((System.in));
+			
+			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
+			timeend = timeEn.nextLine();
+		}
+		try {
+			filters.FilterByTime(file, timestart, timeend);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	/**
 	 * The function accepts String file and boolean flag. 
@@ -98,21 +99,21 @@ public class ChooseFilter {
 	 * @param file
 	 * @param flag - after user enter the lat, lon and radious, the function return flag = false in order to the function not ask the user again.  
 	 */
-//	public static boolean location(String file, boolean flag){
-//		Scanner location = new Scanner((System.in));
-//		System.out.println("enter lat");
-//		String locationstart = location.nextLine();
-//		System.out.println("enter lon");
-//		String locationend = location.nextLine();
-//		System.out.println("enter radious");
-//		double radious = location.nextDouble();
-//		try {
-//			filters.FilterByLocation(file, locationstart, locationend, radious);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return false;				
-//	}
+	public static boolean location(String file, boolean flag){
+		Scanner location = new Scanner((System.in));
+		System.out.println("enter lat");
+		String locationstart = location.nextLine();
+		System.out.println("enter lon");
+		String locationend = location.nextLine();
+		System.out.println("enter radious");
+		double radious = location.nextDouble();
+		try {
+			filters.FilterByLocation(file, locationstart, locationend, radious);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;				
+	}
 	
 	/**
 	 * The function accepts String file and boolean flag. 

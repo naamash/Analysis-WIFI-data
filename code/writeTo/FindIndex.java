@@ -21,8 +21,6 @@ public class FindIndex {
 	 * @return the index of the name 
 	 */
 	public static int PlaceArticle (ArrayList<MacBig_Container> answer, String name,int row){
-//		System.out.println(row);
-//		System.out.println(name);
 		for (int i = 0; i <answer.get(1).realsize; i++) {
 			if(answer.get(row).arr_macbig[i].equals(name)){
 				return i;
@@ -30,9 +28,7 @@ public class FindIndex {
 		}
 		return -1;
 	}
-	public static int PlaceArticleAnswer (ArrayList<MacBig_Container> answer, String name,int row){
-//		System.out.println(row);
-//		System.out.println(name);
+	public static int PlaceArticleAnswerID (ArrayList<MacBig_Container> answer, String name,int row){
 		for (int i = 0; i <answer.get(0).realsize; i++) {
 			if(answer.get(0).arr_macbig[i].ID.equals(name)){
 				return i;
@@ -40,9 +36,31 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	public static int PlaceArticleAnswerTime (ArrayList<MacBig_Container> answer, String name,int row){
+		for (int i = 0; i <answer.get(0).realsize; i++) {
+			if(answer.get(0).arr_macbig[i].time.equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int PlaceArticleAnswerLat (ArrayList<MacBig_Container> answer, String name,int row){
+		for (int i = 0; i <answer.get(0).realsize; i++) {
+			if(answer.get(0).arr_macbig[i].lat.equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int PlaceArticleAnswerlon (ArrayList<MacBig_Container> answer, String name,int row){
+		for (int i = 0; i <answer.get(0).realsize; i++) {
+			if(answer.get(0).arr_macbig[i].lon.equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
 	public static int PlaceArticleInfo (ArrayList<String[]> answer, String name,int row){
-//		System.out.println(row);
-//		System.out.println(name);
 		for (int i = 0; i <answer.get(1).length; i++) {
 			if(answer.get(row)[i].equals(name)){
 				return i;

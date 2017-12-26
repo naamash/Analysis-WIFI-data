@@ -21,6 +21,11 @@ public class main {
 		
 		ChooseFilter.Decide();  
 		
+		//PB2-690Y_S200032_161214
+		//lon=35.21019984, lat=32.10379261
+		//2017-12-03 08:55:30
+		//2017-12-03 08:56:05
+		
 		// } end of Matala zero+one
 		
 		// Matala two: {
@@ -41,6 +46,10 @@ public class main {
 
 	    // } end of Matala two
 
+		
+		
+		//2017-10-29 11:00:08
+		//2017-10-30 10:32:34
 	}
 }
 
