@@ -1,6 +1,7 @@
 package writeTo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import algo1and2.Formulas;
 import objects.LineOfInfo;
@@ -13,7 +14,7 @@ import objects.MacBig_Container;
  */
 
 public class HelpersBeforeWrite {
-	
+
 	/**
 	 * This function sort arraylist of LineOfInfo type and copying up to ten better wifi network to answer(answer on ArrayList<String[]> type).
 	 * @param information
@@ -23,39 +24,42 @@ public class HelpersBeforeWrite {
 	 * @param realsize
 	 * @param sarr
 	 */
-	public static void CopyingToAnswer(ArrayList<LineOfInfo> arrLineOfInfo,
-		ArrayList<String[]> answer,int indexOfRow,int realsize,int sarr,String[] infoofLine){
-		int ssid=6;
-		int mac=7;
-		int frequncy=8;
-		int signal=9;		
-		int networks=0;
+	public static void CopyingToAnswer(ArrayList<String[]> information,ArrayList<LineOfInfo> arrLineOfInfo,
+			ArrayList<MacBig_Container> answer,int indexOfRow,int realsize,int sarr){
 		
+		//		int ssid=6;
+		//		int mac=7;
+		//		int frequncy=8;
+		//		int signal=9;		
+		//int networks=0;
+		MacBig[] infoofLine = new MacBig[10];
+		int indexInfoOfLine=0;
+
 		arrLineOfInfo.sort(null);
 		
 		for (int i = 0; i < realsize; i++) {
-			infoofLine[ssid]=arrLineOfInfo.get(i).SSID;
-			ssid=ssid+4;
-			networks++;
+			MacBig With4values = new MacBig();
+			With4values.time = information.get(indexOfRow)[3];
+			With4values.ID = information.get(0)[5];
+			With4values.lat = information.get(indexOfRow)[6];
+			With4values.lon = information.get(indexOfRow)[7];
+			With4values.alt = information.get(indexOfRow)[8];
+			With4values.WIFI_Network = "" + realsize;
+			With4values.ssid=arrLineOfInfo.get(i).SSID;
+			With4values.Mac=arrLineOfInfo.get(i).MAC;
+			With4values.frequency=From_Channel_To_Frequency(arrLineOfInfo.get(i).Channel);
+			With4values.Signal=arrLineOfInfo.get(i).RSSI;
+			infoofLine[indexInfoOfLine]=With4values;
+			indexInfoOfLine++;	
 		}
-		infoofLine[5]="" + networks;
-
-		for (int i = 0; i < realsize; i++) {
-			infoofLine[mac]=arrLineOfInfo.get(i).MAC;
-			mac=mac+4;
-		}
-		for (int i = 0; i < realsize; i++) {
-			infoofLine[frequncy]=From_Channel_To_Frequency(arrLineOfInfo.get(i).Channel);
-			frequncy=frequncy+4;
-		}
-		for (int i = 0; i < realsize; i++) {
-			infoofLine[signal]=arrLineOfInfo.get(i).RSSI;
-			signal=signal+4;
-		}
-		answer.add(infoofLine);
-		
+		MacBig_Container added = new MacBig_Container(infoofLine,realsize);
+		answer.add(added);
+//		for (int i = 0; i < answer.size(); i++) {
+//			System.out.println(Arrays.toString(answer.get(i).arr_macbig));
+//
+//		}
 	}
-	
+
 	/**
 	 * This function copying values from information (in type ArrayList<String[]>) to array of String type.
 	 * @param information
@@ -64,15 +68,16 @@ public class HelpersBeforeWrite {
 	 * @param realsize
 	 * @return the array String.
 	 */
-	public static String[] CopyingToAnswerFirst(ArrayList<String[]> information,ArrayList<String[]> answer,int indexOfRow,  int realsize){
-		String[] line = new String[46];
-		line[0] = information.get(indexOfRow)[3];
-		line[1] = information.get(0)[5];
-		line[2] = information.get(indexOfRow)[6];
-		line[3] = information.get(indexOfRow)[7];
-		line[4] = information.get(indexOfRow)[8];
-		line[5] = "" + realsize;
-
+	public static MacBig[] CopyingToAnswerFirst(ArrayList<String[]> information,int indexOfRow,  int realsize){
+		MacBig With4values = new MacBig();
+		MacBig[] line = new MacBig[realsize];
+		With4values.time = information.get(indexOfRow)[3];
+		With4values.ID = information.get(0)[5];
+		With4values.lat = information.get(indexOfRow)[6];
+		With4values.lon = information.get(indexOfRow)[7];
+		With4values.alt = information.get(indexOfRow)[8];
+		With4values.WIFI_Network = "" + realsize;
+		line[0] = With4values;
 		return line;
 	}
 
@@ -97,49 +102,38 @@ public class HelpersBeforeWrite {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * The function create line of the Headers of values
 	 * @return the line with the Headers of values
 	 */
-	public static String[] MadeLine(){
-		String[] line = new String[46];
-		line[0] = "Time";
-		line[1] = "ID";
-		line[2] = "Lat";
-		line[3] = "Lon";
-		line[4] = "Alt";
-		line[5] = "#WiFi networks";
+	public static MacBig_Container MadeLine(){
+		MacBig[] lineArticle = new MacBig[10];
 		String helper1 = "SSID";
 		String helper2 = "MAC";
 		String helper3 = "Frequncy";
 		String helper4 = "Signal";
-		int hel = 1;
+		int j=0;
+			for (int i = 1; i < 11; i++) {
+				MacBig With4values = new MacBig();
+				With4values.time = "Time";
+				With4values.ID = "ID";
+				With4values.lat = "Lat";
+				With4values.lon = "Lon";
+				With4values.alt = "Alt";
+				With4values.WIFI_Network = "#WiFi networks";
+				With4values.ssid = helper1 + i;
+				With4values.Mac = helper2 + i;
+				With4values.frequency = helper3 + i;
+				With4values.Signal = helper4 + i;	
+				lineArticle[j] = With4values;
 
-		for (int i = 6; i < line.length; i=i+4) {
-			line[i] = helper1 + hel;
-			hel++;
-		}
-		hel = 1;
-		for (int i = 7; i < line.length; i=i+4) {
-			line[i] = helper2 + hel;
-			hel++;
-		}
-		hel = 1;
-		for (int i = 8; i < line.length; i=i+4) {
-			line[i] = helper3 + hel;
-			hel++;
-		}
-		hel = 1;
-		for (int i = 9; i < line.length; i=i+4) {
-			line[i] = helper4 + hel;
-			hel++;
-		}
-
+				j++;
+			}
+		MacBig_Container line = new MacBig_Container(lineArticle,10);
 		return line;
-
 	}
-	
+
 	/**
 	 * This function copying all of the relevant values from information to answer.
 	 * this function use arraylist of String[] type. so it call another functions for doing it.
@@ -147,11 +141,11 @@ public class HelpersBeforeWrite {
 	 * @param answer
 	 * @param r
 	 */
-	public static void Save_info(ArrayList<String[]> information,ArrayList<String[]> answer){
-		int TimePlace = FindIndex.PlaceArticle(information,"FirstSeen",1);
-		int LatPlace = FindIndex.PlaceArticle(information,"CurrentLatitude",1);
-		int LonPlace = FindIndex.PlaceArticle(information,"CurrentLongitude",1);
-		int WifiPlace = FindIndex.PlaceArticle(information,"Type",1);
+	public static void Save_info(ArrayList<String[]> information,ArrayList<MacBig_Container> answer){
+		int TimePlace = FindIndex.PlaceArticleInfo(information,"FirstSeen",1);
+		int LatPlace = FindIndex.PlaceArticleInfo(information,"CurrentLatitude",1);
+		int LonPlace = FindIndex.PlaceArticleInfo(information,"CurrentLongitude",1);
+		int WifiPlace = FindIndex.PlaceArticleInfo(information,"Type",1);
 		ArrayList<LineOfInfo> arrLineOfInfo = new ArrayList<LineOfInfo>();
 		int r=1;
 		while (r<information.size()){
@@ -159,29 +153,28 @@ public class HelpersBeforeWrite {
 				if (r<information.size()-1&&(information.get(r+1)[WifiPlace]).equals("WIFI")&&information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
 						&& information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
 						&& information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace])){
-
 					LineOfInfo line= new LineOfInfo(information,r);
 					arrLineOfInfo.add(line);
-
+					
 				}
 
-//				else if (((r<=information.size()-1)&&(information.get(r)[WifiPlace]).equals("WIFI"))&&
-//						(information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
-//								|| information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
-//								|| information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]))){
+				//				else if (((r<=information.size()-1)&&(information.get(r)[WifiPlace]).equals("WIFI"))&&
+				//						(information.get(r)[LatPlace].equals(information.get(r+1)[LatPlace])
+				//								|| information.get(r)[LonPlace].equals(information.get(r+1)[LonPlace]) 
+				//								|| information.get(r)[TimePlace].equals(information.get(r+1)[TimePlace]))){
 				else{
 					LineOfInfo line= new LineOfInfo(information,r);
 					arrLineOfInfo.add(line);
 
 					if(arrLineOfInfo.size() >= 10){
-						String infoofLine[]=HelpersBeforeWrite.CopyingToAnswerFirst(information,answer,r,arrLineOfInfo.size());
-						HelpersBeforeWrite.CopyingToAnswer(arrLineOfInfo ,answer,r,10,arrLineOfInfo.size(),infoofLine);
+						//MacBig[] infoofLine=HelpersBeforeWrite.CopyingToAnswerFirst(information,r,arrLineOfInfo.size());
+						HelpersBeforeWrite.CopyingToAnswer(information,arrLineOfInfo ,answer,r,10,arrLineOfInfo.size());
 
 						arrLineOfInfo.clear();
 					}
 					else{
-						String infoofLine[]=HelpersBeforeWrite.CopyingToAnswerFirst(information,answer,r,arrLineOfInfo.size());
-						HelpersBeforeWrite.CopyingToAnswer(arrLineOfInfo,answer,r,arrLineOfInfo.size(),arrLineOfInfo.size(),infoofLine);
+					//	MacBig[] infoofLine=HelpersBeforeWrite.CopyingToAnswerFirst(information,r,arrLineOfInfo.size());
+						HelpersBeforeWrite.CopyingToAnswer(information, arrLineOfInfo,answer,r,arrLineOfInfo.size(),arrLineOfInfo.size());
 						arrLineOfInfo.clear();
 
 					}
@@ -190,7 +183,7 @@ public class HelpersBeforeWrite {
 			r++;
 		}
 	}
-	
+
 	/**
 	 * This function help algo1 before converting to csv.
 	 * it calculate Weighted average for any mac(value numbers of any X better mac was given) .
@@ -238,5 +231,5 @@ public class HelpersBeforeWrite {
 		}
 		return fixed;
 	}
-	
+
 }

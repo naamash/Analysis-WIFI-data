@@ -3,6 +3,8 @@ package writeTo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import objects.MacBig_Container;
+
 /**
  * This class contains two functions of find the index.
  * each function find the index of the name that the function accept.
@@ -18,7 +20,27 @@ public class FindIndex {
 	 * @param name
 	 * @return the index of the name 
 	 */
-	public static int PlaceArticle (ArrayList<String[]> answer, String name,int row){
+	public static int PlaceArticle (ArrayList<MacBig_Container> answer, String name,int row){
+//		System.out.println(row);
+//		System.out.println(name);
+		for (int i = 0; i <answer.get(1).realsize; i++) {
+			if(answer.get(row).arr_macbig[i].equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int PlaceArticleAnswer (ArrayList<MacBig_Container> answer, String name,int row){
+//		System.out.println(row);
+//		System.out.println(name);
+		for (int i = 0; i <answer.get(0).realsize; i++) {
+			if(answer.get(0).arr_macbig[i].ID.equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int PlaceArticleInfo (ArrayList<String[]> answer, String name,int row){
 //		System.out.println(row);
 //		System.out.println(name);
 		for (int i = 0; i <answer.get(1).length; i++) {
@@ -35,9 +57,17 @@ public class FindIndex {
 	 * @param name
 	 * @return the index of the name 
 	 */
-	public static int Place (ArrayList<String[]>answer, String name){
+	public static int Place (ArrayList<MacBig_Container>answer, String name){
 		for (int i = 0; i <46; i++) {
-			if(answer.get(0)[i].equals(name)){
+			if(answer.get(0).arr_macbig[i].equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int Place (String[]str, String name){
+		for (int i = 0; i <46; i++) {
+			if(str[i].contains(name)){
 				return i;
 			}
 		}

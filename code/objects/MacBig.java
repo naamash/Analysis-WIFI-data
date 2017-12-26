@@ -15,6 +15,7 @@ public class MacBig {
 	public String ssid;
 	public String ID;
 	public String alt;
+	public String WIFI_Network;
 
 		/**
 		 * Default constructors
@@ -29,6 +30,7 @@ public class MacBig {
 		this.ssid=null;
 		this.ID=null;
 		this.alt = null;
+		this.WIFI_Network=null;
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class MacBig {
 	 * @param ssid
 	 * @param ID
 	 */
-	public MacBig(String Mac,String Signal,String time,String frequency,String lon,String lat,String ssid,String ID,String alt){
+	public MacBig(String Mac,String Signal,String time,String frequency,String lon,String lat,String ssid,String ID,String alt,String WIFI_Network){
 		this.frequency = frequency;
 		this.ID = ID;
 		this.lat = lat;
@@ -52,6 +54,7 @@ public class MacBig {
 		this.ssid = ssid;
 		this.time = time;
 		this.alt = alt;
+		this.WIFI_Network=WIFI_Network;
 	}
 		/**
 		 * Copy constructors
@@ -67,14 +70,18 @@ public class MacBig {
 		this.ssid = other.ssid;
 		this.time = other.time;
 		this.alt = other.alt;
+		this.WIFI_Network=other.WIFI_Network;
 	}
 		/**
 		 * The function print the object
 		 */
+
 		public String toString() {
 			return "MacBig [Mac=" + Mac + ", Signal=" + Signal + ", time=" + time + ", frequency=" + frequency
-					+ ", lon=" + lon + ", lat=" + lat + ", ssid=" + ssid + ", ID=" + ID + ", alt=" + alt + "]";
+					+ ", lon=" + lon + ", lat=" + lat + ", ssid=" + ssid + ", ID=" + ID + ", alt=" + alt
+					+ ", WIFI_Network=" + WIFI_Network + "]";
 		}
+		
 
 
 }

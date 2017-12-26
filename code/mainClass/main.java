@@ -19,25 +19,25 @@ public class main {
 
 		// Matala zero+one: {
 		
-//		ChooseFilter.Decide();  
+		ChooseFilter.Decide();  
 		
 		// } end of Matala zero+one
 		
 		// Matala two: {
 		
-		String foldername1 = "boazFiles";
-		File folder1 = new File(foldername1);
-		
-		String foldername2 = "matala two";
-		File folder2=new File(foldername2);
-
-		
-		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo1.csv";
-		FindLocation.Matala2_Algo1 (folder1, locationAlgo1);
-
-
-		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo2.csv";
-		FindLocation.Matala2_Algo2 (folder1,folder2,locationAlgo2);
+//		String foldername1 = "boazFiles";
+//		File folder1 = new File(foldername1);
+//		
+//		String foldername2 = "matala two";
+//		File folder2=new File(foldername2);
+//
+//		
+//		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo1.csv";
+//		FindLocation.Matala2_Algo1 (folder1, locationAlgo1);
+//
+//
+//		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo2.csv";
+//		FindLocation.Matala2_Algo2 (folder1,folder2,locationAlgo2);
 
 	    // } end of Matala two
 

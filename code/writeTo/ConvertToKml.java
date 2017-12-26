@@ -30,8 +30,8 @@ public class ConvertToKml {
 		}
 
 		try {
-			//kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
-			kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\testfunction\\Matala_Zero_test.kml"));
+			kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
+			//kml.marshal(new File("C:\\Users\\hadar\\Desktop\\testfunction\\Matala_Zero_test.kml"));
 
 			System.out.println("completed Kml");
 		} catch (FileNotFoundException e) {

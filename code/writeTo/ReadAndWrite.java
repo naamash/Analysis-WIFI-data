@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import objects.MacBig;
+import objects.MacBig_Container;
+
 
 /**
  * This class get folder of files, read them and convert them to one CSV file after filtering them.
@@ -27,13 +30,14 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<String[]> readingFile(File folder)  {	
-		ArrayList<String[]> answer = new ArrayList<String[]>();
+	public static ArrayList<MacBig_Container> readingFile(File folder)  {	
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		File[] listOfFiles = folder.listFiles();
 		ArrayList<String[]> information = new ArrayList<String[]>();
-		
+
 		answer.add(HelpersBeforeWrite.MadeLine());
+
 		int r=2;
 		boolean flag = false;
 
@@ -67,8 +71,10 @@ public class ReadAndWrite {
 
 					if(flag)
 						continue;
+					
 
 					HelpersBeforeWrite.Save_info(information, answer);
+					System.out.println("************");
 					information = new ArrayList<String[]>(); 
 					sc.close();
 					fi.close();
@@ -95,14 +101,34 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<String[]> WriteToCsv(ArrayList<String[]> answer,String location) throws IOException{
-		ArrayList<String[]> Answer_One = new ArrayList<String[]>();
-		Answer_One.addAll(answer);
-		FileWriter write = new FileWriter(location);
+	public static ArrayList<MacBig_Container> WriteToCsv(ArrayList<MacBig_Container> answer,String location) throws IOException{
+		ArrayList<MacBig_Container> Answer_One = new ArrayList<MacBig_Container>();
+		Answer_One.addAll(answer);		
+
+		FileWriter write = new FileWriter(location);	
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.size(); i++) {
-			for (int j = 0; j < Answer_One.get(i).length; j++) {
-				write.append(Answer_One.get(i)[j]);
+			
+			write.append(Answer_One.get(i).arr_macbig[0].time);
+			write.append(",");
+			write.append(Answer_One.get(i).arr_macbig[0].ID);
+			write.append(",");
+			write.append(Answer_One.get(i).arr_macbig[0].lat);
+			write.append(",");
+			write.append(Answer_One.get(i).arr_macbig[0].lon);
+			write.append(",");
+			write.append(Answer_One.get(i).arr_macbig[0].alt);
+			write.append(",");
+			write.append(Answer_One.get(i).arr_macbig[0].WIFI_Network);
+			write.append(",");
+			for (int j = 0; j < Answer_One.get(i).realsize; j++) {
+				write.append(Answer_One.get(i).arr_macbig[j].ssid);
+				write.append(",");
+				write.append(Answer_One.get(i).arr_macbig[j].Mac);
+				write.append(",");
+				write.append(Answer_One.get(i).arr_macbig[j].frequency);
+				write.append(",");
+				write.append(Answer_One.get(i).arr_macbig[j].Signal);
 				write.append(",");
 			}
 			pw.println();
