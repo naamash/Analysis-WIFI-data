@@ -18,8 +18,8 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
-		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
-		//String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
+		//String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
+		String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
 
 		boolean flag1 = true;
 		while(flag1){

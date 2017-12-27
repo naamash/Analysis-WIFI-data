@@ -4,13 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
-
-import javax.crypto.Mac;
-
-import objects.LineOfInfo;
 import objects.MacBig;
 import objects.MacBig_Container;
 import writeTo.ConvertToKml;
@@ -66,13 +61,13 @@ public class filters {
 		sc.close();
 		fi.close();
 		Date dateLine = null;
-		int timeIndex=FindIndex.PlaceArticleAnswerTime(answer, "Time",0);
 		for (int i = 1; i < answer.size(); i++) {
-			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i).arr_macbig[timeIndex].time));
+			if (check(answer.get(i).arr_macbig[0].time)){
+//			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i).arr_macbig[0].time));
 
-			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
-				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
-			}
+//			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
+//				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
+//			}
 		}
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
@@ -111,12 +106,15 @@ public class filters {
 		sc.close();
 		fi.close();
 
-		int IDIndex=FindIndex.PlaceArticleAnswerID(answer, "ID",0);
-		for (int i = 1; i < answer.size(); i++) {
-			if(((answer.get(i).arr_macbig[IDIndex].ID).equals(ID))){
-				HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
-			}
-		}
+		Filter f = new filter_id(ID);
+		DoFilter fil = new DoFilter(f);
+		HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
+
+//		int IDIndex=FindIndex.PlaceArticleAnswerID(answer, "ID",0);
+//		for (int i = 1; i < answer.size(); i++) {
+//			if(((answer.get(i).arr_macbig[IDIndex].ID).equals(ID))){
+//			}
+//		}
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		ConvertToKml.ToKml(macs);
