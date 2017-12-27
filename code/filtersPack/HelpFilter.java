@@ -31,15 +31,6 @@ public class HelpFilter {
 			ArrayList<MacBig_Container>answer, int indexRowAnswer){
 
 		boolean isIn = true;
-//		int ssidindex=FindIndex.Place(answer, "SSID1");
-//		int timeindex=FindIndex.Place(answer, "Time");
-//		int IDindex=FindIndex.Place(answer, "ID");
-//		int Latindex=FindIndex.Place(answer, "Lat");
-//		int Lonindex=FindIndex.Place(answer, "Lon");
-//		int network =FindIndex.Place(answer,"#WiFi networks");
-//		int AltIndex =FindIndex.Place(answer,"Alt");
-		System.out.println("----------------------------------------------");
-		System.out.println(" answer.get(indexRowAnswer).realsize  "+ answer.get(indexRowAnswer).realsize);
 		for (int i =0; i < answer.get(indexRowAnswer).realsize ; i++) {
 			isIn = true;
 			int j = 0;
@@ -53,7 +44,6 @@ public class HelpFilter {
 			temp.Mac=answer.get(indexRowAnswer).arr_macbig[i].Mac;
 			temp.frequency=answer.get(indexRowAnswer).arr_macbig[i].frequency;
 			temp.Signal=answer.get(indexRowAnswer).arr_macbig[i].Signal;
-			System.out.println("temp:  "+temp.toString());
 			while (j < macs.size() && isIn){
 				if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
 					isIn=false;

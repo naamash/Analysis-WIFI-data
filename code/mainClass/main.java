@@ -19,7 +19,7 @@ public class main {
 
 		// Matala zero+one: {
 		
-		ChooseFilter.Decide();  
+		//ChooseFilter.Decide();  
 		
 		//PB2-690Y_S200032_161214
 		//lon=35.21019984, lat=32.10379261
@@ -30,19 +30,19 @@ public class main {
 		
 		// Matala two: {
 		
-//		String foldername1 = "boazFiles";
-//		File folder1 = new File(foldername1);
-//		
-//		String foldername2 = "matala two";
-//		File folder2=new File(foldername2);
-//
-//		
-//		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo1.csv";
-//		FindLocation.Matala2_Algo1 (folder1, locationAlgo1);
-//
-//
-//		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo2.csv";
-//		FindLocation.Matala2_Algo2 (folder1,folder2,locationAlgo2);
+		String foldername1 = "boazFiles";
+		File folder1 = new File(foldername1);
+		
+		String foldername2 = "matala two";
+		File folder2=new File(foldername2);
+
+		
+		String locationAlgo1 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo1__.csv";
+		FindLocation.Matala2_Algo1 (folder1, locationAlgo1);
+
+
+		String locationAlgo2 = "C:\\Users\\hadar\\Desktop\\Answer exampels\\BM3matala2algo2__.csv";
+		FindLocation.Matala2_Algo2 (folder1,folder2,locationAlgo2);
 
 	    // } end of Matala two
 

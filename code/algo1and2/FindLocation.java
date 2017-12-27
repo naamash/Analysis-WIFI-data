@@ -52,7 +52,7 @@ public class FindLocation {
 	 * @throws IOException
 	 */
 	public static void Matala2_Algo1 (File folder,String locationAlgo1) throws IOException{
-		ArrayList<String[]> answer = new ArrayList<String[]>();
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 
 		answer = ReadAndWrite.readingFile(folder);
@@ -60,7 +60,7 @@ public class FindLocation {
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
-		
+
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
@@ -77,8 +77,8 @@ public class FindLocation {
 	 * @throws IOException
 	 */
 	public static void Matala2_Algo2 (File folder1 ,File folder2, String locationAlgo2) throws IOException{
-		ArrayList<String[]> answer = new ArrayList<String[]>();
-		ArrayList<String[]> information2 = new ArrayList<String[]>();
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
 
 		answer = ReadAndWrite.readingFile(folder1);
 		information2 = readingFileOfTwo_(folder2);
@@ -97,8 +97,8 @@ public class FindLocation {
 	 * @param locationAlgo2 - the location that the file will be saved there
 	 * @throws IOException
 	 */
-	public static void checkMac (ArrayList<String[]> answer ,ArrayList<String[]> information2,String locationAlgo2 ) throws IOException{
-		ArrayList<String[]> ArrAnswerLine = new ArrayList<String[]>();
+	public static void checkMac (ArrayList<MacBig_Container> answer ,ArrayList<MacBig_Container> information2,String locationAlgo2 ) throws IOException{
+		ArrayList<MacBig_Container> ArrAnswerLine = new ArrayList<MacBig_Container>();
 		ArrayList<Location> ArrLocation = new ArrayList<Location>();
 		boolean []isTuched = new boolean[answer.size()];
 
@@ -108,16 +108,16 @@ public class FindLocation {
 		String SignalInfo="";
 
 		for (int j = 0; j < information2.size(); j++) {
-			ArrAnswerLine = new ArrayList<String[]>();
+			ArrAnswerLine = new ArrayList<MacBig_Container>();
 			ArrLocation = new ArrayList<Location>();
 			isTuched = new boolean[answer.size()];
-			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])];
+			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network)];
 			colm=0;
 			row=0;
-			
-			for (int i = IndexMacInfo; i < ((Integer.parseInt(information2.get(j)[IndexWifiNetworkInfo])*4)+IndexWifiNetworkInfo) ; i=i+4) {
-				MacInfo=information2.get(j)[i];
-				SignalInfo=information2.get(j)[i+2];
+
+			for (int i = 0; i < information2.get(j).realsize ; i++) {
+				MacInfo=information2.get(j).arr_macbig[i].Mac;
+				SignalInfo=information2.get(j).arr_macbig[i].Signal;
 				MacAndSigInfo2[row][colm]=MacInfo;
 				MacAndSigInfo2[row+1][colm]=SignalInfo;
 				row=0;
@@ -127,9 +127,12 @@ public class FindLocation {
 			CreateArrLocation(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
 			ArrLocation.sort(null);
 			Location W_sum = WSUM(ArrLocation);
-			information2.get(j)[IndexLatInfo] = W_sum.Lat;
-			information2.get(j)[IndexAltInfo] = W_sum.Alt;
-			information2.get(j)[IndexLonInfo] = W_sum.Lon;
+	
+			for (int i = 0; i < MacAndSigInfo2[0].length; i++) {
+				information2.get(j).arr_macbig[i].lat = W_sum.Lat;
+				information2.get(j).arr_macbig[i].alt = W_sum.Alt;
+				information2.get(j).arr_macbig[i].lon = W_sum.Lon;
+			}
 		}
 		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 	}
@@ -146,7 +149,7 @@ public class FindLocation {
 		double sumLon=0.0;
 		double weight=0.0;
 		int size;
-		
+
 		if (ArrLocation.size()>=Number_of_loc){
 			size = Number_of_loc;
 		}
@@ -173,8 +176,8 @@ public class FindLocation {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<String[]> readingFileOfTwo_(File folder) throws IOException  {	
-		ArrayList<String[]> information2 = new ArrayList<String[]>();
+	public static ArrayList<MacBig_Container> readingFileOfTwo_(File folder) throws IOException  {	
+		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
 			try {
@@ -184,11 +187,14 @@ public class FindLocation {
 					Scanner sc = new Scanner(fi);
 					BufferedReader read = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
 					read.close();
+					ArrayList<String[]> ans;
 
 					while (sc.hasNext()) {
+						ans = new ArrayList<String[]>();
 						String str = sc.nextLine();
-						String[] line = str.split(",");
-						information2.add(line);
+						ans.add(str.split(","));
+
+						HelpFilter.FromAnsToAnswer(ans, information2, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
 					}
 					sc.close();
 					fi.close();
@@ -216,14 +222,14 @@ public class FindLocation {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<String[]> SearchMacInAnswer (String [][]MacAndSigInfo2,ArrayList<Location> ArrLocation,
-			ArrayList<String[]> answer, ArrayList<String[]> ArrAnswerLine,boolean []isTuched) throws IOException{
+	public static ArrayList<MacBig_Container> SearchMacInAnswer (String [][]MacAndSigInfo2,ArrayList<Location> ArrLocation,
+			ArrayList<MacBig_Container> answer, ArrayList<MacBig_Container> ArrAnswerLine,boolean []isTuched) throws IOException{
 		for (int i = 1; i < answer.size(); i++) {
 			boolean flag = false;
-			for (int j = IndexMacAnswer; j <(Integer.parseInt(answer.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
+			for (int j = 0; j <answer.get(i).realsize; j++) {
 				for (int k = 0; k < MacAndSigInfo2[0].length; k++) {
 					flag = false;
-					if (MacAndSigInfo2[0][k].equals(answer.get(i)[j])){
+					if (MacAndSigInfo2[0][k].equals(answer.get(i).arr_macbig[j].Mac)){
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));
 						isTuched[i] = true;
@@ -234,7 +240,7 @@ public class FindLocation {
 
 		return ArrAnswerLine;
 	}
-	
+
 	/**
 	 * The function create arraylist of Location type.
 	 * the function scanning ArrAnswerLine ,calculate PI and copying the relevant values (alt, lat, lon and PI) to ArrayList<Location> ArrLocation.
@@ -242,16 +248,17 @@ public class FindLocation {
 	 * @param ArrAnswerLine
 	 * @param MacAndSigInfo2
 	 */
-	public static void CreateArrLocation (ArrayList<Location> ArrLocation,  ArrayList<String[]> ArrAnswerLine,String [][]MacAndSigInfo2){
+	public static void CreateArrLocation (ArrayList<Location> ArrLocation,  ArrayList<MacBig_Container> ArrAnswerLine,String [][]MacAndSigInfo2){
 		Location line = new Location();
 
 		for (int i = 0; i < ArrAnswerLine.size(); i++) {
 			double PI=1;
 			line = new Location();
-			for (int j = IndexMacAnswer; j <(Integer.parseInt(ArrAnswerLine.get(i)[IndexWifiNetworkAnswer])*4)+IndexWifiNetworkAnswer; j+=4) {
+			for (int j = 0; j <ArrAnswerLine.get(i).realsize; j++) {
 				for (int h = 0; h < MacAndSigInfo2[0].length; h++) {
-					if(ArrAnswerLine.get(i)[j].equals(MacAndSigInfo2[0][h])){
-						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),Integer.parseInt(ArrAnswerLine.get(i)[j+2]),PI);
+					if(ArrAnswerLine.get(i).arr_macbig[j].Mac.equals(MacAndSigInfo2[0][h])){
+						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),
+								Integer.parseInt(ArrAnswerLine.get(i).arr_macbig[j].Signal),PI);
 					}
 					else{
 						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),no_signal,PI);
@@ -259,19 +266,19 @@ public class FindLocation {
 				}
 			}
 			line.PI=""+PI;
-			line.Alt=ArrAnswerLine.get(i)[IndexAltAnswer];
-			line.Lat=ArrAnswerLine.get(i)[IndexLatAnswer];
-			line.Lon=ArrAnswerLine.get(i)[IndexLonAnswer];
+			line.Alt=ArrAnswerLine.get(i).arr_macbig[0].alt;
+			line.Lat=ArrAnswerLine.get(i).arr_macbig[0].lat;
+			line.Lon=ArrAnswerLine.get(i).arr_macbig[0].lon;
 			ArrLocation.add(line);
 		}
 	}
 
-/**
- * The function write to csv file the algo1 after calculation.
- * @param MacsAfterFormulas
- * @param locationAlgo1
- * @throws IOException
- */
+	/**
+	 * The function write to csv file the algo1 after calculation.
+	 * @param MacsAfterFormulas
+	 * @param locationAlgo1
+	 * @throws IOException
+	 */
 	public static String[][] WriteToCsv_Matala2_parta(MacBig[] MacsAfterFormulas,String locationAlgo1) throws IOException{
 		int IndexIndex = 0;
 		int MacIndex = 1;
@@ -311,5 +318,5 @@ public class FindLocation {
 		System.out.println("completed writing to csv the best macs");
 		return Answer_One;
 	}
-	
+
 }

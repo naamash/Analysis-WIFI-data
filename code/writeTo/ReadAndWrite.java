@@ -74,7 +74,6 @@ public class ReadAndWrite {
 					
 
 					HelpersBeforeWrite.Save_info(information, answer);
-					System.out.println("************");
 					information = new ArrayList<String[]>(); 
 					sc.close();
 					fi.close();
