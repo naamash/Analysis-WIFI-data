@@ -4,11 +4,13 @@ package filtersPack;
  * This class allow to user to enter folder that the files there and choose according to what to sort - by time, ID or location. 
  */
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
-
 import objects.MacBig_Container;
+import writeTo.ConvertToKml;
 import writeTo.ReadAndWrite;
 
 public class ChooseFilter {
@@ -28,16 +30,14 @@ public class ChooseFilter {
 				System.out.println("enter folder name");
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
-				answer = ReadAndWrite.readingFile(folder);
-//				for (int i = 0; i < answer.size(); i++) {
-//					System.out.println(Arrays.toString(answer.get(i)));
-//				}
+				answer = ReadAndWrite.readingFileWigle(folder);
 				ReadAndWrite.WriteToCsv(answer, file);
 				flag1 = false;
 			} catch (Exception e) {
 				System.err.println("This folder does'nt exist! try again.");
 			}
 		}
+		answer = ReadAndWrite.readingFile46Col(file);
 		boolean flag = true;
 		while (flag){
 
@@ -45,14 +45,14 @@ public class ChooseFilter {
 			System.out.println("enter: 1 to sortByTime , 2 to sortByLocation or 3 to sortById");
 			int a = sc.nextInt();
 
-//			if (a == 1) {
-//				flag=time(file, flag);
-//			}
-			 if (a == 2) {
-				flag=location(file, flag);
+			if (a == 1) {
+				flag=time(answer, flag);
+			}
+			else if (a == 2) {
+				flag=location(answer, flag);
 			}
 			else if (a == 3) {
-				flag=id(file, flag);			
+				flag=id(answer, flag);			
 			} 
 		}
 	}
@@ -64,42 +64,49 @@ public class ChooseFilter {
 	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
 	 * @return
 	 */
-//	public static boolean time(String file, boolean flag){
-//		Scanner timeSt = new Scanner((System.in));
-//		Scanner timeEn = new Scanner((System.in));
-//		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-//		String timestart = timeSt.nextLine();
-//		while(timestart.length()!=19)
-//		{
-//			timeSt = new Scanner((System.in));
-//			
-//			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-//			timestart = timeSt.nextLine();
-//		}
-//		System.out.println("enter end");
-//		String timeend = timeEn.nextLine();
-//		while(timeend.length()!=19)
-//		{
-//			timeEn = new Scanner((System.in));
-//			
-//			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
-//			timeend = timeEn.nextLine();
-//		}
-//		try {
-//			filters.FilterByTime(file, timestart, timeend);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
-//	
+	public static boolean time(ArrayList<MacBig_Container> answer, boolean flag){
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
+		Scanner timeSt = new Scanner((System.in));
+		Scanner timeEn = new Scanner((System.in));
+		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+		String timestart = timeSt.nextLine();
+		while(timestart.length()!=19)
+		{
+			timeSt = new Scanner((System.in));
+			
+			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+			timestart = timeSt.nextLine();
+		}
+		System.out.println("enter end");
+		String timeend = timeEn.nextLine();
+		while(timeend.length()!=19)
+		{
+			timeEn = new Scanner((System.in));
+			
+			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
+			timeend = timeEn.nextLine();
+		}
+		try {
+			Filter f = new filter_time(timestart, timeend);
+			DoFilter fil = new DoFilter(f);
+		
+			fil.filtering(answer);
+			ConvertToKml.ToKml(answer);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	/**
 	 * The function accepts String file and boolean flag. 
 	 * The function ask user to enter lat, lon and radious so that the function will sort according to this .
 	 * @param file
 	 * @param flag - after user enter the lat, lon and radious, the function return flag = false in order to the function not ask the user again.  
 	 */
-	public static boolean location(String file, boolean flag){
+	public static boolean location(ArrayList<MacBig_Container> answer, boolean flag){
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 		Scanner location = new Scanner((System.in));
 		System.out.println("enter lat");
 		String locationstart = location.nextLine();
@@ -108,8 +115,11 @@ public class ChooseFilter {
 		System.out.println("enter radious");
 		double radious = location.nextDouble();
 		try {
-			filters.FilterByLocation(file, locationstart, locationend, radious);
-		} catch (IOException e) {
+			Filter f = new filter_location(locationstart, locationend, radious);
+			DoFilter fil = new DoFilter(f);
+			fil.filtering(answer);
+			ConvertToKml.ToKml(answer);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;				
@@ -121,13 +131,18 @@ public class ChooseFilter {
 	 * @param file
 	 * @param flag - after user enter the id, the function return flag = false in order to the function not ask the user again.  
 	 */
-	public static boolean id(String file, boolean flag){
+	public static boolean id(ArrayList<MacBig_Container> answer, boolean flag){
+		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 		Scanner id = new Scanner((System.in));
 		System.out.println("enter id");
 		String idName = id.nextLine();
+		
 		try {
-			filters.FilterByID(file, "display=" + idName);
-		} catch (IOException e) {
+			Filter f = new filter_id("display=" + idName);
+			DoFilter fil = new DoFilter(f);
+			fil.filtering(answer);
+			ConvertToKml.ToKml(answer);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;	

@@ -51,7 +51,7 @@ public class FindLocation {
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 
-		answer = ReadAndWrite.readingFile(folder);
+		answer = ReadAndWrite.readingFileWigle(folder);
 
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
@@ -76,7 +76,7 @@ public class FindLocation {
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
 
-		answer = ReadAndWrite.readingFile(folder1);
+		answer = ReadAndWrite.readingFileWigle(folder1);
 		information2 = readingFileOfTwo_(folder2);
 
 		checkMac(answer,information2,locationAlgo2);

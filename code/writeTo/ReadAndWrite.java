@@ -1,12 +1,14 @@
 package writeTo;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import filtersPack.HelpFilter;
 import objects.MacBig;
 import objects.MacBig_Container;
 
@@ -30,7 +32,7 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<MacBig_Container> readingFile(File folder)  {	
+	public static ArrayList<MacBig_Container> readingFileWigle(File folder)  {	
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		File[] listOfFiles = folder.listFiles();
@@ -92,6 +94,33 @@ public class ReadAndWrite {
 		return answer;
 	}
 	
+	public static ArrayList<MacBig_Container> readingFile46Col(String file) throws IOException  {
+	//	File file1 = new File(file);
+
+		FileInputStream fi = new FileInputStream(file);
+		Scanner sc = new Scanner(fi);
+
+		ArrayList<String[]> ans = new ArrayList<String[]>();
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+		int flag=0;
+		while (sc.hasNext()) {
+			ans = new ArrayList<String[]>();
+			String str = sc.nextLine();
+			ans.add(str.split(","));
+			if (flag==0){
+				HelpFilter.FromAnsToAnswer(ans, answer, 0, 46,10);
+				flag=1;
+			}
+			else{
+				HelpFilter.FromAnsToAnswer(ans, answer, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
+			}
+		}
+		sc.close();
+		fi.close();
+		
+		return answer;
+	}
+
 
 	/**
 	 * The function accept array of String [] type and write it to csv file.
