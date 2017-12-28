@@ -45,10 +45,10 @@ public class ChooseFilter {
 			System.out.println("enter: 1 to sortByTime , 2 to sortByLocation or 3 to sortById");
 			int a = sc.nextInt();
 
-			if (a == 1) {
-				flag=time(file, flag);
-			}
-			else if (a == 2) {
+//			if (a == 1) {
+//				flag=time(file, flag);
+//			}
+			 if (a == 2) {
 				flag=location(file, flag);
 			}
 			else if (a == 3) {
@@ -64,35 +64,35 @@ public class ChooseFilter {
 	 * @param flag - after user enter the times, the function return flag = false in order to the function not ask the user again.  
 	 * @return
 	 */
-	public static boolean time(String file, boolean flag){
-		Scanner timeSt = new Scanner((System.in));
-		Scanner timeEn = new Scanner((System.in));
-		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-		String timestart = timeSt.nextLine();
-		while(timestart.length()!=19)
-		{
-			timeSt = new Scanner((System.in));
-			
-			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
-			timestart = timeSt.nextLine();
-		}
-		System.out.println("enter end");
-		String timeend = timeEn.nextLine();
-		while(timeend.length()!=19)
-		{
-			timeEn = new Scanner((System.in));
-			
-			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
-			timeend = timeEn.nextLine();
-		}
-		try {
-			filters.FilterByTime(file, timestart, timeend);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
+//	public static boolean time(String file, boolean flag){
+//		Scanner timeSt = new Scanner((System.in));
+//		Scanner timeEn = new Scanner((System.in));
+//		System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+//		String timestart = timeSt.nextLine();
+//		while(timestart.length()!=19)
+//		{
+//			timeSt = new Scanner((System.in));
+//			
+//			System.out.println("enter begining in Format dd-MM-yyyy HH:mm:ss");
+//			timestart = timeSt.nextLine();
+//		}
+//		System.out.println("enter end");
+//		String timeend = timeEn.nextLine();
+//		while(timeend.length()!=19)
+//		{
+//			timeEn = new Scanner((System.in));
+//			
+//			System.out.println("enter ending in Format dd-MM-yyyy HH:mm:ss");
+//			timeend = timeEn.nextLine();
+//		}
+//		try {
+//			filters.FilterByTime(file, timestart, timeend);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
+//	
 	/**
 	 * The function accepts String file and boolean flag. 
 	 * The function ask user to enter lat, lon and radious so that the function will sort according to this .

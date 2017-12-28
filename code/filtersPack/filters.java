@@ -63,82 +63,87 @@ public class filters {
 		Date dateLine = null;
 		for (int i = 1; i < answer.size(); i++) {
 			if (check(answer.get(i).arr_macbig[0].time)){
-//			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i).arr_macbig[0].time));
+				//			dateLine = (Date) (HelpFilter.fromStringToDate(answer.get(i).arr_macbig[0].time));
 
-//			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
-//				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
-//			}
-		}
-		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-		ConvertToKml.ToKml(macs);
-	}
-
-	/**
-	 * This function sort the file it gets by ID.
-	 * the function gets String file and String ID .
-	 * it save only values who have the same ID.
-	 * After sorting, the function use another class for converting to KML file.
-	 * @param file
-	 * @param ID
-	 * @throws IOException
-	 */
-	public static void FilterByID(String file1, String ID) throws IOException{
-		ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
-		File file = new File(file1);
-		FileInputStream fi = new FileInputStream(file);
-		Scanner sc = new Scanner(fi);
-		ArrayList<String[]> ans = new ArrayList<String[]>();
-		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
-		int flag=0;
-		while (sc.hasNext()) {
-			ans = new ArrayList<String[]>();
-			String str = sc.nextLine();
-			ans.add(str.split(","));
-			if (flag==0){
-				HelpFilter.FromAnsToAnswer(ans, answer, 0, 46,10);
-				flag=1;
+				//			if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
+				//				macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
+				//			}
 			}
-			else{
-				HelpFilter.FromAnsToAnswer(ans, answer, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
-			}
+			//		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+			//		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+			ConvertToKml.ToKml(macs);
 		}
-		sc.close();
-		fi.close();
 
-		Filter f = new filter_id(ID);
-		DoFilter fil = new DoFilter(f);
-		HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
+		/**
+		 * This function sort the file it gets by ID.
+		 * the function gets String file and String ID .
+		 * it save only values who have the same ID.
+		 * After sorting, the function use another class for converting to KML file.
+		 * @param file
+		 * @param ID
+		 * @throws IOException
+		 */
+		public static void FilterByID(String file1, String ID) throws IOException{
+			ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
+			File file = new File(file1);
+			FileInputStream fi = new FileInputStream(file);
+			Scanner sc = new Scanner(fi);
+			ArrayList<String[]> ans = new ArrayList<String[]>();
+			ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+			int flag=0;
+			while (sc.hasNext()) {
+				ans = new ArrayList<String[]>();
+				String str = sc.nextLine();
+				ans.add(str.split(","));
+				if (flag==0){
+					HelpFilter.FromAnsToAnswer(ans, answer, 0, 46,10);
+					flag=1;
+				}
+				else{
+					HelpFilter.FromAnsToAnswer(ans, answer, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
+				}
+			}
+			sc.close();
+			fi.close();
 
-//		int IDIndex=FindIndex.PlaceArticleAnswerID(answer, "ID",0);
-//		for (int i = 1; i < answer.size(); i++) {
-//			if(((answer.get(i).arr_macbig[IDIndex].ID).equals(ID))){
-//			}
-//		}
-		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-		ConvertToKml.ToKml(macs);
-	}
+			Filter f = new filter_id(ID);
+			DoFilter fil = new DoFilter(f);
+			for (int j = 0; j < answer.size(); j++) {
+				if (f.check(answer.get(j))){
+					macs.add(answer.get(j));
+				}
+			}
 
-	
-	/**
-	 * This function sort the file it gets by location.
-	 * the function gets String file, lat, lon, and radius .
-	 * it save only values within the radius range.
-	 * After sorting, the function use another class for converting to KML file.
-	 * @param file
-	 * @param lat
-	 * @param lon
-	 * @param radious
-	 * @throws IOException
-	 */
+			//		HelpFilter.SaveTheLargestSIGNAL(macs, answer, i);
+			//		int IDIndex=FindIndex.PlaceArticleAnswerID(answer, "ID",0);
+			//		for (int i = 1; i < answer.size(); i++) {
+			//			if(((answer.get(i).arr_macbig[IDIndex].ID).equals(ID))){
+			//			}
+			//		}
+			//		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+			//		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+			ConvertToKml.ToKml(macs);
+		}
+
+
+		/**
+		 * This function sort the file it gets by location.
+		 * the function gets String file, lat, lon, and radius .
+		 * it save only values within the radius range.
+		 * After sorting, the function use another class for converting to KML file.
+		 * @param file
+		 * @param lat
+		 * @param lon
+		 * @param radious
+		 * @throws IOException
+		 */
 		public static void FilterByLocation(String file1, String lat, String lon, double radius) throws IOException{
 			ArrayList<MacBig_Container> macs=new ArrayList<MacBig_Container>();
 			File file = new File(file1);
-	
+
 			FileInputStream fi = new FileInputStream(file);
 			Scanner sc = new Scanner(fi);
-			
+
 			ArrayList<String[]> ans = new ArrayList<String[]>();
 			ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 			int flag=0;
@@ -168,7 +173,7 @@ public class filters {
 			MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 			ConvertToKml.ToKml(macs);
 		}
-}
+	}
 
 
 
