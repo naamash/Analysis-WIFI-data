@@ -3,6 +3,8 @@ package writeTo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
@@ -30,8 +32,8 @@ public class ConvertToKml {
 		}
 
 		try {
-			//kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
-			kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Matala_Zero_test.kml"));
+			kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
+			//kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Matala_Zero_test.kml"));
 
 			System.out.println("completed Kml");
 		} catch (FileNotFoundException e) {

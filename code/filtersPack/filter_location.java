@@ -25,17 +25,6 @@ public class filter_location implements Filter{
 		return false;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 

@@ -15,7 +15,12 @@ public class DoFilter {
 		this.filter=filter;
 	}
 	
-	public Set<MacBig_Container> filtering (ArrayList<MacBig_Container>answer){
-		return answer.stream().filter(s ->this.filter.check(s)).collect(Collectors.<MacBig_Container>toSet());
+	public ArrayList<MacBig_Container> filtering (ArrayList<MacBig_Container>answer){
+		return (ArrayList<MacBig_Container>) answer.stream().filter(MacBig_Container ->this.filter.check(MacBig_Container))
+				.collect(Collectors.<MacBig_Container>toList());
 	}
+	
+//	public Set<Scan> filtering( ArrayList<Scan> data) {
+//		return data.stream().filter(scan ->this.f.comper(scan)).collect(Collectors.<Scan>toSet());
+//	}
 }

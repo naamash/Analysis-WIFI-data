@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 import objects.MacBig_Container;
@@ -20,8 +21,8 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
-		//String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
-		String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
+		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678910.csv";
+		//String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
 
 		boolean flag1 = true;
 		while(flag1){
@@ -89,8 +90,8 @@ public class ChooseFilter {
 		try {
 			Filter f = new filter_time(timestart, timeend);
 			DoFilter fil = new DoFilter(f);
-		
-			fil.filtering(answer);
+			answer.remove(0);
+			answer = fil.filtering(answer);
 			ConvertToKml.ToKml(answer);
 
 		} catch (Exception e) {
@@ -117,7 +118,8 @@ public class ChooseFilter {
 		try {
 			Filter f = new filter_location(locationstart, locationend, radious);
 			DoFilter fil = new DoFilter(f);
-			fil.filtering(answer);
+			answer.remove(0);
+			answer = fil.filtering(answer);
 			ConvertToKml.ToKml(answer);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,7 +142,13 @@ public class ChooseFilter {
 		try {
 			Filter f = new filter_id("display=" + idName);
 			DoFilter fil = new DoFilter(f);
-			fil.filtering(answer);
+			answer.remove(0);
+			answer = fil.filtering(answer);
+			
+//			for (int i = 0; i < answer.size(); i++) {
+//				System.out.println(Arrays.toString(answer.get(i).arr_macbig));
+//			}
+			
 			ConvertToKml.ToKml(answer);
 		} catch (Exception e) {
 			e.printStackTrace();
