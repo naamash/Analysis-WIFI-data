@@ -21,7 +21,9 @@ public class ChooseFilter {
 	 */
 	public static void Decide() throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
-		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678910.csv";
+		String file = "\\Answer_Of_Matala_Zero678910.csv";
+//		String file = "C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678910.csv";
+
 		//String file = "C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero678.csv";
 
 		boolean flag1 = true;
@@ -32,13 +34,19 @@ public class ChooseFilter {
 				String foldername = folderr.nextLine();
 				File folder = new File(foldername);
 				answer = ReadAndWrite.readingFileWigle(folder);
-				ReadAndWrite.WriteToCsv(answer, file);
+				Scanner csv = new Scanner(System.in);
+				System.out.println("please enter path for saving the CSV");
+				String csvTO = csv.nextLine();
+				ReadAndWrite.WriteToCsv(answer, csvTO+file);
 				flag1 = false;
 			} catch (Exception e) {
 				System.err.println("This folder does'nt exist! try again.");
 			}
 		}
-		answer = ReadAndWrite.readingFile46Col(file);
+		Scanner csv = new Scanner(System.in);
+		System.out.println("please enter path for saving the CSV");
+		String csvFROM = csv.nextLine();
+		answer = ReadAndWrite.readingFile46Col(csvFROM);
 		boolean flag = true;
 		while (flag){
 

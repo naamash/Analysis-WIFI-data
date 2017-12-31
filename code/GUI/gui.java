@@ -44,24 +44,28 @@ public class gui extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("New ");
-		btnNewButton.setBounds(10, 228, 422, 25);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton addcsv = new JButton("enter");
+		addcsv.setBounds(10, 228, 422, 25);
+		addcsv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String t = solik.getText();
-				System.out.println(t);
+				
 			}
 		});
 		contentPane.setLayout(null);
-		contentPane.add(btnNewButton);
+		contentPane.add(addcsv);
 		
 		solik = new JTextField();
-		solik.setBounds(104, 167, 116, 22);
+		solik.setBounds(104, 167, 222, 22);
 		contentPane.add(solik);
 		solik.setColumns(10);
 		
-		JLabel lblYyyy = new JLabel("yyyy");
-		lblYyyy.setBounds(149, 85, 56, 16);
+		JLabel lblYyyy = new JLabel("please add csv file");
+		lblYyyy.setBounds(72, 72, 291, 16);
 		contentPane.add(lblYyyy);
+		
+		JLabel lblPath = new JLabel("path");
+		lblPath.setBounds(39, 170, 56, 16);
+		contentPane.add(lblPath);
 	}
 }

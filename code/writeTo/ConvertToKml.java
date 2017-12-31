@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
@@ -32,7 +33,10 @@ public class ConvertToKml {
 		}
 
 		try {
-			kml.marshal(new File("C:\\Users\\hadar\\Desktop\\Answer exampels\\Answer_Of_Matala_Zero.kml"));
+			Scanner kmlfile = new Scanner(System.in);
+			System.out.println("please enter path for saving the CSV");
+			String kmlTO = kmlfile.nextLine();
+			kml.marshal(new File(kmlTO + "\\Answer_Of_Matala_Zero.kml"));
 			//kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Matala_Zero_test.kml"));
 
 			System.out.println("completed Kml");
