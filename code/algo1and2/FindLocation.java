@@ -72,7 +72,7 @@ public class FindLocation {
 	 * @param locationAlgo2
 	 * @throws IOException
 	 */
-	public static void Matala2_Algo2 (File folder1 ,File folder2, String locationAlgo2) throws IOException{
+	public static void Matala2_Algo2Folder (File folder1 ,File folder2, String locationAlgo2) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
 
@@ -81,6 +81,33 @@ public class FindLocation {
 
 		checkMac(answer,information2,locationAlgo2);
 
+	}
+	public static void Matala2_Algo2User (File folder1,String Mac1,String Mac2,String Mac3,
+			String signal1,String signal2,String signal3, String locationAlgo2) throws IOException{
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
+
+		answer = ReadAndWrite.readingFileWigle(folder1);
+		MacBig []temp1 = new MacBig[1];
+		temp1[0].Mac = Mac1;
+		temp1[0].Signal = signal1;
+		MacBig_Container help1 = new MacBig_Container(temp1,1);
+		
+		MacBig []temp2 = new MacBig[1];
+		temp1[0].Mac = Mac2;
+		temp1[0].Signal = signal2;
+		MacBig_Container help2 = new MacBig_Container(temp2,1);
+		
+		MacBig []temp3 = new MacBig[1];
+		temp1[0].Mac = Mac3;
+		temp1[0].Signal = signal3;
+		MacBig_Container help3 = new MacBig_Container(temp3,1);
+		
+		information2.add(help1);
+		information2.add(help2);
+		information2.add(help3);
+
+		checkMac(answer,information2,locationAlgo2);
 	}
 
 	/**
@@ -107,7 +134,11 @@ public class FindLocation {
 			ArrAnswerLine = new ArrayList<MacBig_Container>();
 			ArrLocation = new ArrayList<Location>();
 			isTuched = new boolean[answer.size()];
-			String [][]MacAndSigInfo2 = new String [2][Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network)];
+			int col = Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network);
+			if (information2.get(j).arr_macbig[0].WIFI_Network==null){
+				col=1;
+			}
+			String [][]MacAndSigInfo2 = new String [2][col];
 			colm=0;
 			row=0;
 
