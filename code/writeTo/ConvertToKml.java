@@ -17,7 +17,7 @@ import objects.MacBig_Container;
  */
 public class ConvertToKml {
 
-	public static Document ToKml(ArrayList<MacBig_Container> macs){	
+	public static Document ToKml(ArrayList<MacBig_Container> macs,String path){	
 		final Kml kml = new Kml();
 		Document document = kml.createAndSetDocument();
 
@@ -33,10 +33,10 @@ public class ConvertToKml {
 		}
 
 		try {
-			Scanner kmlfile = new Scanner(System.in);
-			System.out.println("please enter path for saving the CSV");
-			String kmlTO = kmlfile.nextLine();
-			kml.marshal(new File(kmlTO + "\\Answer_Of_Matala_Zero.kml"));
+//			Scanner kmlfile = new Scanner(System.in);
+//			System.out.println("please enter path for saving the CSV");
+//			String kmlTO = kmlfile.nextLine();
+			kml.marshal(new File(path + "\\Answer_Of_Matala_Zero.kml"));
 			//kml.marshal(new File("C:\\Users\\נעמה שטאובר\\Desktop\\Answer exampels\\Matala_Zero_test.kml"));
 
 			System.out.println("completed Kml");

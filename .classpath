@@ -25,5 +25,7 @@
 	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/jaxb-impl-2.1.17.jar"/>
 	<classpathentry kind="lib" path="C:/Users/hadar/git/KmlAndCsv-files/Jak/jsr173_api-1.0.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/לימודים/שנה ב/סמסטר א/מונחה עצמים/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

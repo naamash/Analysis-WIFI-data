@@ -100,7 +100,10 @@ public class ChooseFilter {
 			DoFilter fil = new DoFilter(f);
 			answer.remove(0);
 			answer = fil.filtering(answer);
-			ConvertToKml.ToKml(answer);
+			Scanner kmlfile = new Scanner(System.in);
+			System.out.println("please enter path for saving the CSV");
+			String path = kmlfile.nextLine();
+			ConvertToKml.ToKml(answer,path);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,7 +131,10 @@ public class ChooseFilter {
 			DoFilter fil = new DoFilter(f);
 			answer.remove(0);
 			answer = fil.filtering(answer);
-			ConvertToKml.ToKml(answer);
+			Scanner kmlfile = new Scanner(System.in);
+			System.out.println("please enter path for saving the CSV");
+			String path = kmlfile.nextLine();
+			ConvertToKml.ToKml(answer,path);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -156,8 +162,10 @@ public class ChooseFilter {
 //			for (int i = 0; i < answer.size(); i++) {
 //				System.out.println(Arrays.toString(answer.get(i).arr_macbig));
 //			}
-			
-			ConvertToKml.ToKml(answer);
+			Scanner kmlfile = new Scanner(System.in);
+			System.out.println("please enter path for saving the CSV");
+			String path = kmlfile.nextLine();
+			ConvertToKml.ToKml(answer,path);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

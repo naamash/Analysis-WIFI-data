@@ -1,0 +1,67 @@
+package GUI;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class withoutPlace extends JPanel {
+	private JTextField lat;
+	private JTextField lon;
+	private JTextField rad;
+
+	/**
+	 * Create the panel.
+	 */
+	public withoutPlace(Connect c) {
+		setLayout(null);
+		
+		JLabel label = new JLabel(" Write Lat");
+		label.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
+		label.setBounds(25, 23, 144, 40);
+		add(label);
+		
+		JLabel label_1 = new JLabel(" Write Lon");
+		label_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
+		label_1.setBounds(25, 90, 144, 40);
+		add(label_1);
+		
+		lat = new JTextField();
+		lat.setColumns(10);
+		lat.setBounds(207, 30, 231, 40);
+		add(lat);
+		
+		lon = new JTextField();
+		lon.setColumns(10);
+		lon.setBounds(207, 83, 231, 40);
+		add(lon);
+		
+		rad = new JTextField();
+		rad.setColumns(10);
+		rad.setBounds(247, 157, 191, 40);
+		add(rad);
+		
+		JLabel label_2 = new JLabel(" Write Radious");
+		label_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
+		label_2.setBounds(25, 157, 210, 40);
+		add(label_2);
+		
+		JButton button = new JButton(" Enter");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String lat1 = lat.getText();
+				String lon1 = lon.getText();
+				String rad1 = rad.getText();
+				c.NOT_filter_LOC(lat1, lon1, Double.parseDouble(rad1));
+			}
+		});
+		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
+		button.setBounds(121, 223, 191, 40);
+		add(button);
+
+	}
+
+}
