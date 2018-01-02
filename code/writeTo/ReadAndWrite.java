@@ -32,14 +32,15 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<MacBig_Container> readingFileWigle(File folder)  {	
+	public static ArrayList<MacBig_Container> readingFolderWigle(File folder)  {	
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		File[] listOfFiles = folder.listFiles();
 		ArrayList<String[]> information = new ArrayList<String[]>();
-
+		
+		
 		answer.add(HelpersBeforeWrite.MadeLine());
-
+		
 		int r=2;
 		boolean flag = false;
 
@@ -93,6 +94,60 @@ public class ReadAndWrite {
 		//return WriteToCsv(answer);
 		return answer;
 	}
+	
+	public static ArrayList<MacBig_Container> readingFileWigle(File file)  {	
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+
+		ArrayList<String[]> information = new ArrayList<String[]>();
+		
+		answer.add(HelpersBeforeWrite.MadeLine());
+		
+		int r=2;
+
+			try {
+				if (file.isFile() && file.getName().contains("csv")) {
+					File f = new File(file.getPath());
+					FileInputStream fi = new FileInputStream(f);
+					Scanner sc = new Scanner(fi);
+					int m = 0;
+					r = 2;
+					while (sc.hasNext()) {
+						String str = sc.nextLine();
+						String []a = str.split(",");
+						information.add(a) ;
+						try {
+							if ((information.get(0)[0].contains("WigleWifi-1.4")) && (!(information.get(0)[0].equals(null)))
+									&& (!(information.get(0)[1].equals(null)))) {
+								m++;
+							}
+							else{
+								throw new IOException();
+							}
+						}
+						catch (Exception e) {
+							System.err.println("The file " + file.getName() + " is illegal!!");
+						}
+					}
+
+
+					HelpersBeforeWrite.Save_info(information, answer);
+					information = new ArrayList<String[]>(); 
+					sc.close();
+					fi.close();
+				}
+				else {
+					throw new IOException(); 
+				}
+			}
+			catch (Exception e) {
+				System.err.println("File " + file.getName() + " is not csv file!");
+			}
+		//		System.out.println("---------------------------------------size:  "+answer.size());
+		//		FindLocation.checkMac(answer);
+		//return WriteToCsv(answer);
+		return answer;
+	}
+	
 	
 	public static ArrayList<MacBig_Container> readingFile46Col(String file) throws IOException  {
 	//	File file1 = new File(file);

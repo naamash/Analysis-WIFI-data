@@ -2,24 +2,36 @@ package GUI;
 
 import javax.swing.JPanel;
 import com.toedter.calendar.JDateChooser;
+
+import filtersPack.Filter;
+import filtersPack.filter_location;
+import filtersPack.filter_time;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Time extends JPanel {
-	private JTextField txtStart;
-	private JTextField textField;
+	JPanel OrA;
+	private JTextField time1;
+	private JTextField time2;
 
 	/**
 	 * Create the panel.
 	 */
-	public Time() {
+	public Time(Filter[] filters,Connect c) {
 		setLayout(null);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(12, 95, 177, 41);
-		add(dateChooser);
+		JDateChooser date1 = new JDateChooser();
+		date1.setBounds(12, 95, 177, 41);
+		add(date1);
 		
 		JLabel lblNewLabel = new JLabel(" Choose date and Time");
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
@@ -41,19 +53,19 @@ public class Time extends JPanel {
 		lblEnd.setBounds(291, 54, 124, 41);
 		add(lblEnd);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(261, 95, 177, 41);
-		add(dateChooser_1);
+		JDateChooser date2 = new JDateChooser();
+		date2.setBounds(261, 95, 177, 41);
+		add(date2);
 		
-		txtStart = new JTextField();
-		txtStart.setBounds(33, 213, 165, 31);
-		add(txtStart);
-		txtStart.setColumns(10);
+		time1 = new JTextField();
+		time1.setBounds(33, 213, 165, 31);
+		add(time1);
+		time1.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(250, 213, 165, 31);
-		add(textField);
+		time2 = new JTextField();
+		time2.setColumns(10);
+		time2.setBounds(250, 213, 165, 31);
+		add(time2);
 		
 		JLabel lblStartTime = new JLabel(" Start time");
 		lblStartTime.setFont(new Font("Berlin Sans FB", Font.PLAIN, 28));
@@ -66,6 +78,22 @@ public class Time extends JPanel {
 		add(lblEndTime);
 		
 		JButton btnNewButton = new JButton(" Enter");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String datte1 = date1.getDateFormatString();
+				String datte2 = date2.getDateFormatString();
+				String timme1 = datte1 +" "+time1.getText();
+				String timme2 = datte2 +" "+time2.getText();
+				Filter ft = new filter_time(timme1,timme2);
+				if(filters[1]!=null)
+					filters[2]= ft;
+
+				else 
+					filters[0]=ft;
+
+				JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
+			}
+		});
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
 		btnNewButton.setBounds(146, 246, 124, 41);
 		add(btnNewButton);

@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import filtersPack.HelpFilter;
 import objects.Location;
@@ -51,7 +52,12 @@ public class FindLocation {
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 
-		answer = ReadAndWrite.readingFileWigle(folder);
+		if (folder.isDirectory()){
+			answer = ReadAndWrite.readingFolderWigle(folder);
+		}
+		else if (!folder.isDirectory()){
+			answer = ReadAndWrite.readingFileWigle(folder);
+		}
 
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
@@ -60,6 +66,32 @@ public class FindLocation {
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
+	}
+
+	public static String Matala2_Algo1User (File folder,String Mac) throws IOException{
+		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
+		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
+		
+		if (folder.isDirectory()){
+			answer = ReadAndWrite.readingFolderWigle(folder);
+		}
+		else if (!folder.isDirectory()){
+			answer = ReadAndWrite.readingFileWigle(folder);
+		}
+		MacBig []temp1 = new MacBig[1];
+		temp1[0].Mac = Mac;
+		MacBig_Container help1 = new MacBig_Container(temp1,1);
+		macs.add(help1);
+
+		for (int j = 1; j < answer.size(); j++) {
+			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
+		}
+
+		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+
+		return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon +
+				"  Alt: " + MacsAfterFormulas[0].alt;
 	}
 
 	/**
@@ -75,39 +107,63 @@ public class FindLocation {
 	public static void Matala2_Algo2Folder (File folder1 ,File folder2, String locationAlgo2) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
-
-		answer = ReadAndWrite.readingFileWigle(folder1);
-		information2 = readingFileOfTwo_(folder2);
-
-		checkMac(answer,information2,locationAlgo2);
-
+		
+		if (folder1.isDirectory()){
+			answer = ReadAndWrite.readingFolderWigle(folder1);
+		}
+		else if (!folder1.isDirectory()){
+			answer = ReadAndWrite.readingFileWigle(folder1);
+		}
+		
+		if (folder2.isDirectory()){
+		information2 = readingFolderOfTwo_(folder2);
+		}
+		else if (!folder2.isDirectory()){
+			information2 = readingFileOfTwo_(folder2);
+		}
+		information2 = checkMac(answer,information2);
+		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 	}
-	public static void Matala2_Algo2User (File folder1,String Mac1,String Mac2,String Mac3,
-			String signal1,String signal2,String signal3, String locationAlgo2) throws IOException{
+
+	public static String Matala2_Algo2User (File folder1,String Mac1,String Mac2,String Mac3,
+			String signal1,String signal2,String signal3) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
+		
+		if (folder1.isDirectory()){
+			answer = ReadAndWrite.readingFolderWigle(folder1);
+		}
+		else if (!folder1.isDirectory()){
+			answer = ReadAndWrite.readingFileWigle(folder1);
+		}
 
-		answer = ReadAndWrite.readingFileWigle(folder1);
-		MacBig []temp1 = new MacBig[1];
-		temp1[0].Mac = Mac1;
-		temp1[0].Signal = signal1;
-		MacBig_Container help1 = new MacBig_Container(temp1,1);
-		
-		MacBig []temp2 = new MacBig[1];
-		temp1[0].Mac = Mac2;
-		temp1[0].Signal = signal2;
-		MacBig_Container help2 = new MacBig_Container(temp2,1);
-		
-		MacBig []temp3 = new MacBig[1];
-		temp1[0].Mac = Mac3;
-		temp1[0].Signal = signal3;
-		MacBig_Container help3 = new MacBig_Container(temp3,1);
-		
+		MacBig []temp1 = new MacBig[3];
+		MacBig t = new MacBig();
+		t.Mac = Mac1;
+		t.Signal = signal1;
+		temp1[0] = t;
+
+		t = new MacBig();
+		t.Mac = Mac2;
+		t.Signal = signal2;
+		temp1[1] = t;
+
+		t = new MacBig();
+		t.Mac = Mac3;
+		t.Signal = signal3;
+		temp1[2] = t;
+
+		MacBig_Container help1 = new MacBig_Container(temp1,3);
 		information2.add(help1);
-		information2.add(help2);
-		information2.add(help3);
 
-		checkMac(answer,information2,locationAlgo2);
+		information2 = checkMac(answer,information2);
+
+		//		for (int i = 0; i < information2.size(); i++) {
+		//			System.out.println(Arrays.toString(information2.get(i).arr_macbig));
+		//		}
+
+		return "Lat: " + information2.get(0).arr_macbig[0].lat + "  Lon: " 
+		+ information2.get(0).arr_macbig[0].lon +"  Alt: " + information2.get(0).arr_macbig[0].alt;	
 	}
 
 	/**
@@ -120,11 +176,13 @@ public class FindLocation {
 	 * @param locationAlgo2 - the location that the file will be saved there
 	 * @throws IOException
 	 */
-	public static void checkMac (ArrayList<MacBig_Container> answer ,ArrayList<MacBig_Container> information2,String locationAlgo2 ) throws IOException{
+	public static ArrayList<MacBig_Container> checkMac (ArrayList<MacBig_Container> answer ,
+			ArrayList<MacBig_Container> information2) throws IOException{
+
 		ArrayList<MacBig_Container> ArrAnswerLine = new ArrayList<MacBig_Container>();
 		ArrayList<Location> ArrLocation = new ArrayList<Location>();
 		boolean []isTuched = new boolean[answer.size()];
-
+		int col;
 		int colm=0;
 		int row=0;
 		String MacInfo="";
@@ -134,9 +192,14 @@ public class FindLocation {
 			ArrAnswerLine = new ArrayList<MacBig_Container>();
 			ArrLocation = new ArrayList<Location>();
 			isTuched = new boolean[answer.size()];
-			int col = Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network);
+			//System.out.println(Arrays.toString(information2.get(j).arr_macbig));
+
+			//int col = Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network);
 			if (information2.get(j).arr_macbig[0].WIFI_Network==null){
-				col=1;
+				col=3;
+			}
+			else{
+				col = Integer.parseInt(information2.get(j).arr_macbig[0].WIFI_Network);
 			}
 			String [][]MacAndSigInfo2 = new String [2][col];
 			colm=0;
@@ -154,14 +217,14 @@ public class FindLocation {
 			CreateArrLocation(ArrLocation, ArrAnswerLine, MacAndSigInfo2);
 			ArrLocation.sort(null);
 			Location W_sum = WSUM(ArrLocation);
-	
+
 			for (int i = 0; i < MacAndSigInfo2[0].length; i++) {
 				information2.get(j).arr_macbig[i].lat = W_sum.Lat;
 				information2.get(j).arr_macbig[i].alt = W_sum.Alt;
 				information2.get(j).arr_macbig[i].lon = W_sum.Lon;
 			}
 		}
-		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
+		return information2;
 	}
 
 	/**
@@ -203,7 +266,7 @@ public class FindLocation {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<MacBig_Container> readingFileOfTwo_(File folder) throws IOException  {	
+	public static ArrayList<MacBig_Container> readingFolderOfTwo_(File folder) throws IOException  {	
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
@@ -236,7 +299,38 @@ public class FindLocation {
 		}
 		return information2;
 	}
+	
+	public static ArrayList<MacBig_Container> readingFileOfTwo_(File file) throws IOException  {	
+		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
+		
+			try {
+				if (file.isFile() && file.getName().contains("csv")) {
+					File f = new File(file.getPath());
+					FileInputStream fi = new FileInputStream(f);
+					Scanner sc = new Scanner(fi);
+					BufferedReader read = new BufferedReader(new FileReader(file.getPath()));
+					read.close();
+					ArrayList<String[]> ans;
 
+					while (sc.hasNext()) {
+						ans = new ArrayList<String[]>();
+						String str = sc.nextLine();
+						ans.add(str.split(","));
+
+						HelpFilter.FromAnsToAnswer(ans, information2, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
+					}
+					sc.close();
+					fi.close();
+				}
+				else {
+					throw new IOException(); 
+				}
+			}
+			catch (Exception e) {
+				System.err.println("File " + file.getName() + " is not csv file!");
+			}
+		return information2;
+	}
 
 	/**
 	 * This function search the MACs of the line(information2) in the dataBase files(answer) 

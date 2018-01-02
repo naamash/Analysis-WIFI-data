@@ -2,7 +2,7 @@ package filtersPack;
 
 import objects.MacBig_Container;
 
-public class OR_filter {
+public class OR_filter implements Filter {
 
 	Filter filter1;
 	Filter filter2;

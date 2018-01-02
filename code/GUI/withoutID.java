@@ -2,9 +2,18 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import filtersPack.Filter;
+import filtersPack.NOT_filter;
+import filtersPack.filter_id;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -14,7 +23,7 @@ public class withoutID extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public withoutID(Connect c) {
+	public withoutID(Filter[] filters,Connect c) {
 		setLayout(null);
 		
 		JLabel label = new JLabel(" Please enter ID display");
@@ -30,13 +39,28 @@ public class withoutID extends JPanel {
 		JButton button = new JButton("Enter");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String id1 = id.getText();
-				c.NOT_filter_ID(id1);
+				Filter ft = new filter_id(id1);
+				Filter filter = new NOT_filter(ft);
+//				c.NOT_filter_ID(id1);
+				if(filters[1]!=null)
+					filters[2]= filter;
+
+				else 
+					filters[0]=filter;
+
+				JOptionPane.showMessageDialog(new JFrame(), "Filter by NOT-ID got finished");
 			}
 		});
 		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 41));
 		button.setBounds(123, 207, 191, 46);
 		add(button);
+		
+		JLabel label_1 = new JLabel(" NOT");
+		label_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
+		label_1.setBounds(188, 0, 56, 28);
+		add(label_1);
 
 	}
 

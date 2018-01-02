@@ -1,6 +1,7 @@
 package filtersPack;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import objects.MacBig;
@@ -31,6 +32,13 @@ public class HelpFilter {
 			ArrayList<MacBig_Container>answer, int indexRowAnswer){
 
 		boolean isIn = true;
+		boolean isMacs = false;
+		if (macs.size()==0){
+			isMacs=false;
+		}
+		else{
+			isMacs=true;
+		}
 		for (int i =0; i < answer.get(indexRowAnswer).realsize ; i++) {
 			isIn = true;
 			int j = 0;
@@ -66,16 +74,17 @@ public class HelpFilter {
 				s[0] =new  MacBig(temp);
 				MacBig_Container tempNew=new MacBig_Container(s,1);
 				macs.add(tempNew);
-
-				//MMB29K.A520FXXU1AQF3
 			}	
-			else if ((isIn && j <= macs.size())){
+			else if ((isIn && j <= macs.size()) && isMacs){
 				MacBig []s = new MacBig[ARR_SIZE];
 				s[0] =new  MacBig(temp);
 				MacBig_Container tempNew=new MacBig_Container(s,1);
 				macs.add(tempNew);
 			}
 		}
+//		for (int i = 0; i < macs.size(); i++) {
+//			System.out.println(Arrays.toString(macs.get(i).arr_macbig));
+//		}
 		return macs;
 	}
 	
@@ -189,5 +198,3 @@ public class HelpFilter {
 		//		}
 	}
 }
-
-
