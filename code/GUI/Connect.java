@@ -3,11 +3,12 @@ package GUI;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import filtersPack.OR_filter;
 import algo1and2.FindLocation;
 import filtersPack.DoFilter;
 import filtersPack.Filter;
 import filtersPack.NOT_filter;
+import filtersPack.AND_filter;
 import filtersPack.filter_id;
 import filtersPack.filter_location;
 import filtersPack.filter_time;
@@ -30,7 +31,7 @@ public class Connect {
 	}
 
 	public void addfilter_ID(String idName){
-		Filter filter = new filter_id("display=" + idName);
+		Filter filter = new filter_id(idName);
 		this.macs.remove(0);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
@@ -38,6 +39,7 @@ public class Connect {
 
 	public void addfilter_TIME(String start, String end){
 		Filter filter = new filter_time(start, end);
+		System.out.println(macs.size());
 		this.macs.remove(0);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
@@ -45,8 +47,8 @@ public class Connect {
 
 	public void addfilter_LOC(String lat,String lon,double radious){
 		Filter filter = new filter_location(lat, lon, radious);
-		DoFilter fil = new DoFilter(filter);
 		this.macs.remove(0);
+		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
 
@@ -67,6 +69,18 @@ public class Connect {
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
+	
+	public void and_filter(Filter a,Filter b){
+		Filter filter = new AND_filter(a,b);
+		DoFilter fil = new DoFilter(filter);
+		this.macs = fil.filtering(macs);
+	}
+	
+	public void OR_filter(Filter a,Filter b){
+		Filter filter = new OR_filter(a,b);
+		DoFilter fil = new DoFilter(filter);
+		this.macs = fil.filtering(macs);
+	}
 
 	public void saveTOkml(String path) {
 		if(!path.substring(path.length()-3, path.length()).equals("kml")) {
@@ -77,10 +91,7 @@ public class Connect {
 	}
 	
 	public void saveTOcsv(String path) {
-		if (path.length()==0) 
-			path="csv46File.csv";
-
-		else if(!path.substring(path.length()-3, path.length()).equals("csv")){
+		if(!path.substring(path.length()-3, path.length()).equals("csv")){
 			path=path+".csv";
 		}
 		
@@ -142,3 +153,7 @@ public class Connect {
 	}
 	
 }
+
+//display=NRD90M.G950FXXU1AQJ5
+//lat=32.10246120400514
+//lon=35.209976991172944

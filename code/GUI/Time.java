@@ -80,17 +80,31 @@ public class Time extends JPanel {
 		JButton btnNewButton = new JButton(" Enter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String datte1 = date1.getDateFormatString();
-				String datte2 = date2.getDateFormatString();
+				String date_min=date1.getDate().toLocaleString();
+				String datte1 = date_min.substring(9, date_min.length());
+				String date_max=date1.getDate().toLocaleString();
+				String datte2 = date_max.substring(9, date_max.length());
 				String timme1 = datte1 +" "+time1.getText();
 				String timme2 = datte2 +" "+time2.getText();
 				Filter ft = new filter_time(timme1,timme2);
-				if(filters[1]!=null)
+				if(filters[1]!=null && filters[0]!=null){
 					filters[2]= ft;
+					if(filters[1].getClass().getName().contains("AND_filter")){
+						c.and_filter(filters[0], filters[2]);
+					}
+					else if(filters[1].getClass().getName().contains("OR_filter")){
+						c.OR_filter(filters[0], filters[2]);
+					}
+				}
+				else if(filters[1]!=null && filters[0]==null){
+					filters[0]= ft;
+				}
+				
 
-				else 
+				else if(filters[0]==null&&filters[1]==null){
 					filters[0]=ft;
-
+					c.addfilter_TIME(timme1,timme2);
+				}
 				JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
 			}
 		});

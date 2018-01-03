@@ -44,12 +44,15 @@ public class read46 extends JPanel {
 		JButton button_2 = new JButton("File");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String path = "";
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
 				chooser.setFileFilter(filter);
 				chooser.setDialogTitle("Choose Csv File");
-				chooser.showOpenDialog(null);
-				chooser.getSelectedFile().getAbsolutePath();
+				if(chooser.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+					path = chooser.getSelectedFile().getAbsolutePath();
+				}
+				
 			}
 		});
 		button_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 30));

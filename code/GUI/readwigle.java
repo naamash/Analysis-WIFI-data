@@ -65,7 +65,14 @@ public class readwigle extends JPanel {
 				chooser.setDialogTitle("Choose Folder");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.showOpenDialog(null);
+				String path = "";
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File f = chooser.getSelectedFile();
+					path = f.getAbsolutePath();
+				}
+				path = path.replace("\\", "/");
+				File folder = new File(path);
+				c.macs = c.readWigle(folder);
 			}
 		});
 		aaa.setBounds(144, 103, 131, 38);
@@ -75,11 +82,19 @@ public class readwigle extends JPanel {
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String path = "";
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
 				chooser.setFileFilter(filter);
 				chooser.setDialogTitle("Choose Csv File");
-				chooser.showOpenDialog(null);
+				if(chooser.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+					path = chooser.getSelectedFile().getAbsolutePath();
+					File file = new File(path);
+					c.macs = c.readWigle(file);
+//					for (int i = 0; i < c.macs.size(); i++) {
+//						System.out.println(Arrays.toString(c.macs.get(i).arr_macbig));
+//					}
+				}
 //				chooser.getSelectedFile().getAbsolutePath();
 //				for (int i = 0; i < c.macs.size(); i++) {
 //					System.out.println(Arrays.toString(c.macs.get(i).arr_macbig));

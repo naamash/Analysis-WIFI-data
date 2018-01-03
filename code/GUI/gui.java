@@ -14,6 +14,7 @@ import filtersPack.OR_filter;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class gui {
@@ -162,14 +163,13 @@ public class gui {
 		btnTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				withoutTime = new withoutTime(filters,c);
-				frame.getContentPane().add(withoutTime);
-				current = withoutTime;
+				Time = new Time(filters,c);
+				frame.getContentPane().add(Time);
+				current = Time;
 
 			}
 		});
 		mnBy.add(btnTime);
-
 
 
 		JButton btnId = new JButton("ID Display");
@@ -413,8 +413,10 @@ public class gui {
 		JButton AidA = new JButton("ID Display");
 		AidA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
 				current.setVisible(false);
 				id = new id(filters,c);
+				System.out.println("**  "+Arrays.toString(filters));
 				frame.getContentPane().add(id);
 				current = id;
 			}

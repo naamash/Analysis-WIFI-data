@@ -67,36 +67,28 @@ public class FindLocation {
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
-
+	
 	public static String Matala2_Algo1User (File folder,String Mac) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
-		
+
 		if (folder.isDirectory()){
 			answer = ReadAndWrite.readingFolderWigle(folder);
 		}
 		else if (!folder.isDirectory()){
 			answer = ReadAndWrite.readingFileWigle(folder);
-//			for (int i = 0; i < answer.size(); i++) {
-//				System.out.println(Arrays.toString(answer.get(i).arr_macbig));
-//			}
-			
 		}
-		MacBig macc = new MacBig();
-		macc.Mac = Mac;
-		MacBig []temp1 = new MacBig[3];
-		temp1[0] = macc;
-		MacBig_Container help1 = new MacBig_Container(temp1,1);
-		macs.add(help1);
-		for (int j = 1; j < answer.size(); j++) {
-			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
+		try {
+			MacBig_Container macsCon = new MacBig_Container(HelpFilter.SaveTheLargestSIGNALUser(Mac, answer));
+			System.out.println(macsCon.realsize);
+				macs.add(macsCon);
+				MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+				MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+				return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon + "  Alt: "
+						+ MacsAfterFormulas[0].alt;
+		} catch (Exception e) {
+			return "Mac not found!!";
 		}
-		
-		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-
-		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-		return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon +
-				"  Alt: " + MacsAfterFormulas[0].alt;
 	}
 
 	/**

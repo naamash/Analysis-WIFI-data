@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import filtersPack.AND_filter;
 import filtersPack.Filter;
 import filtersPack.NOT_filter;
 import filtersPack.filter_id;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class id extends JPanel {
@@ -43,13 +45,26 @@ public class id extends JPanel {
 
 				String id = path.getText();
 				Filter ft = new filter_id(id);
-				//				c.addfilter_ID(id);
-				if(filters[1]!=null)
+				if(filters[1]!=null && filters[0]!=null){
 					filters[2]= ft;
+					
+					if(filters[1].getClass().getName().contains("AND_filter")){
+						
+						c.and_filter(filters[0], filters[2]);
+					}
+					else if(filters[1].getClass().getName().contains("OR_filter")){
+						c.OR_filter(filters[0], filters[2]);
+					}
+				}
+				else if(filters[1]!=null && filters[0]==null){
+					filters[0]= ft;
+				}
+				
 
-				else 
+				else if(filters[0]==null&&filters[1]==null){
 					filters[0]=ft;
-
+					c.addfilter_ID(id);
+				}
 				JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
 
 			}
@@ -61,3 +76,8 @@ public class id extends JPanel {
 
 	}
 }
+
+//NRD90M.G950FXXU1AQJ5
+
+//32.17237425
+//34.81350895

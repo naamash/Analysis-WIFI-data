@@ -1,6 +1,7 @@
 package filtersPack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,4 @@ public class DoFilter {
 				.collect(Collectors.<MacBig_Container>toList());
 	}
 	
-//	public Set<Scan> filtering( ArrayList<Scan> data) {
-//		return data.stream().filter(scan ->this.f.comper(scan)).collect(Collectors.<Scan>toSet());
-//	}
 }

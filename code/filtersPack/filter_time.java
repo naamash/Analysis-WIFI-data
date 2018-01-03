@@ -19,10 +19,10 @@ public class filter_time implements Filter {
 		Date EndDate =  HelpFilter.fromStringToDate(time_end);
 		Date dateLine = null;
 		dateLine = (Date) (HelpFilter.fromStringToDate(scan.arr_macbig[0].time));
-
 		if (dateLine.after(StartDate)&&dateLine.before(EndDate)){
 			return true;
 		}
 		return false;
 	}
 }
+//08:37:10

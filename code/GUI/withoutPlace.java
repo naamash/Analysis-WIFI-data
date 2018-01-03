@@ -65,14 +65,28 @@ public class withoutPlace extends JPanel {
 				String lon1 = lon.getText();
 				String rad1 = rad.getText();
 				Filter ft = new filter_location(lat1, lon1, Double.parseDouble(rad1));
-//				c.NOT_filter_LOC(lat1, lon1, Double.parseDouble(rad1));
+				
 				Filter filter = new NOT_filter(ft);
-				if(filters[1]!=null)
-					filters[2]= filter;
+				if(filters[1]!=null && filters[0]!=null){
+					filters[2]= ft;
+					
+					if(filters[1].getClass().getName().contains("AND_filter")){
+						
+						c.and_filter(filters[0], filters[2]);
+					}
+					else if(filters[1].getClass().getName().contains("OR_filter")){
+						c.OR_filter(filters[0], filters[2]);
+					}
+				}
+				else if(filters[1]!=null && filters[0]==null){
+					filters[0]= ft;
+				}
+				
 
-				else 
-					filters[0]=filter;
-
+				else if(filters[0]==null&&filters[1]==null){
+					filters[0]=ft;
+					c.NOT_filter_LOC(lat1, lon1, Double.parseDouble(rad1));
+				}
 				JOptionPane.showMessageDialog(new JFrame(), "Filter by NOT-location got finished");
 			}
 		});

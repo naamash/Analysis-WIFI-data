@@ -120,6 +120,64 @@ public class HelpFilter {
 		return macs;
 	}
 	
+	public static MacBig_Container SaveTheLargestSIGNALUser (String mac,
+			ArrayList<MacBig_Container>answer){
+
+		MacBig_Container macs = new MacBig_Container();
+		int s=0;
+		for (int indexRowAnswer = 1; indexRowAnswer < answer.size(); indexRowAnswer++) {
+			for (int i =0; i < answer.get(indexRowAnswer).realsize ; i++) {
+				//isIn = true;
+				//int j = 0;
+				MacBig temp = new MacBig();
+				temp.time=answer.get(indexRowAnswer).arr_macbig[i].time;
+				temp.ID=answer.get(indexRowAnswer).arr_macbig[i].ID;
+				temp.lat=answer.get(indexRowAnswer).arr_macbig[i].lat;
+				temp.lon=answer.get(indexRowAnswer).arr_macbig[i].lon;
+				temp.alt=answer.get(indexRowAnswer).arr_macbig[i].alt;
+				temp.ssid=answer.get(indexRowAnswer).arr_macbig[i].ssid;
+				temp.Mac=answer.get(indexRowAnswer).arr_macbig[i].Mac;
+				temp.frequency=answer.get(indexRowAnswer).arr_macbig[i].frequency;
+				temp.Signal=answer.get(indexRowAnswer).arr_macbig[i].Signal;
+				//			System.out.println(isMacs);
+
+				if (mac.equals(temp.Mac)){	
+					//isIn=false;
+					//System.out.println(mac.get(0));
+					if ((macs.realsize==ARR_SIZE)){
+						if(Integer.parseInt(temp.Signal)>=Integer.parseInt(macs.arr_macbig[ARR_SIZE-1].Signal)){
+							swap(temp, macs.arr_macbig[macs.realsize]);
+							sortMACS(macs);
+						}
+					}
+
+					else if (macs.realsize==0){
+						MacBig macc = new MacBig(temp);
+						System.out.println("macc    "+macc.toString());
+						MacBig [] maccArr = new MacBig[ARR_SIZE];
+						maccArr[0] = macc;
+						macs = new MacBig_Container(maccArr ,1);
+
+						//macs.realsize ++;
+					}
+					else if (macs.realsize<ARR_SIZE&&macs.realsize!=0){
+						//					MacBig macc = new MacBig(temp);
+						//					MacBig [] maccArr = new MacBig[ARR_SIZE];
+						//					System.out.println(macc.toString());
+						//					maccArr[s] = macc;
+						//					macs = new MacBig_Container(maccArr ,macs.realsize);
+						macs.arr_macbig[macs.realsize] = temp;
+						//s++;
+						macs.realsize ++;
+
+						sortMACS(macs);
+					}
+				}
+			}
+		}
+		return macs;
+	}
+	
 	/**
 	 * This function gets array of MacBig and sort it so that the largest is in the lowest index.
 	 * @param mac
@@ -194,11 +252,16 @@ public class HelpFilter {
 	 * @return The distance between the two points.
 	 */
 	public static double Distance(String lat,String lon,String lat1,String lon1){
-		double x1=(Double.parseDouble(lat));
-		double x2=(Double.parseDouble(lat1));
-		double y1=(Double.parseDouble(lon));
-		double y2=(Double.parseDouble(lon1));
-		double distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+		double distance=0;
+		try {
+			double x1 = (Double.parseDouble(lat));
+			double x2 = (Double.parseDouble(lat1));
+			double y1 = (Double.parseDouble(lon));
+			double y2 = (Double.parseDouble(lon1));
+			distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return distance;
 	}
 	public static void FromAnsToAnswer(ArrayList<String[]> ans,

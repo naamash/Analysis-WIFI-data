@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class Loc extends JPanel {
@@ -66,17 +67,29 @@ public class Loc extends JPanel {
 				String lon1 = lon.getText();
 				String rad1 = rad.getText();
 				Filter ft = new filter_location(lat1,lon1,Double.parseDouble(rad1));
-				if(filters[1]!=null)
+
+				if(filters[1]!=null && filters[0]!=null){
 					filters[2]= ft;
+					if(filters[1].getClass().getName().contains("AND_filter")){
+						c.and_filter(filters[0], filters[2]);
+					}
+					else if(filters[1].getClass().getName().contains("OR_filter")){
+						c.OR_filter(filters[0], filters[2]);
+					}
+				}
+				else if(filters[1]!=null && filters[0]==null){
+					filters[0]= ft;
+				}
+				
 
-				else 
+				else if(filters[0]==null&&filters[1]==null){
 					filters[0]=ft;
-
+					c.addfilter_LOC(lat1,lon1,Double.parseDouble(rad1));
+				}
+				
 				JOptionPane.showMessageDialog(new JFrame(), "Filter by location got finished");
 
 			}
-//				c.addfilter_LOC(lat1, lon1, Double.parseDouble(rad1));
-//			}
 		});
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
 		add(btnNewButton);
