@@ -2,9 +2,13 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
@@ -42,12 +46,18 @@ public class algo1 extends JPanel {
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path1 = path.getText();
-				File file = new File(path1);
-				String mac1 = mac.getText();
-				c.Algo1(file, mac1);
+//				try {
+					String path1 = path.getText();
+					File file = new File(path1);
+					String mac1 = mac.getText();
+					JOptionPane.showMessageDialog(new JFrame(),c.Algo1(file, mac1));
+//				} catch (Exception e2) {
+//					System.out.println("Problem with opening files and normal Mac. Please try again.");
+//				}
 			}
 		});
+		// C:\\Users\\hadar\\Desktop\\testing\\להריץ\\BM2\\WigleWifi_20171203084817.csv
+		// 00:1a:dd:e3:06:e4
 		btnEnter.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
 		btnEnter.setBounds(148, 234, 126, 40);
 		add(btnEnter);

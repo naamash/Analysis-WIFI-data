@@ -77,19 +77,24 @@ public class FindLocation {
 		}
 		else if (!folder.isDirectory()){
 			answer = ReadAndWrite.readingFileWigle(folder);
+//			for (int i = 0; i < answer.size(); i++) {
+//				System.out.println(Arrays.toString(answer.get(i).arr_macbig));
+//			}
+			
 		}
-		MacBig []temp1 = new MacBig[1];
-		temp1[0].Mac = Mac;
+		MacBig macc = new MacBig();
+		macc.Mac = Mac;
+		MacBig []temp1 = new MacBig[3];
+		temp1[0] = macc;
 		MacBig_Container help1 = new MacBig_Container(temp1,1);
 		macs.add(help1);
-
 		for (int j = 1; j < answer.size(); j++) {
 			macs = HelpFilter.SaveTheLargestSIGNAL(macs, answer, j);
 		}
-
+		
 		MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 
+		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon +
 				"  Alt: " + MacsAfterFormulas[0].alt;
 	}

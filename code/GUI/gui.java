@@ -4,9 +4,12 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import filtersPack.AND_filter;
 import filtersPack.Filter;
+import filtersPack.OR_filter;
 
 import javax.swing.JMenu;
 import javax.swing.JButton;
@@ -19,7 +22,6 @@ public class gui {
 	Connect c;
 	private JPanel Home;
 	private JPanel readwigle;
-	private JPanel OrA;
 	private JPanel read46;
 	private JPanel algo1;
 	private JPanel dataBase_Mac_Signal;
@@ -251,6 +253,7 @@ public class gui {
 		JButton OtimeA = new JButton("Time");
 		OtimeA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
@@ -262,6 +265,7 @@ public class gui {
 		JButton OidA = new JButton("ID Display");
 		OidA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				id = new id(filters,c);
 				frame.getContentPane().add(id);
@@ -273,6 +277,7 @@ public class gui {
 		JButton OlocA = new JButton("Location");
 		OlocA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
@@ -284,6 +289,7 @@ public class gui {
 		JButton OtimeAN = new JButton("NOT Time");
 		OtimeAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
@@ -295,6 +301,7 @@ public class gui {
 		JButton OidAN = new JButton("NOT ID Display");
 		OidAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
@@ -306,6 +313,7 @@ public class gui {
 		JButton OlocAN = new JButton("NOT Location");
 		OlocAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
@@ -393,6 +401,7 @@ public class gui {
 		JButton AtimeA = new JButton("Time");
 		AtimeA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
@@ -415,21 +424,49 @@ public class gui {
 		JButton AlocA = new JButton("Location");
 		AlocA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
+				current.setVisible(false);
+				Loc = new Loc(filters,c);
+				frame.getContentPane().add(Loc);
+				current = Loc;
+			}
+		});
+		menu.add(AlocA);
+
+		JButton AtimeAN = new JButton("NOT Time");
+		AtimeAN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
+				current.setVisible(false);
+				withoutTime = new withoutTime(filters,c);
+				frame.getContentPane().add(withoutTime);
+				current = withoutTime;
+			}
+		});
+		menu.add(AtimeAN);
+
+		JButton AidAN = new JButton("NOT ID Display");
+		AidAN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
+				current.setVisible(false);
+				withoutID = new withoutID(filters,c);
+				frame.getContentPane().add(withoutID);
+				current = withoutID;
+			}
+		});
+		menu.add(AidAN);
+
+		JButton AlocAN = new JButton("NOT Location");
+		AlocAN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filters[1] = new AND_filter();
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
 			}
 		});
-		menu.add(AlocA);
-
-		JButton AtimeAN = new JButton("NOT Time");
-		menu.add(AtimeAN);
-
-		JButton AidAN = new JButton("NOT ID Display");
-		menu.add(AidAN);
-
-		JButton AlocAN = new JButton("NOT Location");
 		menu.add(AlocAN);
 
 		JMenu menu_1 = new JMenu("choose B");
@@ -450,9 +487,9 @@ public class gui {
 		AidB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				Time = new Time(filters,c);
-				frame.getContentPane().add(Time);
-				current = Time;
+				id = new id(filters,c);
+				frame.getContentPane().add(id);
+				current = id;
 			}
 		});
 		menu_1.add(AidB);
@@ -461,20 +498,44 @@ public class gui {
 		AlocB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				withoutPlace = new withoutPlace(filters,c);
-				frame.getContentPane().add(withoutPlace);
-				current = withoutPlace;
+				Loc = new Loc(filters,c);
+				frame.getContentPane().add(Loc);
+				current = Loc;
 			}
 		});
 		menu_1.add(AlocB);
 
 		JButton AtimeBN = new JButton("NOT Time");
+		AtimeBN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				withoutTime = new withoutTime(filters,c);
+				frame.getContentPane().add(withoutTime);
+				current = withoutTime;
+			}
+		});
 		menu_1.add(AtimeBN);
 
 		JButton AidBN = new JButton("NOT ID Display");
+		AidBN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				withoutID = new withoutID(filters,c);
+				frame.getContentPane().add(withoutID);
+				current = withoutID;
+			}
+		});
 		menu_1.add(AidBN);
 
 		JButton AlocBN = new JButton("NOT Location");
+		AlocBN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				withoutPlace = new withoutPlace(filters,c);
+				frame.getContentPane().add(withoutPlace);
+				current = withoutPlace;
+			}
+		});
 		menu_1.add(AlocBN);
 
 		JMenu mnSaveDatabase = new JMenu("Save DataBase");
@@ -501,6 +562,34 @@ public class gui {
 			}
 		});
 		mnSaveDatabase.add(btnToKml);
+		
+		JMenu mnNewMenu_1 = new JMenu("More");
+		menuBar.add(mnNewMenu_1);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				c.macs.clear();
+				c.macsBefore.clear();
+				Home = new Home(c);
+				current = Home;
+			}
+		});
+		mnNewMenu_1.add(btnClear);
+		
+		JButton btnUndo = new JButton("Undo");
+		btnUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				c.macs.clear();
+				c.macs.addAll(c.macsBefore);
+				Home = new Home(c);
+				current = Home;
+				JOptionPane.showMessageDialog(new JFrame(),"Undo got finished. Choose your new choice from menu.");
+			}
+		});
+		mnNewMenu_1.add(btnUndo);
 	}
 
 }

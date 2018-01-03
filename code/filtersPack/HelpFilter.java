@@ -38,6 +38,8 @@ public class HelpFilter {
 		}
 		else{
 			isMacs=true;
+			String mac1 = macs.get(0).arr_macbig[0].Mac;
+			macs.clear();
 		}
 		for (int i =0; i < answer.get(indexRowAnswer).realsize ; i++) {
 			isIn = true;
@@ -52,6 +54,7 @@ public class HelpFilter {
 			temp.Mac=answer.get(indexRowAnswer).arr_macbig[i].Mac;
 			temp.frequency=answer.get(indexRowAnswer).arr_macbig[i].frequency;
 			temp.Signal=answer.get(indexRowAnswer).arr_macbig[i].Signal;
+			if(!isMacs){
 			while (j < macs.size() && isIn){
 				if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
 					isIn=false;
@@ -61,25 +64,54 @@ public class HelpFilter {
 							sortMACS(macs.get(j));
 						}
 					}
+					
 					else if (macs.get(j).realsize<ARR_SIZE){
-						macs.get(j).arr_macbig[macs.get(j).realsize] =new  MacBig(temp);
+						MacBig macc = new MacBig(temp);
+						macs.get(j).arr_macbig[macs.get(j).realsize] = macc;
 						macs.get(j).realsize ++;
+						
 						sortMACS(macs.get(j));
 					}
 				}
 				j++;
 			}
-			if (macs.size()==0){
+		}
+			else {
+				while (j < macs.size() && isIn){
+					if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
+						isIn=false;
+						if ((macs.get(j).realsize==ARR_SIZE)){
+							if(Integer.parseInt(temp.Signal)>=Integer.parseInt(macs.get(j).arr_macbig[ARR_SIZE-1].Signal)){
+								swap(temp, macs.get(j).arr_macbig[macs.get(j).realsize-1]);
+								sortMACS(macs.get(j));
+							}
+						}
+						
+						else if (macs.get(j).realsize<ARR_SIZE){
+							MacBig macc = new MacBig(temp);
+							macs.get(j).arr_macbig[macs.get(j).realsize] = macc;
+							macs.get(j).realsize ++;
+							
+							sortMACS(macs.get(j));
+						}
+					}
+					j++;
+				}
+			}
+			if (macs.size()==0 && isMacs){
 				MacBig []s = new MacBig[ARR_SIZE];
-				s[0] =new  MacBig(temp);
+				MacBig macc = new MacBig(temp);
+				s[0] =macc;
 				MacBig_Container tempNew=new MacBig_Container(s,1);
 				macs.add(tempNew);
 			}	
-			else if ((isIn && j <= macs.size()) && isMacs){
+			else if ((isIn && j <= macs.size()) && !isMacs){
 				MacBig []s = new MacBig[ARR_SIZE];
-				s[0] =new  MacBig(temp);
+				MacBig macc = new MacBig(temp);
+				s[0] =macc;
 				MacBig_Container tempNew=new MacBig_Container(s,1);
 				macs.add(tempNew);
+				
 			}
 		}
 //		for (int i = 0; i < macs.size(); i++) {

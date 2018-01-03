@@ -2,9 +2,13 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
@@ -101,15 +105,23 @@ public class algo2_Mac_Signal extends JPanel {
 		JButton btnNewButton = new JButton("Enter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path1 = path.getText();
-				File folder = new File(path1);
-				String macc1 = mac1.getText();
-				String macc2 = mac2.getText();
-				String macc3 = mac3.getText();
-				String sigs1 = sig1.getText();
-				String sigs2 = sig2.getText();
-				String sigs3 = sig3.getText();
-				c.Algo2User(folder, macc1, macc2, macc3, sigs1, sigs2, sigs3);
+				try {
+					String path1 = path.getText();
+					File folder = new File(path1);
+					String macc1 = mac1.getText();
+					String macc2 = mac2.getText();
+					String macc3 = mac3.getText();
+					String sigs1 = sig1.getText();
+					String sigs2 = sig2.getText();
+					String sigs3 = sig3.getText();
+					System.out.println("66666666");
+					;
+					JOptionPane.showMessageDialog(new JFrame(), c.Algo2User(folder, macc1, macc2, macc3, sigs1, sigs2, sigs3));
+				} catch (Exception e2) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(new JFrame(), "promlem with algo2 by user.");
+				}
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));

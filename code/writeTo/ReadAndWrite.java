@@ -186,7 +186,7 @@ public class ReadAndWrite {
 	 */
 	public static ArrayList<MacBig_Container> WriteToCsv(ArrayList<MacBig_Container> answer,String location) throws IOException{
 		ArrayList<MacBig_Container> Answer_One = new ArrayList<MacBig_Container>();
-		Answer_One.addAll(answer);		
+//		Answer_One.addAll(answer);		
 
 		FileWriter write = new FileWriter(location);	
 		PrintWriter pw = new PrintWriter(write);

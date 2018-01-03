@@ -17,6 +17,7 @@ import writeTo.ReadAndWrite;
 
 public class Connect {
 	ArrayList<MacBig_Container> macs;
+	ArrayList<MacBig_Container> macsBefore;
 
 
 	public void readCSV46(String path){
@@ -113,10 +114,10 @@ public class Connect {
 	public String Algo2User(File folder1 ,String mac1,String mac2,String mac3,String sig1,String sig2,String sig3){
 		FindLocation al = new FindLocation();
 		try {
-			return al.Matala2_Algo2User(folder1, mac1, mac2, mac3, sig1, sig2, sig3);
+			return (al.Matala2_Algo2User(folder1, mac1, mac2, mac3, sig1, sig2, sig3));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "There is problem in Algo1";
+			return ("There is problem in Algo1"); 
 		}
 	}
 	

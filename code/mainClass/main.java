@@ -19,7 +19,7 @@ public class main {
 
 		// Matala zero+one: {
 		
-		//ChooseFilter.Decide();  
+		ChooseFilter.Decide();  
 		
 		//PB2-690Y_S200032_161214
 		//lon=35.21019984, lat=32.10379261

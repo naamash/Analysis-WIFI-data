@@ -27,20 +27,6 @@ public class OrA extends JPanel {
 		setLayout(null);
 		
 		JRadioButton timeA = new JRadioButton("Time");
-//		timeA.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if(e.getSource().equals(timeA))
-//				{
-//					if(timeA.isSelected())
-//					{
-//						
-//						Time time= new Time(filters, c);
-//						time.setVisible(true);
-//						
-//					}
-//				}
-//			}
-//		});
 		timeA.setFont(new Font("Berlin Sans FB", Font.PLAIN, 23));
 		timeA.setBounds(136, 61, 114, 25);
 		add(timeA);
@@ -86,16 +72,6 @@ public class OrA extends JPanel {
 		notidA.setSelected(true);
 		
 		JButton btnEnter = new JButton("Enter");
-		btnEnter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					if(timeA.isSelected())
-					{
-						Time time= new Time(filters, c);
-						time.setVisible(true);
-						System.out.println("nereeeeeeeeeeeeeettttttttttt");
-					}
-			}
-		});
 		btnEnter.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
 		btnEnter.setBounds(158, 245, 103, 42);
 		add(btnEnter);
