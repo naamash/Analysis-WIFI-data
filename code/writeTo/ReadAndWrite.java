@@ -34,22 +34,21 @@ public class ReadAndWrite {
 	 * @throws IOException
 	 */
 	public static ArrayList<MacBig_Container> readingFolderWigle(File folder)  {	
-		
-		System.out.println("enter");
+
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		File[] listOfFiles = folder.listFiles();
 		ArrayList<String[]> information = new ArrayList<String[]>();
-		
-		
+
+
 		answer.add(HelpersBeforeWrite.MadeLine());
-		
+
 		int r=2;
 		boolean flag = false;
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-			flag = false;
 			try {
+				flag = false;
 				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains(".csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
@@ -61,28 +60,33 @@ public class ReadAndWrite {
 						String []a = str.split(",");
 						information.add(a) ;
 						try {
-							if ((information.get(0)[0].contains("WigleWifi-1.4")) && (!(information.get(0)[0].equals(null)))
+							if ((information.get(0)[0].contains("WigleWifi-1.4"))
+									&& (!(information.get(0)[0].equals(null)))
 									&& (!(information.get(0)[1].equals(null)))) {
+								flag = false;
+
 								m++;
 							}
 							else{
+								information.remove(a);
+								flag = true;
 								throw new IOException();
 							}
 						}
 						catch (Exception e) {
-							flag = true;
 							System.err.println("The file " + listOfFiles[i].getName() + " is illegal!!");
+							break;
 						}
 					}
-
-					if(flag)
+					if(flag){
 						continue;
-					
-
-					HelpersBeforeWrite.Save_info(information, answer);
-					information = new ArrayList<String[]>(); 
-					sc.close();
-					fi.close();
+					}
+					else if (!flag){
+						HelpersBeforeWrite.Save_info(information, answer);
+						information = new ArrayList<String[]>(); 
+						sc.close();
+						fi.close();
+					}
 				}
 				else {
 					throw new IOException(); 
@@ -90,6 +94,7 @@ public class ReadAndWrite {
 			}
 			catch (Exception e) {
 				System.err.println("File " + listOfFiles[i].getName() + " is not csv file!");
+
 			}
 		}
 		//		System.out.println("---------------------------------------size:  "+answer.size());
@@ -97,7 +102,11 @@ public class ReadAndWrite {
 		//return WriteToCsv(answer);
 		return answer;
 	}
-	
+	/**
+	 * This function reading single wigleWifi file and write it in ArrayList<MacBig_Container>.
+	 * @param file
+	 * @return
+	 */
 	public static ArrayList<MacBig_Container> readingFileWigle(File file)  {	
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
@@ -108,7 +117,7 @@ public class ReadAndWrite {
 		int r=2;
 
 			try {
-				if (file.isFile() && file.getName().contains("csv")) {
+				if (file.isFile() && file.getName().contains(".csv")) {
 					File f = new File(file.getPath());
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
@@ -152,7 +161,12 @@ public class ReadAndWrite {
 		return answer;
 	}
 	
-	
+	/**
+	 * Thid function reading single file of dataBase(46 cols) and write it in ArrayList<MacBig_Container>.
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<MacBig_Container> readingFile46Col(String file) throws IOException  {
 	//	File file1 = new File(file);
 

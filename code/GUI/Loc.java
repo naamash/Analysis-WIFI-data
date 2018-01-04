@@ -69,23 +69,34 @@ public class Loc extends JPanel {
 					String lon1 = lon.getText();
 					String rad1 = rad.getText();
 					Filter ft = new filter_location(lat1, lon1, Double.parseDouble(rad1));
-					if (filters[1] != null && filters[0] != null) {
+					if (!(""+filters[1]).equals("null") && !(""+filters[0]).equals("null")) {
 						filters[2] = ft;
 						if (filters[1].getClass().getName().contains("AND_filter")) {
 							c.and_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						}
-					} else if (filters[1] != null && filters[0] == null) {
+					} else if (!(""+filters[1]).equals("null") && (""+filters[0]).equals("null")) {
 						filters[0] = ft;
+						JOptionPane.showMessageDialog(new JFrame(), "Filter eccepted");
+
 					}
 
-					else if (filters[0] == null && filters[1] == null) {
+					else if ((""+filters[0]).equals("null") && (""+filters[1]).equals("null")) {
 						filters[0] = ft;
 						c.addfilter_LOC(lat1, lon1, Double.parseDouble(rad1));
+						JOptionPane.showMessageDialog(new JFrame(), "Filter by location got finished");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 					} 
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by location got finished");
-					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+					
 
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(new JFrame(), "Filter by location failed");

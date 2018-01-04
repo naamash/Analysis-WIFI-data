@@ -28,6 +28,13 @@ public class algo2_Mac_Signal extends JPanel {
 	private JTextField sig2;
 	private JTextField sig3;
 	String link2="";
+	String macc1;
+	String macc2;
+	String macc3;
+	String sigs1;
+	String sigs2;
+	String sigs3;
+	
 	boolean correctlink2;
 	boolean correctmac1;
 	boolean correctmac2;
@@ -48,9 +55,9 @@ public class algo2_Mac_Signal extends JPanel {
 		lblAlgo.setBounds(168, 0, 115, 40);
 		add(lblAlgo);
 
-		JLabel lblEnterPathOf = new JLabel("Enter wigle folder or file :");
+		JLabel lblEnterPathOf = new JLabel("Enter wigle folder or file and save:");
 		lblEnterPathOf.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
-		lblEnterPathOf.setBounds(114, 40, 206, 32);
+		lblEnterPathOf.setBounds(75, 40, 281, 32);
 		add(lblEnterPathOf);
 
 		JLabel lblEnterMac = new JLabel("Enter MAC1:");
@@ -97,7 +104,7 @@ public class algo2_Mac_Signal extends JPanel {
 		lblEnterSignal_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		lblEnterSignal_2.setBounds(223, 197, 89, 32);
 		add(lblEnterSignal_2);
-		JButton bfolder2 = new JButton("Folder");
+		JButton bfolder2 = new JButton("Choose Folder");
 		bfolder2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -109,7 +116,7 @@ public class algo2_Mac_Signal extends JPanel {
 				chooser.showOpenDialog(null);
 			}
 		});
-		bfolder2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+		bfolder2.setFont(new Font("Dialog", Font.PLAIN, 20));
 		bfolder2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
@@ -130,27 +137,27 @@ public class algo2_Mac_Signal extends JPanel {
 
 			}
 		});
-		bfolder2.setBounds(76, 78, 131, 38);
+		bfolder2.setBounds(59, 70, 174, 38);
 		add(bfolder2);
 
-		JButton bfile2 = new JButton("File");
-		bfile2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
-		bfile2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
-				chooser.setFileFilter(filter);
-				String path = "";
-				chooser.setDialogTitle("Choose Csv File");
-				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					path=chooser.getSelectedFile().getAbsolutePath();
-				}
-				path = path.replace("\\", "/");
-				link2 = path;
-			}
-		});
-		bfile2.setBounds(223, 77, 131, 40);
-		add(bfile2);
+//		JButton bfile2 = new JButton("File");
+//		bfile2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+//		bfile2.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				JFileChooser chooser = new JFileChooser();
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
+//				chooser.setFileFilter(filter);
+//				String path = "";
+//				chooser.setDialogTitle("Choose Csv File");
+//				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+//					path=chooser.getSelectedFile().getAbsolutePath();
+//				}
+//				path = path.replace("\\", "/");
+//				link2 = path;
+//			}
+//		});
+//		bfile2.setBounds(223, 77, 131, 40);
+//		add(bfile2);
 
 		sig1 = new JTextField();
 		sig1.setColumns(10);
@@ -185,27 +192,47 @@ public class algo2_Mac_Signal extends JPanel {
 				if(!mac1.getText().isEmpty()){
 					correctmac1 = true;
 				}
-				if (link2 == ""){
-					JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file wigle please. This field can not be empty!");
-					correctlink2 = false;
-				}
-				else{
-					correctlink2 = true;
-				}
-				if (correctlink2&&correctmac1){
+//				if (link2 == ""){
+//					JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file wigle please. This field can not be empty!");
+//					correctlink2 = false;
+//				}
+//				else{
+//					correctlink2 = true;
+//				}
+				if (correctmac1&&correctsig1){
 					File folder = new File(link2);
 					String macc1 = mac1.getText();
+					if (mac2.getText().isEmpty()){
+						String macc2 = null;
+					}
+					else{
 					String macc2 = mac2.getText();
+					}
+					if (mac3.getText().isEmpty()){
+						String mac3 = null;
+					}
+					else{
 					String macc3 = mac3.getText();
+					}
 					String sigs1 = sig1.getText();
+					if (sig2.getText().isEmpty()){
+						String sig2=null;
+					}
+					else{
 					String sigs2 = sig2.getText();
+					}
+					if (sig3.getText().isEmpty()){
+						String sig3 = null;
+					}
+					else{
 					String sigs3 = sig3.getText();
+					}
 					try {
 						JOptionPane.showMessageDialog(new JFrame(), c.Algo2User(folder, macc1, macc2, macc3, sigs1, sigs2, sigs3));
 						JOptionPane.showMessageDialog(new JFrame(), "Algo1 Completed :)");
-						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						//JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(new JFrame(), "Algo1 failed :)");
+						JOptionPane.showMessageDialog(new JFrame(), "Algo2 failed :(");
 
 					}
 				}
@@ -214,10 +241,38 @@ public class algo2_Mac_Signal extends JPanel {
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
 		btnNewButton.setBounds(155, 242, 128, 45);
 		add(btnNewButton);
+	
+	JButton btnNewButton_1 = new JButton("Save");
+	btnNewButton_1.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if (link2 == ""){
+				JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
+				correctlink2 = false;
+			}
+			else{
+				correctlink2 = true;
+			}
+			if (correctlink2){
+				try {
+					File folder = new File(link2);
+					//System.out.println(link2);
+					c.macs = c.readWigle(folder);
+					JOptionPane.showMessageDialog(new JFrame(), "The file was read successfully");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} 
+				catch (Exception e2) {
+					JOptionPane.showMessageDialog(new JFrame(), "The file was read failed");
 
+				}
+			}
+		}
+	});
+	btnNewButton_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+	btnNewButton_1.setBounds(254, 69, 122, 38);
+	add(btnNewButton_1);
 	}
-
 }
+//1c:b9:c4:14:2b:c8      -90
 
 //00:1a:dd:e3:06:e4      -78
 //00:25:86:cc:00:f8      -86

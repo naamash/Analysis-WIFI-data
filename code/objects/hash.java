@@ -7,17 +7,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map;
 
+/**
+ * This class made to help the GUI.
+ * @author 
+ *
+ */
 
 public class hash {
 	ArrayList<MacBig_Container> answer;
 	Map<String, ArrayList<MacBig_Container>> hash_map;
 
+	/**
+	 * defulte constractor
+	 */
 	public hash() {
 		this.answer = new ArrayList<MacBig_Container>();
 		this.answer.clear();
 		this.hash_map = new HashMap<String, ArrayList<MacBig_Container>>();
 	}
 
+	/**
+	 * This function implement hashmap.
+	 * @return
+	 */
 	public Map<String, ArrayList<MacBig_Container>> hashmap() {
 		Map<String, ArrayList<MacBig_Container>> find = new HashMap<String, ArrayList<MacBig_Container>>();
 		for (int i = 1; i < this.answer.size(); i++) {
@@ -35,6 +47,10 @@ public class hash {
 		return find;
 	}
 
+	/**
+	 * Defined constructor
+	 * @param scan
+	 */
 	public hash(ArrayList<MacBig_Container> scan) {
 		this.answer = new ArrayList<MacBig_Container>();
 		this.answer.clear();
@@ -43,23 +59,37 @@ public class hash {
 		this.hash_map = hashmap();
 	}
 
+	/**
+	 * copying constractor
+	 * @param other
+	 */
 	public hash(hash other) {
 		this.answer = new ArrayList<MacBig_Container>();
 		this.answer.addAll(other.answer);
 		this.hash_map = hashmap();
 	}
 
+	/**
+	 * 
+	 * @return num of lines in hash
+	 */
 	public int numOfScan() {
 		return this.answer.size();
 	}
 
+	/**
+	 * 
+	 * @return num of macs in the hash
+	 */
 	public int numOfmacs() {
 		Map<String, ArrayList<MacBig_Container>> find = hashmap();
 		return find.size();
 	}
 
+	/**
+	 * duplicating 
+	 */
 	public void douplicate() {
-
 		List<MacBig_Container> temp = new ArrayList<MacBig_Container>();
 		for (int i = 0; i < this.answer.size(); i++) {
 			if (!temp.contains(this.answer.get(i)))
@@ -69,11 +99,13 @@ public class hash {
 		this.answer.addAll(temp);
 	}
 
+	/**
+	 * adding scan
+	 * @param other
+	 */
 	public void addScan(MacBig_Container other) {
 		if (!this.answer.contains(other))
 			this.answer.add(other);
-		// we need to update the hash map and check douplicat in the hash map
-
 	}
 
 	/**
@@ -131,13 +163,6 @@ public class hash {
 				}
 			}
 		}
-//	System.out.println("---------- macs: --------------");
-//	for (int i = 0; i < macs.size(); i++) {
-//		System.out.println(Arrays.toString(macs.get(i).arr_macbig));
-//	}
-//		System.out.println("answer: "+answer.size());
-//		System.out.println("macs: "+macs.size());
 		return "Number of Row:  " + answer.size() +"     Number of macs:  "+macs.size();
-		//return macs;
 	}
 }

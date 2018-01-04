@@ -19,7 +19,7 @@ Naama Shtauber - 316162114
 **About the project**
 --
 
-This program contains two assignments :  
+This program contains 3 assignments :  
 At matala(0+1) the program get a folder from user, takes only CSV files exported from an app called "Wigle WiFi" sorts them into one CSV file.   
 The new file will contain all the WiFi networks from the CSV files arranged by their signals in an acsending order.  
 Then it takes the new CSV file, filter the duplicated Macs, taking from each mac the strongest one and converts the file it to a KML file using JAK for writing the file.   
@@ -30,6 +30,8 @@ The first one get folder from user, takes only CSV files exported from an app ca
 The second algorithm get two folders from user: one with dataBase and the other one with less values.
 The program search in the dataBase(for every line in the less file) same values(time,display and more). After that the program calculate Weighted average and put the correct and calculated answers of every line instead of the less value. 
 At the end the program export new CSV file with the new values.
+
+Matala 3 convert the project to GUI.
 
 **File List:**  
 --
@@ -51,7 +53,7 @@ pom.xml
 Jak - JAK API files.  
 doc - JavaDoc files.  
 code - all the project's packages.  
-matalaZeroFiles - exported CSV files and some others to check the program's filter.  
+matalaZeroFiles and data- exported CSV files and some others to check the program's filter.  
 boazFiles - contain the dataBase(the user can editing this folder-to add more files or delete some of them).
 matala two - contain the files with the lesses values(the user can editing this folder-to add more files or delete some of them).
 
@@ -64,12 +66,16 @@ matala two - contain the files with the lesses values(the user can editing this 
 * objects - contain all of the objects we made for this project.
 * write to - contain the classes that actually convert files to KML and to CSV.
 * mainClass - contain the main. (the user have to decide matala0+1 or matala2).
+* GUI - contains the main functions that actually build the GUI.  
+
 
  
 
 **How to run the program**  
 --  
 The user can choose : matala0+1 or matala2.
+Or run the GUI.  
+
 
 In matala0+1:  
 --  
@@ -82,6 +88,10 @@ To start the project the user need to put the dataBase files in the given "boazF
  
 *IN BOTH OF THEM THE USER WILL BE ASKED TO WRITE LOCATHIN SO THAT THE OUTPUTS WILL BE SAVED THERE*  
 
+In GUI:  
+--
+Only run as GUI.
+*The user enter his choices in the GUI window*
 
 ```
 Scanner folderr = new Scanner((System.in));  

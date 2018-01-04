@@ -67,7 +67,18 @@ public class FindLocation {
 		MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
 		WriteToCsv_Matala2_parta(MacsAfterFormulas,locationAlgo1);
 	}
-	
+
+
+	/**
+	 * This function let the user add file folder of dataBase and search on the dataBase the String mac that the user enter,
+	 * calculate Weighted average of the better macs.
+	 * 
+	 * 
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 * @throws IOException
+	 */
 	public static String Matala2_Algo1User (File folder,String Mac) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
@@ -81,11 +92,11 @@ public class FindLocation {
 		try {
 			MacBig_Container macsCon = new MacBig_Container(HelpFilter.SaveTheLargestSIGNALUser(Mac, answer));
 			System.out.println(macsCon.realsize);
-				macs.add(macsCon);
-				MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
-				MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
-				return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon + "  Alt: "
-						+ MacsAfterFormulas[0].alt;
+			macs.add(macsCon);
+			MacBig[] MacsAfterFormulas = new MacBig[macs.size()];
+			MacsAfterFormulas = HelpersBeforeWrite.FixingBeforeCsv(macs);
+			return "Lat: " + MacsAfterFormulas[0].lat + "  Lon: " + MacsAfterFormulas[0].lon + "  Alt: "
+			+ MacsAfterFormulas[0].alt;
 		} catch (Exception e) {
 			return "Mac not found!!";
 		}
@@ -104,16 +115,16 @@ public class FindLocation {
 	public static void Matala2_Algo2Folder (File folder1 ,File folder2, String locationAlgo2) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
-		
+
 		if (folder1.isDirectory()){
 			answer = ReadAndWrite.readingFolderWigle(folder1);
 		}
 		else if (!folder1.isDirectory()){
 			answer = ReadAndWrite.readingFileWigle(folder1);
 		}
-		
+
 		if (folder2.isDirectory()){
-		information2 = readingFolderOfTwo_(folder2);
+			information2 = readingFolderOfTwo_(folder2);
 		}
 		else if (!folder2.isDirectory()){
 			information2 = readingFileOfTwo_(folder2);
@@ -122,11 +133,24 @@ public class FindLocation {
 		ReadAndWrite.WriteToCsv(information2,locationAlgo2);
 	}
 
+	/**
+	 * This function get folder of dataBase and search on the dataBase the information of the Strings Macs and Signal that the user enter.
+	 * After that the function calculate the Weighted average and find Estimated location of the strings that the user enter.
+	 * @param folder1
+	 * @param Mac1
+	 * @param Mac2
+	 * @param Mac3
+	 * @param signal1
+	 * @param signal2
+	 * @param signal3
+	 * @return
+	 * @throws IOException
+	 */
 	public static String Matala2_Algo2User (File folder1,String Mac1,String Mac2,String Mac3,
 			String signal1,String signal2,String signal3) throws IOException{
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
-		
+
 		if (folder1.isDirectory()){
 			answer = ReadAndWrite.readingFolderWigle(folder1);
 		}
@@ -268,7 +292,7 @@ public class FindLocation {
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
 			try {
-				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
+				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains(".csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
@@ -296,36 +320,42 @@ public class FindLocation {
 		}
 		return information2;
 	}
-	
+
+	/**
+	 * This function read a Single file of CSV and write it on ArrayList<MacBig_Container>.
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<MacBig_Container> readingFileOfTwo_(File file) throws IOException  {	
 		ArrayList<MacBig_Container> information2 = new ArrayList<MacBig_Container>();
-		
-			try {
-				if (file.isFile() && file.getName().contains("csv")) {
-					File f = new File(file.getPath());
-					FileInputStream fi = new FileInputStream(f);
-					Scanner sc = new Scanner(fi);
-					BufferedReader read = new BufferedReader(new FileReader(file.getPath()));
-					read.close();
-					ArrayList<String[]> ans;
 
-					while (sc.hasNext()) {
-						ans = new ArrayList<String[]>();
-						String str = sc.nextLine();
-						ans.add(str.split(","));
+		try {
+			if (file.isFile() && file.getName().contains(".csv")) {
+				File f = new File(file.getPath());
+				FileInputStream fi = new FileInputStream(f);
+				Scanner sc = new Scanner(fi);
+				BufferedReader read = new BufferedReader(new FileReader(file.getPath()));
+				read.close();
+				ArrayList<String[]> ans;
 
-						HelpFilter.FromAnsToAnswer(ans, information2, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
-					}
-					sc.close();
-					fi.close();
+				while (sc.hasNext()) {
+					ans = new ArrayList<String[]>();
+					String str = sc.nextLine();
+					ans.add(str.split(","));
+
+					HelpFilter.FromAnsToAnswer(ans, information2, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
 				}
-				else {
-					throw new IOException(); 
-				}
+				sc.close();
+				fi.close();
 			}
-			catch (Exception e) {
-				System.err.println("File " + file.getName() + " is not csv file!");
+			else {
+				throw new IOException(); 
 			}
+		}
+		catch (Exception e) {
+			System.err.println("File " + file.getName() + " is not csv file!");
+		}
 		return information2;
 	}
 
@@ -347,7 +377,7 @@ public class FindLocation {
 			for (int j = 0; j <answer.get(i).realsize; j++) {
 				for (int k = 0; k < MacAndSigInfo2[0].length; k++) {
 					flag = false;
-					if (MacAndSigInfo2[0][k].equals(answer.get(i).arr_macbig[j].Mac)){
+					if ((MacAndSigInfo2[0][k]!=null)&&MacAndSigInfo2[0][k].equals(answer.get(i).arr_macbig[j].Mac)){
 						flag = true;
 						ArrAnswerLine.add(answer.get(i));
 						isTuched[i] = true;
@@ -374,12 +404,16 @@ public class FindLocation {
 			line = new Location();
 			for (int j = 0; j <ArrAnswerLine.get(i).realsize; j++) {
 				for (int h = 0; h < MacAndSigInfo2[0].length; h++) {
-					if(ArrAnswerLine.get(i).arr_macbig[j].Mac.equals(MacAndSigInfo2[0][h])){
-						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),
-								Integer.parseInt(ArrAnswerLine.get(i).arr_macbig[j].Signal),PI);
-					}
-					else{
-						PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),no_signal,PI);
+					if (MacAndSigInfo2[0][h]!=null){
+						if(ArrAnswerLine.get(i).arr_macbig[j].Mac.equals(MacAndSigInfo2[0][h])){
+							PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),
+									Integer.parseInt(ArrAnswerLine.get(i).arr_macbig[j].Signal),PI);
+						}
+						else{
+							if (MacAndSigInfo2[1][h]!=null){
+							PI=Formulas.CalculatePI(Integer.parseInt(MacAndSigInfo2[1][h]),no_signal,PI);
+							}
+						}
 					}
 				}
 			}

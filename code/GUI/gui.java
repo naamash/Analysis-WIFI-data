@@ -20,6 +20,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class building the main Frame of GUI.
+ * all the panels frames Must be defined in this class, and all of the moving between the panels must be in this class.
+ * @author 
+ *
+ */
 public class gui {
 	Filter filters[] = new Filter[3];
 	private JFrame frame;
@@ -726,8 +732,8 @@ public class gui {
 		});
 		mnSaveDatabase.add(btnToKml);
 		
-		JMenu mnNewMenu_1 = new JMenu("More");
-		menuBar.add(mnNewMenu_1);
+		JMenu readf = new JMenu("More");
+		menuBar.add(readf);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -739,7 +745,7 @@ public class gui {
 				filters = new Filter[3];
 			}
 		});
-		mnNewMenu_1.add(btnClear);
+		readf.add(btnClear);
 		
 		JButton btnUndo = new JButton("Undo");
 		btnUndo.addActionListener(new ActionListener() {
@@ -751,7 +757,16 @@ public class gui {
 				filters = new Filter[3];
 			}
 		});
-		mnNewMenu_1.add(btnUndo);
+		readf.add(btnUndo);
+		
+		JButton btnNewButton = new JButton("Filter by last filters");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				c.readfilters();
+				JOptionPane.showMessageDialog(new JFrame(), "DataBase got filtered by last filters!");
+				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+			}
+		});
+		readf.add(btnNewButton);
 	}
-
 }

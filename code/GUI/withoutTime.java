@@ -128,23 +128,34 @@ public class withoutTime extends JPanel {
 					String timme2 = datte2 + " " + tim2;
 					Filter ft = new filter_time(timme1, timme2);
 					Filter filter = new NOT_filter(ft);
-					if (filters[1] != null && filters[0] != null) {
+					if (!(""+filters[1]).equals("null") && !(""+filters[0]).equals("null")) {
 						filters[2] = filter;
 						if (filters[1].getClass().getName().contains("AND_filter")) {
 							c.and_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						}
-					} else if (filters[1] != null && filters[0] == null) {
+					} else if (!(""+filters[1]).equals("null") && (""+filters[0]).equals("null")) {
 						filters[0] = filter;
+						JOptionPane.showMessageDialog(new JFrame(), "Filter eccepted");
+
 					}
 
-					else if (filters[0] == null && filters[1] == null) {
+					else if ((""+filters[0]).equals("null") && (""+filters[1]).equals("null")) {
 						filters[0] = filter;
 						c.addfilter_TIME(timme1, timme2);
+						JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+
 					} 
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
-					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+					
 
 				} 
 				catch (Exception e2) {
@@ -159,11 +170,6 @@ public class withoutTime extends JPanel {
 		lblStartDate.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
 		lblStartDate.setBounds(32, 75, 154, 37);
 		add(lblStartDate);
-		
-		
-
-		
-		
 	}
 }
 

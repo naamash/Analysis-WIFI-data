@@ -28,6 +28,13 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the ArrayList and return the index of this.
+	 * @param answer
+	 * @param name
+	 * @param row
+	 * @return
+	 */
 	public static int PlaceArticleAnswerID (ArrayList<MacBig_Container> answer, String name,int row){
 		for (int i = 0; i <answer.get(0).realsize; i++) {
 			if(answer.get(0).arr_macbig[i].ID.equals(name)){
@@ -36,6 +43,13 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the ArrayList and return the index of this.
+	 * @param answer
+	 * @param name
+	 * @param row
+	 * @return
+	 */
 	public static int PlaceArticleAnswerTime (ArrayList<MacBig_Container> answer, String name,int row){
 		for (int i = 0; i <answer.get(0).realsize; i++) {
 			if(answer.get(0).arr_macbig[i].time.equals(name)){
@@ -44,6 +58,13 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the ArrayList and return the index of this.
+	 * @param answer
+	 * @param name
+	 * @param row
+	 * @return
+	 */
 	public static int PlaceArticleAnswerLat (ArrayList<MacBig_Container> answer, String name,int row){
 		for (int i = 0; i <answer.get(0).realsize; i++) {
 			if(answer.get(0).arr_macbig[i].lat.equals(name)){
@@ -52,6 +73,13 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the ArrayList and return the index of this.
+	 * @param answer
+	 * @param name
+	 * @param row
+	 * @return
+	 */
 	public static int PlaceArticleAnswerlon (ArrayList<MacBig_Container> answer, String name,int row){
 		for (int i = 0; i <answer.get(0).realsize; i++) {
 			if(answer.get(0).arr_macbig[i].lon.equals(name)){
@@ -60,6 +88,13 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the ArrayList and return the index of this.
+	 * @param answer
+	 * @param name
+	 * @param row
+	 * @return
+	 */
 	public static int PlaceArticleInfo (ArrayList<String[]> answer, String name,int row){
 		for (int i = 0; i <answer.get(1).length; i++) {
 			if(answer.get(row)[i].equals(name)){
@@ -83,6 +118,12 @@ public class FindIndex {
 		}
 		return -1;
 	}
+	/**
+	 * The function search the String name on the array and return the index of this.
+	 * @param str
+	 * @param name
+	 * @return
+	 */
 	public static int Place (String[]str, String name){
 		for (int i = 0; i <46; i++) {
 			if(str[i].contains(name)){

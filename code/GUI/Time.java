@@ -126,23 +126,33 @@ public class Time extends JPanel {
 					String timme1 = datte1 + " " + tim1;
 					String timme2 = datte2 + " " + tim2;
 					Filter ft = new filter_time(timme1, timme2);
-					if (filters[1] != null && filters[0] != null) {
+					if (!(""+filters[1]).equals("null") && !(""+filters[0]).equals("null")) {
 						filters[2] = ft;
 						if (filters[1].getClass().getName().contains("AND_filter")) {
 							c.and_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("filter that have been choose", filters);
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("filter that have been choose", filters);
 						}
-					} else if (filters[1] != null && filters[0] == null) {
+					} else if (!(""+filters[1]).equals("null") && (""+filters[0]).equals("null")) {
 						filters[0] = ft;
+						JOptionPane.showMessageDialog(new JFrame(), "Filter eccepted");
+
 					}
 
-					else if (filters[0] == null && filters[1] == null) {
+					else if ((""+filters[0]).equals("null") && (""+filters[1]).equals("null")) {
 						filters[0] = ft;
 						c.addfilter_TIME(timme1, timme2);
+						JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						filters_writeAndRead.write_filter("filter that have been choose", filters);
 					}
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
-					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+
 				} 
 				catch (Exception e2) {
 					JOptionPane.showMessageDialog(new JFrame(), "Filter by time failed");

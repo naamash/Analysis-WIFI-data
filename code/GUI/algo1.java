@@ -83,27 +83,27 @@ public class algo1 extends JPanel {
 					
 			}
 		});
-		bfolder.setBounds(143, 121, 131, 38);
+		bfolder.setBounds(143, 78, 131, 38);
 		add(bfolder);
 		
-		JButton bfile = new JButton("File");
-		bfile.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
-		bfile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
-				chooser.setFileFilter(filter);
-				String path = "";
-				chooser.setDialogTitle("Choose Csv File");
-				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					path=chooser.getSelectedFile().getAbsolutePath();
-				}
-				path = path.replace("\\", "/");
-				link = path;
-			}
-		});
-		bfile.setBounds(143, 78, 131, 40);
-		add(bfile);
+//		JButton bfile = new JButton("File");
+//		bfile.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+//		bfile.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				JFileChooser chooser = new JFileChooser();
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
+//				chooser.setFileFilter(filter);
+//				String path = "";
+//				chooser.setDialogTitle("Choose Csv File");
+//				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+//					path=chooser.getSelectedFile().getAbsolutePath();
+//				}
+//				path = path.replace("\\", "/");
+//				link = path;
+//			}
+//		});
+//		bfile.setBounds(143, 78, 131, 40);
+//		add(bfile);
 		
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
@@ -115,15 +115,15 @@ public class algo1 extends JPanel {
 				else if(!mac.getText().isEmpty()){
 					correctMac = true;
 				}
-				if (correctMac){
-					if (link == ""){
-						JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
-						correctLink = false;
-					}
-					else{
-						correctLink = true;
-					}
-				}
+//				if (correctMac){
+//					if (link == ""){
+//						JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
+//						correctLink = false;
+//					}
+//					else{
+//						correctLink = true;
+//					}
+//				}
 				if(correctLink&&correctMac){
 					File file = new File(link);
 					String mac1 = mac.getText();
@@ -131,9 +131,9 @@ public class algo1 extends JPanel {
 					try {
 						JOptionPane.showMessageDialog(new JFrame(), c.Algo1(file, mac1));
 						JOptionPane.showMessageDialog(new JFrame(), "Algo1 Completed :)");
-					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+					//JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(new JFrame(), "Algo1 failed :)");
+						JOptionPane.showMessageDialog(new JFrame(), "Algo1 failed :(");
 
 					}
 					
@@ -146,11 +146,39 @@ public class algo1 extends JPanel {
 		btnEnter.setBounds(148, 234, 126, 40);
 		add(btnEnter);
 		
-		JLabel label = new JLabel("Enter path of wigle wifi folder or file :");
-		label.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
-		label.setBounds(76, 49, 305, 32);
-		add(label);
+		JLabel lblChooseWigleWifi = new JLabel("Choose wigle wifi folder and save:");
+		lblChooseWigleWifi.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
+		lblChooseWigleWifi.setBounds(73, 48, 298, 32);
+		add(lblChooseWigleWifi);
 
+	
+	JButton btnNewButton_1 = new JButton("Save");
+	btnNewButton_1.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if (link == ""){
+				JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
+				correctLink = false;
+			}
+			else{
+				correctLink = true;
+			}
+			if (correctLink){
+				try {
+					File folder = new File(link);
+					//System.out.println(link2);
+					c.macs = c.readWigle(folder);
+					JOptionPane.showMessageDialog(new JFrame(), "The file was read successfully");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} 
+				catch (Exception e2) {
+					JOptionPane.showMessageDialog(new JFrame(), "The file was read failed");
+
+				}
+			}
+		}
+	});
+	btnNewButton_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+	btnNewButton_1.setBounds(143, 120, 131, 38);
+	add(btnNewButton_1);
 	}
-
 }

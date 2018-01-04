@@ -172,6 +172,12 @@ public class ChooseFilter {
 		return false;	
 	}
 	
+	/**
+	 * This function made for helping GUI made UNDO(delete last filter).
+	 * @param macs
+	 * @param macsbefore
+	 * @return
+	 */
 	public static ArrayList<MacBig_Container> UNDO_(ArrayList<MacBig_Container> macs, ArrayList<MacBig_Container> macsbefore){
 		macs.clear();
 		macs.addAll(macsbefore);

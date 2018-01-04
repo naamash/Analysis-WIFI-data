@@ -44,32 +44,41 @@ public class id extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
+					String filter = "";
 					String id = path.getText();
 					if (!id.substring(0, 8).equals("display=")){
 						id = "display="+id;
 					}
 					Filter ft = new filter_id(id);
-
-					if (filters[1] != null && filters[0] != null) {
+					if (!((""+filters[1]).equals("null")) && !(""+filters[0]).equals("null")) {
 						filters[2] = ft;
-
 						if (filters[1].getClass().getName().contains("AND_filter")) {
-
-							c.and_filter(filters[0], filters[2]);
+							if (!c.and_filter(filters[0], filters[2])){
+								JOptionPane.showMessageDialog(new JFrame(), "You must insert choose B");
+							}
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
+							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						}
-					} else if (filters[1] != null && filters[0] == null) {
+					} else if (!(""+filters[1]).equals("null") && (""+filters[0]).equals("null")) {
 						filters[0] = ft;
-					}
+						JOptionPane.showMessageDialog(new JFrame(), "Filter eccepted");
 
-					else if (filters[0] == null && filters[1] == null) {
+//						filter = "ID*"+id+",";
+					}
+					else if ((""+filters[0]).equals("null") && (""+filters[1]).equals("null")) {
 						filters[0] = ft;
 						c.addfilter_ID(id);
-					} 	
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
-					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+//						filter = "ID*"+id+",";
+					}
 				}
 				catch (Exception e2) {
 					// TODO: handle exception

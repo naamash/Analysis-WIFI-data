@@ -38,9 +38,14 @@ public class Connect {
 	ArrayList<MacBig_Container> macs;
 	ArrayList<MacBig_Container> macsBefore;
 
+
 	ArrayList<String> csv_paths;
 	ArrayList<String> folder_paths;
-
+	/**
+	 * https://github.com/yuvalmizrahi2/Task1/blob/master/src/gui/Wraper.java
+	 * https://github.com/YitzhakSharon/OOP/blob/master/src/GUI/Connect.java
+	 * Checks that there are no Macs duplicate 
+	 */
 	public void douplicate() {
 
 		List<MacBig_Container> temp = new ArrayList<MacBig_Container>();
@@ -62,7 +67,6 @@ public class Connect {
 		//				insertHash(other.get(i));
 
 	}
-	// we need to update the hash map and check douplicat in the hash map
 
 	public Connect() {
 		this.macs = new ArrayList<MacBig_Container>();
@@ -231,7 +235,7 @@ public class Connect {
 
 	}
 	/**
-	 * the function enter the wigle-wifi files from folder to the database
+	 * the function enter the wigle-wifi files from folder to the Arraylist of database
 	 * @param path
 	 */
 	public void enterdatabase(String path) {
@@ -278,24 +282,20 @@ public class Connect {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * The function implement filter by id 
+	 * @param idName
+	 */
 	public void addfilter_ID(String idName){
 		Filter filter = new filter_id(idName);
 		this.macs.remove(0);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
-
+	/**
+	 * The function implement filter by time 
+	 * @param idName
+	 */
 	public void addfilter_TIME(String start, String end){
 		Filter filter = new filter_time(start, end);
 		System.out.println(macs.size());
@@ -303,44 +303,74 @@ public class Connect {
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
-
+	/**
+	 * The function implement filter by place 
+	 * @param idName
+	 */
 	public void addfilter_LOC(String lat,String lon,double radious){
 		Filter filter = new filter_location(lat, lon, radious);
 		this.macs.remove(0);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
-
+	/**
+	 * The function implement filter NOT by place 
+	 * @param idName
+	 */
 	public void NOT_filter_LOC(String lat,String lon,double radious){
 		Filter filter = new NOT_filter(new filter_location(lat, lon, radious));
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs) ;
 	}
-
+	/**
+	 * The function implement filter by NOT id 
+	 * @param idName
+	 */
 	public void NOT_filter_ID(String id){
 		Filter filter = new NOT_filter(new filter_id(id));
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
-
+	/**
+	 * The function implement filter by NOT time 
+	 * @param idName
+	 */
 	public void NOT_filter_TIME(String start, String end){
 		Filter filter = new NOT_filter(new filter_time(start, end));
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
 	}
+	/**
+	 * The function implement AND two filters 
+	 * @param idName
+	 */
+	public boolean and_filter(Filter a,Filter b){
+		if ((""+b).equals("null")||(""+b).equals("null")){
+			return false;
+		}
 
-	public void and_filter(Filter a,Filter b){
 		Filter filter = new AND_filter(a,b);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
+		return true;
 	}
-
-	public void OR_filter(Filter a,Filter b){
+	/**
+	 * The function implement OR two filters 
+	 * @param idName
+	 */
+	public boolean OR_filter(Filter a,Filter b){
+		if ((""+b).equals("null")||(""+b).equals("null")){
+			return false;
+		}
 		Filter filter = new OR_filter(a,b);
 		DoFilter fil = new DoFilter(filter);
 		this.macs = fil.filtering(macs);
+		return false;
 	}
-
+	/**
+	 * The function write and save to kml file 
+	 * @param idName
+	 */
 	public void saveTOkml(String path) {
 		if(!path.substring(path.length()-4, path.length()).equals(".kml")) {
 			path=path+".kml";
@@ -359,7 +389,10 @@ public class Connect {
 			}
 		});y.start();
 	}
-
+	/**
+	 * The function write and save to csv file 
+	 * @param idName
+	 */
 	public void saveTOcsv(String path) {
 		if(!path.substring(path.length()-4, path.length()).equals(".csv")){
 			path=path+".csv";
@@ -384,9 +417,12 @@ public class Connect {
 		});y.start();
 	}
 
-
-
-
+	/**
+	 * The function implements the Algo1
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 */
 	public String Algo1(File folder,String Mac) {
 		FindLocation al = new FindLocation();
 		try {
@@ -396,7 +432,12 @@ public class Connect {
 			return "There is problem in Algo1";
 		}
 	}
-
+	/**
+	 * The function implements the Algo2 by receiving a file
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 */
 	public void Algo2Folder(File folder1 ,File folder2,String path){
 		FindLocation al = new FindLocation();
 		try {
@@ -405,6 +446,12 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * The function implements the Algo2 by receiving a Macs and Signals
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 */
 	public String Algo2User(File folder1 ,String mac1,String mac2,String mac3,String sig1,String sig2,String sig3){
 		FindLocation al = new FindLocation();
 		try {
@@ -414,6 +461,13 @@ public class Connect {
 			return ("There is a problem in Algo2"); 
 		}
 	}
+
+	/**
+	 * The function implements read wigle wifi files 
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 */
 
 	public ArrayList<MacBig_Container> readWigle(File folder){
 		if (folder.isDirectory()){
@@ -473,7 +527,12 @@ public class Connect {
 	//		});t.start();
 	//
 	//	}
-
+	/**
+	 * The function implements read file with 46 cols
+	 * @param folder
+	 * @param Mac
+	 * @return
+	 */
 	public  ArrayList<MacBig_Container> read46(String path){
 		if (!path.substring(path.length() - 4, path.length()).equals(".csv")){
 			path = path + ".csv";
@@ -500,22 +559,37 @@ public class Connect {
 		});t.start();
 		return macs;
 	}
-
+	/**
+	 * The function returns how many Macs and rows there are
+	 * @param macs
+	 * @return
+	 */
 	public String MacAndRows (ArrayList<MacBig_Container> macs){
 		return hash.HowMacAndRow(macs);
 	}
-
+	/**
+	 * The function implements UNDO - return the Database before the filtering
+	 * @return
+	 */
 	public ArrayList<MacBig_Container> UNDO(){
 		return ChooseFilter.UNDO_(this.macs,this.macsBefore);
 	}
-
+	/**
+	 * The function implements clear
+	 * @return
+	 */
 	public ArrayList<MacBig_Container> CLEAR(){
 		this.macsBefore.clear();
 		this.macs.clear();
 		return macs;
 	}
-
+	
+	public void readfilters(){
+		filters_writeAndRead.ReadObject("matala two\\filter that have been choose.txt");
+	}
 }
+
+
 
 //display=NRD90M.G950FXXU1AQJ5
 //lat=32.10246120400514

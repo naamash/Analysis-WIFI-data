@@ -8,7 +8,7 @@ import objects.MacBig;
 import objects.MacBig_Container;
 import writeTo.FindIndex;
 /**
- * This class contains function that "help" to the three functions filters (filters class).
+ * This class contains function that "help" to the filters  functions(filters class).
  * The functions of the filters use those functions.
  * function that save the largest signal.
  * function swap.
@@ -114,12 +114,17 @@ public class HelpFilter {
 				
 			}
 		}
-//		for (int i = 0; i < macs.size(); i++) {
-//			System.out.println(Arrays.toString(macs.get(i).arr_macbig));
-//		}
 		return macs;
 	}
 	
+	/** The function accept ArrayList of MacBig_Container type , and String mac.
+	 * The function save the largest SSID of this mac from the ArrayList.
+	 * The function copying all the Values to ArrayList of MacBig type 
+	 * 
+	 * @param mac
+	 * @param answer
+	 * @return
+	 */
 	public static MacBig_Container SaveTheLargestSIGNALUser (String mac,
 			ArrayList<MacBig_Container>answer){
 
@@ -264,6 +269,15 @@ public class HelpFilter {
 		}
 		return distance;
 	}
+	
+	/**This function copying the information from ArrayList<String[]> type to ArrayList<MacBig_Container> type.
+	 * 
+	 * @param ans
+	 * @param answer
+	 * @param indexOfRowAns
+	 * @param counterWifi
+	 * @param realsize
+	 */
 	public static void FromAnsToAnswer(ArrayList<String[]> ans,
 			ArrayList<MacBig_Container> answer,int indexOfRowAns,int counterWifi,int realsize){
 
@@ -287,9 +301,5 @@ public class HelpFilter {
 		}
 		MacBig_Container added = new MacBig_Container(infoofLine,realsize);
 		answer.add(added);
-		//		for (int i = 0; i < answer.size(); i++) {
-		//			System.out.println(Arrays.toString(answer.get(i).arr_macbig));
-		//
-		//		}
 	}
 }

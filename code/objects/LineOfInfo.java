@@ -62,7 +62,7 @@ public class LineOfInfo implements Comparable<LineOfInfo>  {
 		this.Type = other.Type;
 	}
 	/**
-	 * Defined constructors
+	 * Defined constructor
 	 * @param Type
 	 * @param AccuracyMeters
 	 * @param AltitudeMeters
