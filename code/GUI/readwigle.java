@@ -87,30 +87,30 @@ public class readwigle extends JPanel {
 		aaa.setBounds(144, 103, 131, 38);
 		add(aaa);
 
-		JButton btnNewButton = new JButton("File");
-		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
-				chooser.setFileFilter(filter);
-				String path1 = "";
-				chooser.setDialogTitle("Choose Csv File");
-				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					path1=chooser.getSelectedFile().getAbsolutePath();
-				}
-				//File folder = new File(path1);
-				link = path1;
-				//c.macs = c.readWigle(folder);
-			}
-		});
-		btnNewButton.setBounds(153, 189, 122, 32);
-		add(btnNewButton);
+//		JButton btnNewButton = new JButton("File");
+//		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				JFileChooser chooser = new JFileChooser();
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv", "csv");
+//				chooser.setFileFilter(filter);
+//				String path1 = "";
+//				chooser.setDialogTitle("Choose Csv File");
+//				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+//					path1=chooser.getSelectedFile().getAbsolutePath();
+//				}
+//				//File folder = new File(path1);
+//				link = path1;
+//				//c.macs = c.readWigle(folder);
+//			}
+//		});
+//		btnNewButton.setBounds(153, 189, 122, 32);
+//		add(btnNewButton);
 
-		JLabel lblChooseWigleWifi = new JLabel("Choose wigle wifi file :");
-		lblChooseWigleWifi.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
-		lblChooseWigleWifi.setBounds(134, 144, 189, 32);
-		add(lblChooseWigleWifi);
+//		JLabel lblChooseWigleWifi = new JLabel("Choose wigle wifi file :");
+//		lblChooseWigleWifi.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
+//		lblChooseWigleWifi.setBounds(134, 144, 189, 32);
+//		add(lblChooseWigleWifi);
 
 		JButton btnNewButton_1 = new JButton("Save");
 		btnNewButton_1.addActionListener(new ActionListener() {

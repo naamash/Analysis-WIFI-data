@@ -171,4 +171,10 @@ public class ChooseFilter {
 		}
 		return false;	
 	}
+	
+	public static ArrayList<MacBig_Container> UNDO_(ArrayList<MacBig_Container> macs, ArrayList<MacBig_Container> macsbefore){
+		macs.clear();
+		macs.addAll(macsbefore);
+		return macs;
+	}
 }

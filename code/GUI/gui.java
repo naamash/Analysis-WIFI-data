@@ -25,6 +25,8 @@ public class gui {
 	private JFrame frame;
 	Connect c;
 	private JPanel Home;
+	private JPanel undo;
+	private JPanel clear;
 	private JPanel readwigle;
 	private JPanel read46;
 	private JPanel algo1;
@@ -731,10 +733,10 @@ public class gui {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				c.macs.clear();
-				c.macsBefore.clear();
-				Home = new Home(c);
-				current = Home;
+				clear = new clear(c);
+				frame.getContentPane().add(clear);
+				current = clear;
+				filters = new Filter[3];
 			}
 		});
 		mnNewMenu_1.add(btnClear);
@@ -742,20 +744,11 @@ public class gui {
 		JButton btnUndo = new JButton("Undo");
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(c.macs.size());
-				if (c.macsBefore.isEmpty()){	
-					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
-				}
-				else{
 				current.setVisible(false);
-				c.macs.clear();
-				c.macs = new ArrayList<MacBig_Container>();
-				c.macs.addAll(c.macsBefore);
-//				Home = new Home(c);
-				current = Home;
-				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
-				JOptionPane.showMessageDialog(new JFrame(),"Undo got finished. Choose your new choice from menu.");
-				}
+				undo = new undo(c);
+				frame.getContentPane().add(undo);
+				current = undo;
+				filters = new Filter[3];
 			}
 		});
 		mnNewMenu_1.add(btnUndo);

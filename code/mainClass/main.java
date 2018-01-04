@@ -20,7 +20,8 @@ import writeTo.ReadAndWrite;
 public class main {
 
 	public static void main(String[] args) throws IOException {
-
+		
+		ReadAndWrite.readingFile46Col("C:\\Users\\hadar\\Desktop\\gujv.csv");
 //		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 //		String path = "C:\\Users\\hadar\\Desktop\\wiglesmall2.csv";
 //		File file = new File(path);

@@ -44,7 +44,11 @@ public class id extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
 					String id = path.getText();
+					if (!id.substring(0, 8).equals("display=")){
+						id = "display="+id;
+					}
 					Filter ft = new filter_id(id);
 
 					if (filters[1] != null && filters[0] != null) {
@@ -69,11 +73,9 @@ public class id extends JPanel {
 				}
 				catch (Exception e2) {
 					// TODO: handle exception
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by ID failed :)");
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by ID failed :(");
 				}
-
 			}
-
 		});
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 41));
 		btnNewButton.setBounds(123, 206, 191, 46);

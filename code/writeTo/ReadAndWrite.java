@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import filtersPack.HelpFilter;
@@ -49,7 +50,7 @@ public class ReadAndWrite {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			flag = false;
 			try {
-				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
+				if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains(".csv")) {
 					File f = new File(listOfFiles[i].getPath());
 					FileInputStream fi = new FileInputStream(f);
 					Scanner sc = new Scanner(fi);
@@ -164,13 +165,17 @@ public class ReadAndWrite {
 		while (sc.hasNext()) {
 			ans = new ArrayList<String[]>();
 			String str = sc.nextLine();
+			String [] a = new String [46];
+			a = str.split(",");
 			ans.add(str.split(","));
-			if (flag==0){
+			if (flag==0&&!Arrays.toString(a).equals("[]")){
 				HelpFilter.FromAnsToAnswer(ans, answer, 0, 46,10);
 				flag=1;
 			}
-			else{
+			else {
+				if (!Arrays.toString(a).equals("[]")){
 				HelpFilter.FromAnsToAnswer(ans, answer, 0, ((Integer.parseInt(ans.get(0)[5]))*4+6),Integer.parseInt(ans.get(0)[5]));
+			}
 			}
 		}
 		sc.close();
