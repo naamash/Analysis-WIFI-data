@@ -6,6 +6,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import objects.hash;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,7 +20,8 @@ import java.awt.event.ActionEvent;
 public class SavetoKML extends JPanel {
 	private JTextField textField;
 	String name="";
-	boolean correct = false;
+	boolean correctName;
+	boolean correctfolder;
 	
 	/**
 	 * Create the panel.
@@ -65,18 +69,31 @@ public class SavetoKML extends JPanel {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().isEmpty()){
-					correct = false;
-					JOptionPane.showMessageDialog(new JFrame(), "Enter name again. This field can not be empty!");
+					correctName = false;
+					JOptionPane.showMessageDialog(new JFrame(), "Enter name please. This field can not be empty!");
 				}
-				if(!textField.getText().isEmpty()){
-					correct = true;
+				else if(!textField.getText().isEmpty()){
+					correctName = true;
 				}
-				if (correct){
+				if (correctName){
+					if (name == ""){
+						JOptionPane.showMessageDialog(new JFrame(), "Choose folder please. This field can not be empty!");
+						correctfolder = false;
+					}
+					else{
+						correctfolder = true;
+					}
+				}
+				if(correctfolder&&correctName){
 					String path1 = name+"/"+textField.getText();
-					System.out.println("gg   "+path1);
-					c.saveTOkml(path1);
+					try {
+						c.saveTOkml(path1);
+						JOptionPane.showMessageDialog(new JFrame(), "Write to kml file Completed :)");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(new JFrame(), "Write to csv file failed :(");
+					}
 				}
-				
 			}
 		});
 		button_1.setFont(new Font("Dialog", Font.PLAIN, 20));

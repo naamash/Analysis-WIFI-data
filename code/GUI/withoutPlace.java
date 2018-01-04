@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import filtersPack.Filter;
 import filtersPack.NOT_filter;
 import filtersPack.filter_location;
+import objects.hash;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,33 +62,35 @@ public class withoutPlace extends JPanel {
 		JButton button = new JButton(" Enter");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String lat1 = lat.getText();
-				String lon1 = lon.getText();
-				String rad1 = rad.getText();
-				Filter ft = new filter_location(lat1, lon1, Double.parseDouble(rad1));
-				
-				Filter filter = new NOT_filter(ft);
-				if(filters[1]!=null && filters[0]!=null){
-					filters[2]= ft;
-					
-					if(filters[1].getClass().getName().contains("AND_filter")){
-						
-						c.and_filter(filters[0], filters[2]);
-					}
-					else if(filters[1].getClass().getName().contains("OR_filter")){
-						c.OR_filter(filters[0], filters[2]);
-					}
-				}
-				else if(filters[1]!=null && filters[0]==null){
-					filters[0]= ft;
-				}
-				
+				try {
+					String lat1 = lat.getText();
+					String lon1 = lon.getText();
+					String rad1 = rad.getText();
+					Filter ft = new filter_location(lat1, lon1, Double.parseDouble(rad1));
+					Filter filter = new NOT_filter(ft);
+					if (filters[1] != null && filters[0] != null) {
+						filters[2] = filter;
 
-				else if(filters[0]==null&&filters[1]==null){
-					filters[0]=ft;
-					c.NOT_filter_LOC(lat1, lon1, Double.parseDouble(rad1));
+						if (filters[1].getClass().getName().contains("AND_filter")) {
+
+							c.and_filter(filters[0], filters[2]);
+						} else if (filters[1].getClass().getName().contains("OR_filter")) {
+							c.OR_filter(filters[0], filters[2]);
+						}
+					} else if (filters[1] != null && filters[0] == null) {
+						filters[0] = filter;
+					}
+
+					else if (filters[0] == null && filters[1] == null) {
+						filters[0] = filter;
+						c.NOT_filter_LOC(lat1, lon1, Double.parseDouble(rad1));
+					} 				
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by NOT-location got finished");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} 
+				catch (Exception e2) {
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by NOT-location failed");
 				}
-				JOptionPane.showMessageDialog(new JFrame(), "Filter by NOT-location got finished");
 			}
 		});
 		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));

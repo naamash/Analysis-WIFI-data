@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 
 import filtersPack.ChooseFilter;
+import objects.hash;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -20,7 +21,8 @@ import java.awt.event.ActionEvent;
 public class SavetoCSV extends JPanel {
 	private JTextField pathnamefile;
 	String name="";
-	boolean correct = false;
+	boolean correctName;
+	boolean correctfolder;
 
 	/**
 	 * Create the panel.
@@ -40,9 +42,12 @@ public class SavetoCSV extends JPanel {
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					File f = chooser.getSelectedFile();
 					path = f.getAbsolutePath();
+					System.out.println(path);
 				}
+
 				path = path.replace("\\", "/");
-				name = path;
+				name = path;	
+
 			}
 		});
 		btnChooseFolder.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
@@ -69,15 +74,31 @@ public class SavetoCSV extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(pathnamefile.getText().isEmpty()){
-					correct = false;
-					JOptionPane.showMessageDialog(new JFrame(), "Enter name again. This field can not be empty!");
+					correctName = false;
+					JOptionPane.showMessageDialog(new JFrame(), "Enter name please. This field can not be empty!");
 				}
-				if(!pathnamefile.getText().isEmpty()){
-					correct = true;
+				else if(!pathnamefile.getText().isEmpty()){
+					correctName = true;
 				}
-				if (correct){
+				if (correctName){
+					if (name == ""){
+						JOptionPane.showMessageDialog(new JFrame(), "Choose folder please. This field can not be empty!");
+						correctfolder = false;
+					}
+					else{
+						correctfolder = true;
+					}
+				}
+				if(correctfolder&&correctName){
 					String path1 = name+"/"+pathnamefile.getText();
-					c.saveTOcsv(path1);
+					try {
+						c.saveTOcsv(path1);
+						JOptionPane.showMessageDialog(new JFrame(), "Write to csv file Completed :)");
+						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(new JFrame(), "Write to csv file failed :(");
+					}
 				}
 			}
 		});

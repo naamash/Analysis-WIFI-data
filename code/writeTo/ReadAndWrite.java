@@ -33,6 +33,8 @@ public class ReadAndWrite {
 	 * @throws IOException
 	 */
 	public static ArrayList<MacBig_Container> readingFolderWigle(File folder)  {	
+		
+		System.out.println("enter");
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		File[] listOfFiles = folder.listFiles();
@@ -189,6 +191,10 @@ public class ReadAndWrite {
 		ArrayList<MacBig_Container> Answer_One = new ArrayList<MacBig_Container>();
 		Answer_One.addAll(answer);		
 
+		if(!location.substring(location.length()-4, location.length()).equals(".csv")){
+			location=location+".csv";
+		}
+		
 		FileWriter write = new FileWriter(location);	
 		PrintWriter pw = new PrintWriter(write);
 		for (int i = 0; i < Answer_One.size(); i++) {

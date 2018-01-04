@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import filtersPack.Filter;
 import filtersPack.filter_id;
 import filtersPack.filter_location;
+import objects.hash;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,66 +29,69 @@ public class Loc extends JPanel {
 	 */
 	public Loc(Filter []filters,Connect c) {
 		setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel(" Write Lat");
 		lblNewLabel.setBounds(25, 35, 144, 40);
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
 		add(lblNewLabel);
-		
+
 		JLabel lblWriteLon = new JLabel(" Write Lon");
 		lblWriteLon.setBounds(25, 102, 144, 40);
 		lblWriteLon.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
 		add(lblWriteLon);
-		
+
 		JLabel lblWriteRadious = new JLabel(" Write Radious");
 		lblWriteRadious.setBounds(25, 169, 210, 40);
 		lblWriteRadious.setFont(new Font("Berlin Sans FB", Font.PLAIN, 33));
 		add(lblWriteRadious);
-		
+
 		lat = new JTextField();
 		lat.setBounds(207, 42, 231, 40);
 		add(lat);
 		lat.setColumns(10);
-		
+
 		lon = new JTextField();
 		lon.setBounds(207, 95, 231, 40);
 		lon.setColumns(10);
 		add(lon);
-		
+
 		rad = new JTextField();
 		rad.setBounds(247, 169, 191, 40);
 		rad.setColumns(10);
 		add(rad);
-		
+
 		JButton btnNewButton = new JButton(" Enter");
 		btnNewButton.setBounds(121, 235, 191, 40);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String lat1 = lat.getText();
-				String lon1 = lon.getText();
-				String rad1 = rad.getText();
-				Filter ft = new filter_location(lat1,lon1,Double.parseDouble(rad1));
-
-				if(filters[1]!=null && filters[0]!=null){
-					filters[2]= ft;
-					if(filters[1].getClass().getName().contains("AND_filter")){
-						c.and_filter(filters[0], filters[2]);
+				try {
+					String lat1 = lat.getText();
+					String lon1 = lon.getText();
+					String rad1 = rad.getText();
+					Filter ft = new filter_location(lat1, lon1, Double.parseDouble(rad1));
+					if (filters[1] != null && filters[0] != null) {
+						filters[2] = ft;
+						if (filters[1].getClass().getName().contains("AND_filter")) {
+							c.and_filter(filters[0], filters[2]);
+						} else if (filters[1].getClass().getName().contains("OR_filter")) {
+							c.OR_filter(filters[0], filters[2]);
+						}
+					} else if (filters[1] != null && filters[0] == null) {
+						filters[0] = ft;
 					}
-					else if(filters[1].getClass().getName().contains("OR_filter")){
-						c.OR_filter(filters[0], filters[2]);
-					}
-				}
-				else if(filters[1]!=null && filters[0]==null){
-					filters[0]= ft;
-				}
-				
 
-				else if(filters[0]==null&&filters[1]==null){
-					filters[0]=ft;
-					c.addfilter_LOC(lat1,lon1,Double.parseDouble(rad1));
+					else if (filters[0] == null && filters[1] == null) {
+						filters[0] = ft;
+						c.addfilter_LOC(lat1, lon1, Double.parseDouble(rad1));
+					} 
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by location got finished");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by location failed");
+
 				}
-				
-				JOptionPane.showMessageDialog(new JFrame(), "Filter by location got finished");
+
 
 			}
 		});

@@ -2,7 +2,17 @@ package GUI;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import filtersPack.OR_filter;
 import algo1and2.FindLocation;
 import filtersPack.DoFilter;
@@ -13,17 +23,270 @@ import filtersPack.filter_id;
 import filtersPack.filter_location;
 import filtersPack.filter_time;
 import objects.MacBig_Container;
+import objects.hash;
 import writeTo.ConvertToKml;
 import writeTo.ReadAndWrite;
 
 public class Connect {
 	ArrayList<MacBig_Container> macs;
 	ArrayList<MacBig_Container> macsBefore;
-
+//	
+//	ArrayList<String> csv_paths;
+//	ArrayList<String> folder_paths;
+//
+//	public void folow_csv(String path) {
+//		this.csv_paths.add(path);
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				changeFiles();
+//				//readCSv(path);
+//			}
+//
+//		}).start();
+//
+//	}
+///**
+// * the  shell function check change in the folder
+// * @param path
+// */
+//	public void folow_folder(String path) {
+//		System.out.println("enter folow folder");
+//		this.folder_paths.add(path);
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					System.out.println("enter run folow folder");
+//					//enterdatabase(path);
+//					changeFolder(macs);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//
+//			}
+//
+//		}).start();
+//
+//	}
+///**
+// * the function contians pool tread that follow the folder
+// * @param data
+// * @throws IOException
+// */
+//	// https://github.com/ruckc/filewatcher/blob/master/src/main/java/io/ruck/filewatcher/Watcher.java
+//	public void changeFolder(ArrayList<MacBig_Container>macs) throws IOException {
+//		// System.out.println("enter change folder");
+//		ExecutorService servise = Executors.newCachedThreadPool();
+//		final FileSystem fs = FileSystems.getDefault();
+//		final WatchService watcher = fs.newWatchService();
+//		;
+//		int size = folder_paths.size();
+//		System.out.println("size of the csv_path " + size);
+//	//	Map<WatchKey, String> keys = new HashMap<>();
+//		for (int i = 0; i < this.folder_paths.size(); i++) {
+//			if (!keys.containsValue(folder_paths.get(i))) {
+//				try {
+//					Path path = Paths.get(folder_paths.get(i));
+//					// the event we want to check
+//					WatchKey key = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+//					keys.put(key, folder_paths.get(i));
+//
+//				} catch (Exception e) {
+//					System.out.println("error with the folder " + folder_paths.get(i));
+//
+//				}
+//
+//			}
+//		}
+//		servise.submit(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				System.out.println("enter ruunable");
+//				while (Thread.interrupted() == false) {
+//					WatchKey t = null;
+//					try {
+//						t = watcher.poll(20, TimeUnit.MILLISECONDS);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//						break;
+//					}
+//					// if there is a change then the watchkey is change
+//					if (t != null) {
+//						System.out.println("change");
+//						database(data); // restart to the database
+//						System.out.println("data size  in the function" + data.getDatabase().size());
+//						servise.shutdownNow();
+//						Thread.currentThread().interrupt();
+//						try {
+//							changeFolder(data);
+//						} catch (Exception e) {
+//							// TODO: handle exception
+//							e.printStackTrace();
+//						}
+//					}
+//
+//					else if (size != folder_paths.size()) {
+//						try {
+//							watcher.close();
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//						servise.shutdown();
+//						Thread.currentThread().interrupt();
+//						try {
+//							changeFolder(data);
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//
+//			}
+//
+//		});
+//	}
+//	/**
+//	 * the function follow on the change on the csv file
+//	 */
+//	// https://stackoverflow.com/questions/2064694/how-do-i-find-the-last-modified-file-in-a-directory-in-java
+//	public void changeFiles() {
+//		int size = csv_paths.size();
+//		ExecutorService servise = Executors.newCachedThreadPool();
+//		ArrayList<Long> lastmodify = new ArrayList<Long>();
+//		for (int i = 0; i < this.csv_paths.size(); i++) {
+//			lastmodify.add(new File(csv_paths.get(i)).lastModified());
+//		}
+//		servise.submit(new Runnable() {
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//
+//				while (Thread.currentThread().isInterrupted() == false) {
+//					for (int i = 0; i < lastmodify.size(); i++) {
+//						if (lastmodify.get(i) != new File(csv_paths.get(i)).lastModified()) {
+//							database(data);
+//							servise.shutdownNow();
+//							Thread.currentThread().interrupt();
+//							changeFiles();
+//						}
+//					}
+//					if (size != csv_paths.size()) {
+//						database(data);
+//						servise.shutdownNow();
+//						Thread.currentThread().interrupt();
+//						changeFiles();
+//					}
+//				}
+//			}
+//
+//		});
+//
+//	}
+///**
+// * the function enter the wigle-wifi files from folder to the database
+// * @param path
+// */
+//	public void enterdatabase(String path) {
+//		Thread t = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				synchronized (data) {
+//					FileCsv c = new FileCsv();
+//					data.addArrayList(c.readForCsv(path).getDatabase());
+//				}
+//			}
+//		});
+//		t.start();
+//		// return this.data;
+//	}
+///**
+// * The function enter the Table.csv files  to the database
+// * @param path
+// */
+//	public void readCSv(String path) {
+//		if (!path.substring(path.length() - 3, path.length()).equals("csv"))
+//			path = path + ".csv";
+//		final String str=path;
+//ReadAndWrite k = new ReadAndWrite();
+//		//FileKml k = new FileKml();
+//		Thread t = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				synchronized (macs) {
+//
+//					macs.addArrayList(k.readingFile46Col(str) );
+//					douplicate();
+//				}
+//			}
+//		});t.start();
+//
+//	}
+//	
+//	public void douplicate() {
+//
+//		List<MacBig_Container> temp = new ArrayList<MacBig_Container>();
+//		for (int i = 0; i < this.macs.size(); i++) {
+//			if (!temp.contains(this.macs.get(i)))
+//				temp.add(this.macs.get(i));
+//		}
+//		this.macs.clear();
+//		this.macs.addAll(temp);
+//	}
+//	
+//	public void addArrayList(ArrayList<MacBig_Container> other) {
+//		this.macs.addAll(other);
+//		douplicate();
+//		for (int i = 0; i < other.size(); i++) {
+//			insertHash(other.get(i));
+//
+//		}
+//		// we need to update the hash map and check douplicat in the hash map
+//
+//	}
+//
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void readCSV46(String path){
 		try {
 			this.macs=ReadAndWrite.readingFile46Col(path);
+			this.macsBefore = new ArrayList<MacBig_Container>();
+			this.macsBefore.addAll(macs);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +346,7 @@ public class Connect {
 	}
 
 	public void saveTOkml(String path) {
-		if(!path.substring(path.length()-3, path.length()).equals("kml")) {
+		if(!path.substring(path.length()-4, path.length()).equals(".kml")) {
 			path=path+".kml";
 		}
 		ConvertToKml k = new ConvertToKml();
@@ -91,7 +354,7 @@ public class Connect {
 	}
 	
 	public void saveTOcsv(String path) {
-		if(!path.substring(path.length()-3, path.length()).equals("csv")){
+		if(!path.substring(path.length()-4, path.length()).equals(".csv")){
 			path=path+".csv";
 		}
 		
@@ -128,30 +391,40 @@ public class Connect {
 			return (al.Matala2_Algo2User(folder1, mac1, mac2, mac3, sig1, sig2, sig3));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return ("There is problem in Algo1"); 
+			return ("There is a problem in Algo2"); 
 		}
 	}
 	
 	public ArrayList<MacBig_Container> readWigle(File folder){
 		if (folder.isDirectory()){
-			return macs = ReadAndWrite.readingFolderWigle(folder);
+			this.macs = ReadAndWrite.readingFolderWigle(folder);
+			//this.macsBefore.addAll(this.macs);
+			
 		}
 		else if (!folder.isDirectory()){
-			return macs = ReadAndWrite.readingFileWigle(folder);
+			this.macs = ReadAndWrite.readingFileWigle(folder);
+			//this.macsBefore.addAll(this.macs);
 		}
-		return macs;
+		this.macsBefore = new ArrayList<MacBig_Container>();
+		this.macsBefore.addAll(macs);
+		return this.macs;
 	}
 	
 	public  ArrayList<MacBig_Container> read46(String path){
 		try {
-			return macs = ReadAndWrite.readingFile46Col(path);
+			this.macs = ReadAndWrite.readingFile46Col(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("There is problem with the file or with the path");
 		}
+		this.macsBefore = new ArrayList<MacBig_Container>();
+		this.macsBefore.addAll(macs);
 		return macs;
 	}
 	
+	public String MacAndRows (ArrayList<MacBig_Container> macs){
+		return hash.HowMacAndRow(macs);
+	}
 }
 
 //display=NRD90M.G950FXXU1AQJ5

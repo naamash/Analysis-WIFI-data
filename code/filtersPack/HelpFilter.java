@@ -54,7 +54,7 @@ public class HelpFilter {
 			temp.Mac=answer.get(indexRowAnswer).arr_macbig[i].Mac;
 			temp.frequency=answer.get(indexRowAnswer).arr_macbig[i].frequency;
 			temp.Signal=answer.get(indexRowAnswer).arr_macbig[i].Signal;
-			if(!isMacs){
+			//if(!isMacs){
 			while (j < macs.size() && isIn){
 				if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
 					isIn=false;
@@ -75,29 +75,29 @@ public class HelpFilter {
 				}
 				j++;
 			}
-		}
-			else {
-				while (j < macs.size() && isIn){
-					if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
-						isIn=false;
-						if ((macs.get(j).realsize==ARR_SIZE)){
-							if(Integer.parseInt(temp.Signal)>=Integer.parseInt(macs.get(j).arr_macbig[ARR_SIZE-1].Signal)){
-								swap(temp, macs.get(j).arr_macbig[macs.get(j).realsize-1]);
-								sortMACS(macs.get(j));
-							}
-						}
-						
-						else if (macs.get(j).realsize<ARR_SIZE){
-							MacBig macc = new MacBig(temp);
-							macs.get(j).arr_macbig[macs.get(j).realsize] = macc;
-							macs.get(j).realsize ++;
-							
-							sortMACS(macs.get(j));
-						}
-					}
-					j++;
-				}
-			}
+	//	}
+//			else {
+//				while (j < macs.size() && isIn){
+//					if (macs.get(j).arr_macbig[0].Mac.equals(temp.Mac)){	
+//						isIn=false;
+//						if ((macs.get(j).realsize==ARR_SIZE)){
+//							if(Integer.parseInt(temp.Signal)>=Integer.parseInt(macs.get(j).arr_macbig[ARR_SIZE-1].Signal)){
+//								swap(temp, macs.get(j).arr_macbig[macs.get(j).realsize-1]);
+//								sortMACS(macs.get(j));
+//							}
+//						}
+//						
+//						else if (macs.get(j).realsize<ARR_SIZE){
+//							MacBig macc = new MacBig(temp);
+//							macs.get(j).arr_macbig[macs.get(j).realsize] = macc;
+//							macs.get(j).realsize ++;
+//							
+//							sortMACS(macs.get(j));
+//						}
+//					}
+//					j++;
+//				}
+//			}
 			if (macs.size()==0 && isMacs){
 				MacBig []s = new MacBig[ARR_SIZE];
 				MacBig macc = new MacBig(temp);

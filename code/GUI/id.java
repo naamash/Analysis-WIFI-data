@@ -8,6 +8,7 @@ import filtersPack.AND_filter;
 import filtersPack.Filter;
 import filtersPack.NOT_filter;
 import filtersPack.filter_id;
+import objects.hash;
 
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -42,30 +43,34 @@ public class id extends JPanel {
 		JButton btnNewButton = new JButton("Enter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String id = path.getText();
+					Filter ft = new filter_id(id);
 
-				String id = path.getText();
-				Filter ft = new filter_id(id);
-				if(filters[1]!=null && filters[0]!=null){
-					filters[2]= ft;
-					
-					if(filters[1].getClass().getName().contains("AND_filter")){
-						
-						c.and_filter(filters[0], filters[2]);
-					}
-					else if(filters[1].getClass().getName().contains("OR_filter")){
-						c.OR_filter(filters[0], filters[2]);
-					}
-				}
-				else if(filters[1]!=null && filters[0]==null){
-					filters[0]= ft;
-				}
-				
+					if (filters[1] != null && filters[0] != null) {
+						filters[2] = ft;
 
-				else if(filters[0]==null&&filters[1]==null){
-					filters[0]=ft;
-					c.addfilter_ID(id);
+						if (filters[1].getClass().getName().contains("AND_filter")) {
+
+							c.and_filter(filters[0], filters[2]);
+						} else if (filters[1].getClass().getName().contains("OR_filter")) {
+							c.OR_filter(filters[0], filters[2]);
+						}
+					} else if (filters[1] != null && filters[0] == null) {
+						filters[0] = ft;
+					}
+
+					else if (filters[0] == null && filters[1] == null) {
+						filters[0] = ft;
+						c.addfilter_ID(id);
+					} 	
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 				}
-				JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
+				catch (Exception e2) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(new JFrame(), "Filter by ID failed :)");
+				}
 
 			}
 

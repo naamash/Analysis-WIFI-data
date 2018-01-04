@@ -7,6 +7,9 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import objects.hash;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -22,6 +25,9 @@ public class algo1 extends JPanel {
 	private JTextField path;
 	private JTextField mac;
 	String link="";
+	boolean correctLink;
+	boolean correctMac;
+
 
 	/**
 	 * Create the panel.
@@ -33,34 +39,13 @@ public class algo1 extends JPanel {
 		lblAlgo.setFont(new Font("Berlin Sans FB", Font.PLAIN, 35));
 		lblAlgo.setBounds(170, 13, 115, 40);
 		add(lblAlgo);
-		
-//		path = new JTextField();
-//		path.setBounds(31, 112, 393, 32);
-//		add(path);
-//		path.setColumns(10);
-		
-		
+	
 		JLabel lblEnterPathOf_1 = new JLabel("Enter MAC :");
 		lblEnterPathOf_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 19));
 		lblEnterPathOf_1.setBounds(170, 157, 115, 32);
 		add(lblEnterPathOf_1);
 		
 		mac = new JTextField();
-//		String check = "aba";
-//		String macCheck = ""+mac; 
-//		boolean correctMac = true;
-//		
-//		String []a = macCheck.split(":");
-//		for (int i = 0; i < a.length; i++) {
-//			if (a[i].length()!=2){
-//				correctMac = false;
-//				break;
-//			}
-//			else if (Character.isLetterOrDigit(check)){
-//				correctMac = true;
-//			}
-//		}
-		//1c:b9:c4:16:2d:e8
 		mac.setColumns(10);
 		mac.setBounds(90, 190, 261, 32);
 		add(mac);
@@ -123,14 +108,36 @@ public class algo1 extends JPanel {
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				try {
-					//String path1 = path.getText();
+				if(mac.getText().isEmpty()){
+					correctMac = false;
+					JOptionPane.showMessageDialog(new JFrame(), "Enter Mac please. This field can not be empty!");
+				}
+				else if(!mac.getText().isEmpty()){
+					correctMac = true;
+				}
+				if (correctMac){
+					if (link == ""){
+						JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
+						correctLink = false;
+					}
+					else{
+						correctLink = true;
+					}
+				}
+				if(correctLink&&correctMac){
 					File file = new File(link);
 					String mac1 = mac.getText();
-					JOptionPane.showMessageDialog(new JFrame(),c.Algo1(file, mac1));
-//				} catch (Exception e2) {
-//					System.out.println("Problem with opening files and normal Mac. Please try again.");
-//				}
+					
+					try {
+						JOptionPane.showMessageDialog(new JFrame(), c.Algo1(file, mac1));
+						JOptionPane.showMessageDialog(new JFrame(), "Algo1 Completed :)");
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(new JFrame(), "Algo1 failed :)");
+
+					}
+					
+				}
 			}
 		});
 		// C:\\Users\\hadar\\Desktop\\testing\\להריץ\\BM2\\WigleWifi_20171203084817.csv

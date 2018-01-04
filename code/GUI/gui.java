@@ -10,10 +10,13 @@ import javax.swing.JPanel;
 import filtersPack.AND_filter;
 import filtersPack.Filter;
 import filtersPack.OR_filter;
+import objects.MacBig_Container;
+import objects.hash;
 
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
@@ -162,11 +165,15 @@ public class gui {
 		JButton btnTime = new JButton("Time");
 		btnTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
 				current = Time;
-
+				}
 			}
 		});
 		mnBy.add(btnTime);
@@ -185,11 +192,15 @@ public class gui {
 		JButton btnTime_1 = new JButton("Time");
 		btnTime_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
 				current = withoutTime;
-
+				}
 			}
 		});
 		mnWithoutnot.add(btnTime_1);
@@ -197,10 +208,15 @@ public class gui {
 		JButton btnIdDisplay = new JButton("ID Display");
 		btnIdDisplay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
 				current = withoutID;
+				}
 			}
 		});
 		mnWithoutnot.add(btnIdDisplay);
@@ -208,28 +224,42 @@ public class gui {
 		JButton btnLocation_1 = new JButton("Location");
 		btnLocation_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
+				}
 			}
 		});
 		mnWithoutnot.add(btnLocation_1);
 		btnLocation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
 				current = Loc;
+				}
 			}
 		});
 		btnId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				id=new id(filters,c); 
 				frame.getContentPane().add(id);
 				current = id;
-
+				}
 			}
 		});
 		btnTime.addActionListener(new ActionListener() {
@@ -253,11 +283,16 @@ public class gui {
 		JButton OtimeA = new JButton("Time");
 		OtimeA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
 				current = Time;
+				}
 			}
 		});
 		mnChooseA.add(OtimeA);
@@ -265,11 +300,16 @@ public class gui {
 		JButton OidA = new JButton("ID Display");
 		OidA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				id = new id(filters,c);
 				frame.getContentPane().add(id);
 				current = id;
+				}
 			}
 		});
 		mnChooseA.add(OidA);
@@ -277,11 +317,16 @@ public class gui {
 		JButton OlocA = new JButton("Location");
 		OlocA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
 				current = Loc;
+				}
 			}
 		});
 		mnChooseA.add(OlocA);
@@ -289,11 +334,16 @@ public class gui {
 		JButton OtimeAN = new JButton("NOT Time");
 		OtimeAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
 				current = withoutTime;
+				}
 			}
 		});
 		mnChooseA.add(OtimeAN);
@@ -301,11 +351,16 @@ public class gui {
 		JButton OidAN = new JButton("NOT ID Display");
 		OidAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
 				current = withoutID;
+				}
 			}
 		});
 		mnChooseA.add(OidAN);
@@ -313,11 +368,16 @@ public class gui {
 		JButton OlocAN = new JButton("NOT Location");
 		OlocAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new OR_filter();
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
+				}
 			}
 		});
 		mnChooseA.add(OlocAN);
@@ -328,11 +388,15 @@ public class gui {
 		JButton OtimeB = new JButton("Time");
 		OtimeB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
 				current = Time;
-
+				}
 			}
 		});
 		mnChooseB.add(OtimeB);
@@ -340,10 +404,15 @@ public class gui {
 		JButton OidB = new JButton("ID Display");
 		OidB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				id = new id(filters,c);
 				frame.getContentPane().add(id);
 				current = id;
+				}
 			}
 		});
 		mnChooseB.add(OidB);
@@ -351,10 +420,15 @@ public class gui {
 		JButton OlocB = new JButton("Location");
 		OlocB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
 				current = Loc;
+				}
 			}
 		});
 		mnChooseB.add(OlocB);
@@ -362,10 +436,15 @@ public class gui {
 		JButton OtimeBN = new JButton("NOT Time");
 		OtimeBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
 				current = withoutTime;
+				}
 			}
 		});
 		mnChooseB.add(OtimeBN);
@@ -373,10 +452,15 @@ public class gui {
 		JButton OidBN = new JButton("NOT ID Display");
 		OidBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
 				current = withoutID;
+				}
 			}
 		});
 		mnChooseB.add(OidBN);
@@ -384,10 +468,15 @@ public class gui {
 		JButton OlocBN = new JButton("NOT Location");
 		OlocBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
+				}
 			}
 		});
 		mnChooseB.add(OlocBN);
@@ -401,11 +490,16 @@ public class gui {
 		JButton AtimeA = new JButton("Time");
 		AtimeA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
 				current = Time;
+				}
 			}
 		});
 		menu.add(AtimeA);
@@ -413,12 +507,17 @@ public class gui {
 		JButton AidA = new JButton("ID Display");
 		AidA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				id = new id(filters,c);
 				System.out.println("**  "+Arrays.toString(filters));
 				frame.getContentPane().add(id);
 				current = id;
+				}
 			}
 		});
 		menu.add(AidA);
@@ -426,11 +525,16 @@ public class gui {
 		JButton AlocA = new JButton("Location");
 		AlocA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
 				current = Loc;
+				}
 			}
 		});
 		menu.add(AlocA);
@@ -438,11 +542,16 @@ public class gui {
 		JButton AtimeAN = new JButton("NOT Time");
 		AtimeAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
 				current = withoutTime;
+				}
 			}
 		});
 		menu.add(AtimeAN);
@@ -450,11 +559,16 @@ public class gui {
 		JButton AidAN = new JButton("NOT ID Display");
 		AidAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
 				current = withoutID;
+				}
 			}
 		});
 		menu.add(AidAN);
@@ -462,11 +576,16 @@ public class gui {
 		JButton AlocAN = new JButton("NOT Location");
 		AlocAN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				filters[1] = new AND_filter();
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
+				}
 			}
 		});
 		menu.add(AlocAN);
@@ -477,10 +596,15 @@ public class gui {
 		JButton AtimeB = new JButton("Time");
 		AtimeB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Time = new Time(filters,c);
 				frame.getContentPane().add(Time);
 				current = Time;
+				}
 			}
 		});
 		menu_1.add(AtimeB);
@@ -488,10 +612,15 @@ public class gui {
 		JButton AidB = new JButton("ID Display");
 		AidB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				id = new id(filters,c);
 				frame.getContentPane().add(id);
 				current = id;
+				}
 			}
 		});
 		menu_1.add(AidB);
@@ -499,10 +628,15 @@ public class gui {
 		JButton AlocB = new JButton("Location");
 		AlocB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				Loc = new Loc(filters,c);
 				frame.getContentPane().add(Loc);
 				current = Loc;
+				}
 			}
 		});
 		menu_1.add(AlocB);
@@ -510,10 +644,15 @@ public class gui {
 		JButton AtimeBN = new JButton("NOT Time");
 		AtimeBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutTime = new withoutTime(filters,c);
 				frame.getContentPane().add(withoutTime);
 				current = withoutTime;
+				}
 			}
 		});
 		menu_1.add(AtimeBN);
@@ -521,10 +660,15 @@ public class gui {
 		JButton AidBN = new JButton("NOT ID Display");
 		AidBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutID = new withoutID(filters,c);
 				frame.getContentPane().add(withoutID);
 				current = withoutID;
+				}
 			}
 		});
 		menu_1.add(AidBN);
@@ -532,10 +676,15 @@ public class gui {
 		JButton AlocBN = new JButton("NOT Location");
 		AlocBN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				withoutPlace = new withoutPlace(filters,c);
 				frame.getContentPane().add(withoutPlace);
 				current = withoutPlace;
+				}
 			}
 		});
 		menu_1.add(AlocBN);
@@ -546,10 +695,15 @@ public class gui {
 		JButton btnToCsv = new JButton("To CSV");
 		btnToCsv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				SavetoCSV = new SavetoCSV(c);
 				frame.getContentPane().add(SavetoCSV);
 				current = SavetoCSV;
+				}
 			}
 		});
 		mnSaveDatabase.add(btnToCsv);
@@ -557,10 +711,15 @@ public class gui {
 		JButton btnToKml = new JButton("To KML");
 		btnToKml.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (c.macs.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				SavetoKML = new SavetoKML(c);
 				frame.getContentPane().add(SavetoKML);
 				current = SavetoKML;
+				}
 			}
 		});
 		mnSaveDatabase.add(btnToKml);
@@ -583,12 +742,20 @@ public class gui {
 		JButton btnUndo = new JButton("Undo");
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(c.macs.size());
+				if (c.macsBefore.isEmpty()){	
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
+				}
+				else{
 				current.setVisible(false);
 				c.macs.clear();
+				c.macs = new ArrayList<MacBig_Container>();
 				c.macs.addAll(c.macsBefore);
-				Home = new Home(c);
+//				Home = new Home(c);
 				current = Home;
+				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 				JOptionPane.showMessageDialog(new JFrame(),"Undo got finished. Choose your new choice from menu.");
+				}
 			}
 		});
 		mnNewMenu_1.add(btnUndo);
