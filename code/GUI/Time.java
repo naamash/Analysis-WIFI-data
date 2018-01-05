@@ -133,11 +133,17 @@ public class Time extends JPanel {
 							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
 							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 							filters_writeAndRead.write_filter("filter that have been choose", filters);
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+							JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
+
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
 							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
 							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 							filters_writeAndRead.write_filter("filter that have been choose", filters);
+							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+							JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
+
 						}
 					} else if (!(""+filters[1]).equals("null") && (""+filters[0]).equals("null")) {
 						filters[0] = ft;
@@ -150,7 +156,8 @@ public class Time extends JPanel {
 						c.addfilter_TIME(timme1, timme2);
 						JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
 						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
-						filters_writeAndRead.write_filter("filter that have been choose", filters);
+						filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
+						JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
 					}
 
 				} 
