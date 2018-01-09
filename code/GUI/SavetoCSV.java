@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 
 import filtersPack.ChooseFilter;
+import filtersPack.Filter;
 import objects.hash;
 
 import javax.swing.JButton;
@@ -27,7 +28,7 @@ public class SavetoCSV extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SavetoCSV(Connect c) {
+	public SavetoCSV(Connect c,Filter []filters) {
 		setLayout(null);
 		JButton btnChooseFolder = new JButton("choose folder ");
 		btnChooseFolder.addActionListener(new ActionListener() {

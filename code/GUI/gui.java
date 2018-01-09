@@ -706,9 +706,13 @@ public class gui {
 				if (c.macs.isEmpty()){	
 					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
 				}
+				else if (!(""+filters[1]).equals("null")&&((""+filters[2]).equals("null")||(""+filters[0]).equals("null"))){
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert two filters in first!");
+
+				}
 				else{
 				current.setVisible(false);
-				SavetoCSV = new SavetoCSV(c);
+				SavetoCSV = new SavetoCSV(c,filters);
 				frame.getContentPane().add(SavetoCSV);
 				current = SavetoCSV;
 				}
@@ -722,9 +726,12 @@ public class gui {
 				if (c.macs.isEmpty()){	
 					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
 				}
+				else if (!(""+filters[1]).equals("null")&&((""+filters[2]).equals("null")||(""+filters[0]).equals("null"))){
+					JOptionPane.showMessageDialog(new JFrame(), "You have to insert two filters in first!");
+				}
 				else{
 				current.setVisible(false);
-				SavetoKML = new SavetoKML(c);
+				SavetoKML = new SavetoKML(c,filters);
 				frame.getContentPane().add(SavetoKML);
 				current = SavetoKML;
 				}
@@ -762,7 +769,7 @@ public class gui {
 		JButton btnNewButton = new JButton("Filter by last filters");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				c.readfilters();
+				c.readfilters(c);
 				JOptionPane.showMessageDialog(new JFrame(), "DataBase got filtered by last filters!");
 				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
 			}

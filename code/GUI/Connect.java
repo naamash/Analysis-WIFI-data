@@ -345,7 +345,7 @@ public class Connect {
 	 * @param idName
 	 */
 	public boolean and_filter(Filter a,Filter b){
-		if ((""+b).equals("null")||(""+b).equals("null")){
+		if ((""+a).equals("null")||(""+b).equals("null")){
 			return false;
 		}
 
@@ -359,7 +359,7 @@ public class Connect {
 	 * @param idName
 	 */
 	public boolean OR_filter(Filter a,Filter b){
-		if ((""+b).equals("null")||(""+b).equals("null")){
+		if ((""+a).equals("null")||(""+b).equals("null")){
 			return false;
 		}
 		Filter filter = new OR_filter(a,b);
@@ -584,8 +584,8 @@ public class Connect {
 		return macs;
 	}
 	
-	public void readfilters(){
-		filters_writeAndRead.ReadObject("matala two\\filter that have been choose.txt");
+	public void readfilters(Connect c){
+		filters_writeAndRead.ReadObject("matala two\\filter that have been choose.txt",c);
 	}
 }
 

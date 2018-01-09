@@ -108,6 +108,8 @@ public class ReadAndWrite {
 	 * @return
 	 */
 	public static ArrayList<MacBig_Container> readingFileWigle(File file)  {	
+		
+		System.out.println("enter file");
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
 		ArrayList<String[]> information = new ArrayList<String[]>();

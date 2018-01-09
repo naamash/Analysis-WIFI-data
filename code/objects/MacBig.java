@@ -5,32 +5,32 @@ package objects;
 /**This function set all the Values in the MacBig
  */
 public class MacBig {
-
-	public String Mac;
-	public String Signal;
 	public String time;
-	public String frequency;
-	public String lon;
-	public String lat;
-	public String ssid;
 	public String ID;
+	public String lat;
+	public String lon;
 	public String alt;
 	public String WIFI_Network;
+	public String ssid;
+	public String Mac;
+	public String frequency;
+	public String Signal;
 
 		/**
 		 * Default constructors
 		 */
 	public MacBig(){
-		this.Mac=null;
-		this.Signal=null;
 		this.time=null;
-		this.frequency=null;
-		this.lon=null;
-		this.lat=null;
-		this.ssid=null;
 		this.ID=null;
+		this.lat=null;
+		this.lon=null;
 		this.alt = null;
 		this.WIFI_Network=null;
+		this.ssid=null;
+		this.Mac=null;
+		this.frequency=null;
+		this.Signal=null;
+
 	}
 
 	/**
@@ -44,17 +44,18 @@ public class MacBig {
 	 * @param ssid
 	 * @param ID
 	 */
-	public MacBig(String Mac,String Signal,String time,String frequency,String lon,String lat,String ssid,String ID,String alt,String WIFI_Network){
-		this.frequency = frequency;
+	public MacBig(String time ,String ID ,String lat,String lon ,String alt ,String WIFI_Network,String ssid,String Mac ,String frequency,String Signal ){
+		this.time = time;
 		this.ID = ID;
 		this.lat = lat;
 		this.lon = lon;
-		this.Mac = Mac;
-		this.Signal = Signal;
-		this.ssid = ssid;
-		this.time = time;
 		this.alt = alt;
 		this.WIFI_Network=WIFI_Network;
+		this.ssid = ssid;
+		this.Mac = Mac;
+		this.frequency = frequency;
+		this.Signal = Signal;
+
 	}
 		/**
 		 * Copy constructors
@@ -76,10 +77,11 @@ public class MacBig {
 		 * The function print the object
 		 */
 
+		@Override
 		public String toString() {
-			return "MacBig [Mac=" + Mac + ", Signal=" + Signal + ", time=" + time + ", frequency=" + frequency
-					+ ", lon=" + lon + ", lat=" + lat + ", ssid=" + ssid + ", ID=" + ID + ", alt=" + alt
-					+ ", WIFI_Network=" + WIFI_Network + "]";
+			return "MacBig [time=" + time + ", ID=" + ID + ", lat=" + lat + ", lon=" + lon + ", alt=" + alt
+					+ ", WIFI_Network=" + WIFI_Network + ", ssid=" + ssid + ", Mac=" + Mac + ", frequency=" + frequency
+					+ ", Signal=" + Signal + "]";
 		}
 		
 

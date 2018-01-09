@@ -32,6 +32,15 @@ public class HelpersBeforeWrite {
 		//		int frequncy=8;
 		//		int signal=9;		
 		//int networks=0;
+//		for (int i = 0; i < information.size(); i++) {
+//			System.out.println(Arrays.toString(information.get(i)));
+//		}
+		
+//		System.out.println("*****************");
+//		for (int i = 0; i < arrLineOfInfo.size(); i++) {
+//				System.out.println(arrLineOfInfo.get(i).toString());
+//
+//		}
 		MacBig[] infoofLine = new MacBig[10];
 		int indexInfoOfLine=0;
 

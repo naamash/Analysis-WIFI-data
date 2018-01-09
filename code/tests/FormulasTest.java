@@ -28,46 +28,46 @@ public class FormulasTest {
 	@Test
 	public void testSumOfAlt() {
 		MacBig[] a = new MacBig[1];
-		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U","46");
-		a[0]=s;
+		MacBig av = new MacBig("01/12/2017 10:42", "display=NRD90M.G950FXXU1AQJ5", "32.17224246", "34.81444894",
+				"7.777438959", "1", "HOTBOX-D88A", "c0:ac:54:f5:b4:c9", "2412", "-92");
+		a[0]=av;
 		int realsize = 1;
 
-		assertTrue(46.0 == Formulas.sumOfAlt(a, realsize));
+		assertTrue(7.777438959 == Formulas.sumOfAlt(a, realsize));
 
 	}
 
 	@Test
 	public void testSumOfLat() {
 		MacBig[] a = new MacBig[1];
-		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U","46");
-		a[0]=s;
+		MacBig av = new MacBig("01/12/2017 10:42", "display=NRD90M.G950FXXU1AQJ5", "32.17224246", "34.81444894",
+				"7.777438959", "1", "HOTBOX-D88A", "c0:ac:54:f5:b4:c9", "2412", "-92");
+		a[0]=av;
 		int realsize = 1;
 
-		assertTrue(32.10551925 == Formulas.sumOfLat(a, realsize));
+		assertTrue(32.17224246 == Formulas.sumOfLat(a, realsize));
 	}
 
 	@Test
 	public void testSumOfLon() {
 		MacBig[] a = new MacBig[1];
-		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U","46");
-		a[0]=s;
+		MacBig av = new MacBig("01/12/2017 10:42", "display=NRD90M.G950FXXU1AQJ5", "32.17224246", "34.81444894",
+				"7.777438959", "1", "HOTBOX-D88A", "c0:ac:54:f5:b4:c9", "2412", "-92");
+		a[0]=av;
 		int realsize = 1;
 
-		assertTrue(35.21240758 == Formulas.sumOfLon(a, realsize));
+		assertTrue(34.81444894 == Formulas.sumOfLon(a, realsize));
 	}
 
 	@Test
 	public void testSumOfWeight() {
 		MacBig[] a = new MacBig[1];
-		MacBig	s =	new MacBig("1c:b9:c4:12:7d:c8","-46","2017/11/03 16:10:50","2462","35.21240758"
-				,"32.10551925","Naama","NRD90U","46");
-		a[0]=s;
+		MacBig av = new MacBig("01/12/2017 10:42", "display=NRD90M.G950FXXU1AQJ5", "32.17224246", "34.81444894",
+				"7.777438959", "1", "HOTBOX-D88A", "c0:ac:54:f5:b4:c9", "2412", "-92");
+		a[0]=av;
 		int realsize = 1;
 
-		assertTrue(-46.0 == Formulas.sumOfWeight(a, realsize));
+		assertTrue(-92.0 == Formulas.sumOfWeight(a, realsize));
 
 	}
 

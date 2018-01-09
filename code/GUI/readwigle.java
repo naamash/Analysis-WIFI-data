@@ -115,7 +115,7 @@ public class readwigle extends JPanel {
 		JButton btnNewButton_1 = new JButton("Save");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (link == ""){
+				if (link.isEmpty()){
 					JOptionPane.showMessageDialog(new JFrame(), "Choose folder or file please. This field can not be empty!");
 					correctlink = false;
 				}

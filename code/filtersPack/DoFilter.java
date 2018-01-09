@@ -15,6 +15,7 @@ import objects.MacBig_Container;
 public class DoFilter {
 	
 	public Filter filter;
+	public Filter[] filters = new Filter[3];
 	
 	/**
 	 * Copying constructor.
@@ -22,6 +23,20 @@ public class DoFilter {
 	 */
 	public DoFilter(Filter filter){
 		this.filter=filter;
+	}
+	
+	public DoFilter(Filter[]filters){
+		System.out.println(Arrays.toString(filters));
+		if(!(""+filters[1]).equals("null") && !(""+filters[0]).equals("null") && !(""+filters[2]).equals("null")){
+		this.filters[0] = filters[0];
+		this.filters[1] = filters[1];
+		this.filters[2] = filters[2];
+		}
+		else if((""+filters[1]).equals("null")&&!(""+filters[0]).equals("null")){
+			System.out.println("*****");
+			this.filters[0] = filters[0];
+			System.out.println(Arrays.toString(this.filters));
+		}
 	}
 	
 	/**

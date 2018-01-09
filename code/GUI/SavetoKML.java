@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import filtersPack.Filter;
 import objects.hash;
 
 import javax.swing.JButton;
@@ -26,7 +27,7 @@ public class SavetoKML extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SavetoKML(Connect c) {
+	public SavetoKML(Connect c,Filter []filters) {
 		setLayout(null);
 		JButton button = new JButton("choose folder ");
 		button.addActionListener(new ActionListener() {
