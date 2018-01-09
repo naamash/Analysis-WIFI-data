@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class clear extends JPanel {
@@ -28,7 +30,15 @@ public class clear extends JPanel {
 				}
 				else{
 					c.CLEAR();
-				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				try {
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(new JFrame(),"Clear got finished. Add new file or folder from menu.");
 				}
 			}

@@ -12,6 +12,7 @@ import java.util.Scanner;
 import filtersPack.HelpFilter;
 import objects.MacBig;
 import objects.MacBig_Container;
+import objects.hash;
 
 
 /**
@@ -33,7 +34,7 @@ public class ReadAndWrite {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<MacBig_Container> readingFolderWigle(File folder)  {	
+	public static ArrayList<MacBig_Container> readingFolderWigle(File folder) throws IOException  {	
 
 		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
 
@@ -58,7 +59,12 @@ public class ReadAndWrite {
 					while (sc.hasNext()) {
 						String str = sc.nextLine();
 						String []a = str.split(",");
+						if (Arrays.toString(a).equals("[]")){
+							break;
+						}
+						else{
 						information.add(a) ;
+						}
 						try {
 							if ((information.get(0)[0].contains("WigleWifi-1.4"))
 									&& (!(information.get(0)[0].equals(null)))
@@ -97,11 +103,11 @@ public class ReadAndWrite {
 
 			}
 		}
-		//		System.out.println("---------------------------------------size:  "+answer.size());
 		//		FindLocation.checkMac(answer);
-		//return WriteToCsv(answer);
 		return answer;
 	}
+	
+	
 	/**
 	 * This function reading single wigleWifi file and write it in ArrayList<MacBig_Container>.
 	 * @param file
@@ -245,7 +251,6 @@ public class ReadAndWrite {
 			pw.println();
 		}
 		write.close();
-		System.out.println(answer.size()+"   ***************");
 		System.out.println("completed Csv");
 		return Answer_One;
 	}

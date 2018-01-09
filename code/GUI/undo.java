@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
@@ -29,7 +31,15 @@ public class undo extends JPanel {
 				}
 				else{
 					c.UNDO();
-				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				try {
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(new JFrame(),"Undo got finished. Choose your new choice from menu.");
 				}
 			}

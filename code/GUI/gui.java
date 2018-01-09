@@ -20,12 +20,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
-/**
- * This class building the main Frame of GUI.
- * all the panels frames Must be defined in this class, and all of the moving between the panels must be in this class.
- * @author 
- *
- */
 public class gui {
 	Filter filters[] = new Filter[3];
 	private JFrame frame;
@@ -706,10 +700,6 @@ public class gui {
 				if (c.macs.isEmpty()){	
 					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
 				}
-				else if (!(""+filters[1]).equals("null")&&((""+filters[2]).equals("null")||(""+filters[0]).equals("null"))){
-					JOptionPane.showMessageDialog(new JFrame(), "You have to insert two filters in first!");
-
-				}
 				else{
 				current.setVisible(false);
 				SavetoCSV = new SavetoCSV(c,filters);
@@ -726,9 +716,6 @@ public class gui {
 				if (c.macs.isEmpty()){	
 					JOptionPane.showMessageDialog(new JFrame(), "You have to insert DataBase in first!");
 				}
-				else if (!(""+filters[1]).equals("null")&&((""+filters[2]).equals("null")||(""+filters[0]).equals("null"))){
-					JOptionPane.showMessageDialog(new JFrame(), "You have to insert two filters in first!");
-				}
 				else{
 				current.setVisible(false);
 				SavetoKML = new SavetoKML(c,filters);
@@ -739,8 +726,8 @@ public class gui {
 		});
 		mnSaveDatabase.add(btnToKml);
 		
-		JMenu readf = new JMenu("More");
-		menuBar.add(readf);
+		JMenu mnNewMenu_1 = new JMenu("More");
+		menuBar.add(mnNewMenu_1);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -752,7 +739,7 @@ public class gui {
 				filters = new Filter[3];
 			}
 		});
-		readf.add(btnClear);
+		mnNewMenu_1.add(btnClear);
 		
 		JButton btnUndo = new JButton("Undo");
 		btnUndo.addActionListener(new ActionListener() {
@@ -764,16 +751,21 @@ public class gui {
 				filters = new Filter[3];
 			}
 		});
-		readf.add(btnUndo);
+		mnNewMenu_1.add(btnUndo);
 		
-		JButton btnNewButton = new JButton("Filter by last filters");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnWriteChooseFilters = new JButton("write choose filters to txt file");
+		btnWriteChooseFilters.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				c.readfilters(c);
-				JOptionPane.showMessageDialog(new JFrame(), "DataBase got filtered by last filters!");
-				JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				
+				
+				
+				
 			}
 		});
-		readf.add(btnNewButton);
+		mnNewMenu_1.add(btnWriteChooseFilters);
+		
+		JButton btnReadTxtFile = new JButton("read txt file with choose filters");
+		mnNewMenu_1.add(btnReadTxtFile);
 	}
+
 }

@@ -57,7 +57,7 @@ public class Connect {
 		this.macs.addAll(temp);
 	}
 
-	public void addArrayList(ArrayList<MacBig_Container> other) {
+	public void addArrayList(ArrayList<MacBig_Container> other) throws IOException {
 		//this.macs.addAll(other);
 		douplicate();
 		hash.HowMacAndRow(other);
@@ -248,7 +248,12 @@ public class Connect {
 					ReadAndWrite c = new ReadAndWrite();
 					File file = new File(path);
 					if (file.isDirectory()){
-						macs.addAll(c.readingFolderWigle(file));
+						try {
+							macs.addAll(c.readingFolderWigle(file));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					else{
 						macs.addAll(c.readingFileWigle(file));
@@ -479,7 +484,12 @@ public class Connect {
 				public void run() {
 					// TODO Auto-generated method stub
 					synchronized (macs) {
-						macs.addAll(k.readingFolderWigle(folder));
+						try {
+							macs.addAll(k.readingFolderWigle(folder));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						macsBefore = new ArrayList<MacBig_Container>();
 						macsBefore.addAll(macs);
 						douplicate();
@@ -563,8 +573,9 @@ public class Connect {
 	 * The function returns how many Macs and rows there are
 	 * @param macs
 	 * @return
+	 * @throws IOException 
 	 */
-	public String MacAndRows (ArrayList<MacBig_Container> macs){
+	public String MacAndRows (ArrayList<MacBig_Container> macs) throws IOException{
 		return hash.HowMacAndRow(macs);
 	}
 	/**

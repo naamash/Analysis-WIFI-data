@@ -1,10 +1,14 @@
 package objects;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import writeTo.ReadAndWrite;
+
 import java.util.Map;
 
 /**
@@ -118,7 +122,7 @@ public class hash {
 
 
 
-	public static String HowMacAndRow (ArrayList<MacBig_Container> answer){
+	public static String HowMacAndRow (ArrayList<MacBig_Container> answer) throws IOException{
 		ArrayList<MacBig_Container> macs = new ArrayList<MacBig_Container>();
 		MacBig temp;
 		boolean isIn = true;

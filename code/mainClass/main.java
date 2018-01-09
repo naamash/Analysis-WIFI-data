@@ -22,7 +22,8 @@ public class main {
 	public static void main(String[] args) throws IOException {
 		
 		//ReadAndWrite.readingFile46Col("C:\\Users\\hadar\\Desktop\\gujv.csv");
-		String file = "C:\\Users\\hadar\\Desktop\\hhhh";
+		String file = "C:\\Users\\נעמה שטאובר\\Desktop\\boazcheck";
+		//String file = "C:\\Users\\hadar\\Desktop\\hhhh";
 		File folder = new File(file);
 		ReadAndWrite.readingFolderWigle(folder);
 //		ArrayList<MacBig_Container> answer = new ArrayList<MacBig_Container>();
