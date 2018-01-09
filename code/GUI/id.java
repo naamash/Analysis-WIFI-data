@@ -77,6 +77,7 @@ public class id extends JPanel {
 					}
 					else if ((""+filters[0]).equals("null") && (""+filters[1]).equals("null")) {
 						filters[0] = ft;
+						System.out.println(filters[0].toString());
 						c.addfilter_ID(id);
 						JOptionPane.showMessageDialog(new JFrame(), "Filter by ID got finished");
 						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));

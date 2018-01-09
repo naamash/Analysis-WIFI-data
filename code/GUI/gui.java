@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -16,6 +17,7 @@ import objects.hash;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
@@ -753,19 +755,44 @@ public class gui {
 		});
 		mnNewMenu_1.add(btnUndo);
 		
-		JButton btnWriteChooseFilters = new JButton("write choose filters to txt file");
-		btnWriteChooseFilters.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Filter by last filters");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				
-				
+				c.readfilters(c);
+				JOptionPane.showMessageDialog(new JFrame(), "DataBase got filtered by last filters!");
+				try {
+					JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
-		mnNewMenu_1.add(btnWriteChooseFilters);
-		
-		JButton btnReadTxtFile = new JButton("read txt file with choose filters");
-		mnNewMenu_1.add(btnReadTxtFile);
+		mnNewMenu_1.add(btnNewButton);
+//		JButton btnWriteChooseFilters = new JButton("write choose filters to txt file");
+//		btnWriteChooseFilters.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				
+//				
+//				
+//			}
+//		});
+//		mnNewMenu_1.add(btnWriteChooseFilters);
+//		
+//		JButton btnReadTxtFile = new JButton("read txt file with choose filters");
+//		btnReadTxtFile.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				
+//				
+//				
+//			}
+//		});
+//		mnNewMenu_1.add(btnReadTxtFile);
 	}
 
 }

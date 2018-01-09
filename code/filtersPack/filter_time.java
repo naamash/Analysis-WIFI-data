@@ -18,6 +18,11 @@ public class filter_time implements Filter {
 		this.time_end=time_end;
 		this.time_start=time_start;
 	}
+	
+	public filter_time (filter_time other){
+		this.time_start = other.time_start;
+		this.time_end = other.time_end;
+	}
 
 	/**
 	 * implementation by time the Check function from Filter

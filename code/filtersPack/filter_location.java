@@ -22,12 +22,19 @@ public class filter_location implements Filter{
 		this.radious=radious;
 	}
 	
+	public filter_location(filter_location other){
+		this.lat=other.lat;
+		this.lon=other.lon;
+		this.radious=other.radious;
+
+	}
+	
+	
 	/**
 	 * implementation by location the Check function from Filter
 	 */
 	public boolean check (MacBig_Container scan){
-		if(HelpFilter.Distance(lat, lon, (scan.arr_macbig[0].lat),
-				(scan.arr_macbig[0].lon))<=this.radious){
+		if(HelpFilter.Distance(this.lat, this.lon, (scan.arr_macbig[0].lat),(scan.arr_macbig[0].lon))<=this.radious){
 			return true;
 		}
 		return false;
