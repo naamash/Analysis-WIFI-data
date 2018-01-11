@@ -234,8 +234,11 @@ public class HelpFilter {
 		time = time.replace("/", "-");
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		Date date=null;
-		if(time.split(" ")[1].length() == 5)
-			time = time + ":00";
+		try {
+			if (time.split(" ")[1].length() == 5)
+				time = time + ":00";
+		} catch (Exception e) {
+		}
 		try {	
 			if(time.split(" ")[0].split("-")[0].length() == 2)
 				sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

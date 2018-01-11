@@ -26,7 +26,6 @@ public class filter_location implements Filter{
 		this.lat=other.lat;
 		this.lon=other.lon;
 		this.radious=other.radious;
-
 	}
 	
 	
@@ -39,7 +38,6 @@ public class filter_location implements Filter{
 		}
 		return false;
 	}
-
 }
 
 

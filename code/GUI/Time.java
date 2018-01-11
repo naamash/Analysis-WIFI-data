@@ -13,12 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
+
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Time extends JPanel {
@@ -114,7 +117,7 @@ public class Time extends JPanel {
 		btnNewButton.setBounds(164, 279, 114, 45);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+			//	try {
 					String date_min = date1.getDate().toLocaleString();
 					String datte1 = date_min.substring(9, date_min.length());
 					String date_max = date1.getDate().toLocaleString();
@@ -123,15 +126,20 @@ public class Time extends JPanel {
 							+ sec1.getSelectedItem();
 					String tim2 = "" + hur2.getSelectedItem() + ":" + "" + min2.getSelectedItem() + ":" + ""
 							+ sec2.getSelectedItem();
-					String timme1 = datte1 + " " + tim1;
-					String timme2 = datte2 + " " + tim2;
+					String timme1 = datte1 + "" + tim1;
+					String timme2 = datte2 + "" + tim2;
 					Filter ft = new filter_time(timme1, timme2);
 					if (!(""+filters[1]).equals("null") && !(""+filters[0]).equals("null")) {
 						filters[2] = ft;
 						if (filters[1].getClass().getName().contains("AND_filter")) {
 							c.and_filter(filters[0], filters[2]);
 							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
-							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							try {
+								JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							} catch (HeadlessException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							filters_writeAndRead.write_filter("filter that have been choose", filters);
 							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 							JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
@@ -139,7 +147,12 @@ public class Time extends JPanel {
 						} else if (filters[1].getClass().getName().contains("OR_filter")) {
 							c.OR_filter(filters[0], filters[2]);
 							JOptionPane.showMessageDialog(new JFrame(), "Filters got finished");
-							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							try {
+								JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+							} catch (HeadlessException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							filters_writeAndRead.write_filter("filter that have been choose", filters);
 							filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 							JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
@@ -155,15 +168,20 @@ public class Time extends JPanel {
 						filters[0] = ft;
 						c.addfilter_TIME(timme1, timme2);
 						JOptionPane.showMessageDialog(new JFrame(), "Filter by time got finished");
-						JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						try {
+							JOptionPane.showMessageDialog(new JFrame(), hash.HowMacAndRow(c.macs));
+						} catch (HeadlessException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						filters_writeAndRead.write_filter("matala two\\filter that have been choose.txt", filters);
 						JOptionPane.showMessageDialog(new JFrame(), "Information file about filters saved as 'filter that have been choose.txt' in this project in 'matala two' folder.");
 					}
 
-				} 
-				catch (Exception e2) {
-					JOptionPane.showMessageDialog(new JFrame(), "Filter by time failed");
-				}
+//				} 
+//				catch (Exception e2) {
+//					JOptionPane.showMessageDialog(new JFrame(), "Filter by time failed");
+//				}
 			}
 		});
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 25));

@@ -28,6 +28,9 @@ public class filter_time implements Filter {
 	 * implementation by time the Check function from Filter
 	 */
 	public boolean check (MacBig_Container scan){
+		if(scan.arr_macbig[0].time.equals("Time")){
+			return false;
+		}
 		Date StartDate = HelpFilter.fromStringToDate(time_start);
 		Date EndDate =  HelpFilter.fromStringToDate(time_end);
 		Date dateLine = null;
