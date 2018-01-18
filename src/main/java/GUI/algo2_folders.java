@@ -31,6 +31,7 @@ public class algo2_folders extends JPanel {
 	boolean correctfolder;
 
 
+	
 	/**
 	 * Create the panel.
 	 */
