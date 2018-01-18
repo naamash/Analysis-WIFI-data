@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 /.gradle/
 /.gradle/
 /bin/
+=======
+/target/
+>>>>>>> branch 'master' of https://github.com/hadaral/KmlAndCsv-files.git
