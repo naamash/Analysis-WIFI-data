@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="GUI.withoutID" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/withoutID.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="176" x="87" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="GUI.withoutTime" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/withoutTime.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="192" x="303" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="GUI.SavetoKML" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/SavetoKML.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="153" x="535" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="GUI.Loc" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/Loc.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="144" x="728" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="GUI.filters_writeAndRead" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/filters_writeAndRead.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="193" x="912" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="GUI.gui" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/gui.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="203" x="1145" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="GUI.clear" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/clear.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="110" x="1388" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="GUI.id" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/id.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="133" x="1538" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="GUI.SavetoCSV" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/SavetoCSV.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="165" x="1711" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="GUI.Time" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/Time.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="151" x="1916" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="GUI.algo1" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/algo1.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="144" x="2107" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="GUI.withoutPlace" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/withoutPlace.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="197" x="2291" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="GUI.read46" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/read46.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="121" x="2528" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="GUI.readfilter" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/readfilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="104" x="2689" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="GUI.Connect" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/Connect.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="646" width="381" x="1145" y="493"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="GUI.readwigle" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/readwigle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="139" x="2833" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="GUI.undo" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/undo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="110" x="3012" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="GUI.algo2_folders" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/algo2_folders.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="158" x="3162" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="GUI.algo2_Mac_Signal" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/GUI/algo2_Mac_Signal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="448" width="188" x="3360" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="GUI.Home" project="KmlAndCsv-files" file="/KmlAndCsv-files/code/GUI/Home.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="116" x="3588" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="21">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="22" name="c"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

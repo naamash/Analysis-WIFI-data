@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="writeTo.HelpersBeforeWrite" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/writeTo/HelpersBeforeWrite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="634" x="-198" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="writeTo.ReadAndWrite" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/writeTo/ReadAndWrite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="489" x="476" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="writeTo.FindIndex" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/writeTo/FindIndex.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="423" x="1005" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="writeTo.ConvertToKml" project="KmlAndCsv-files" 
+    file="/KmlAndCsv-files/code/writeTo/ConvertToKml.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="345" x="1468" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
