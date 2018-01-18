@@ -17,6 +17,7 @@ import objects.MacBig_Container;
 import writeTo.HelpersBeforeWrite;
 import writeTo.ReadAndWrite;
 
+
 public class FindLocation {
 
 	static int IndexSignalInfo=9;
