@@ -138,6 +138,7 @@ public class FindLocation {
 	}
 
 	
+	
 	/**
 	 * This function get folder of dataBase and search on the dataBase the information of the Strings Macs and Signal that the user enter.
 	 * After that the function calculate the Weighted average and find Estimated location of the strings that the user enter.
