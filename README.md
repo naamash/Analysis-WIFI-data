@@ -76,9 +76,11 @@ build.gradle - gradle.
 
 **How to run the program**  
 --  
-The user can choose : matala0+1 or matala2.
-Or run the GUI.  
-In GUI the user have to choose file or folder or SQL and than choose from the main his choices.    
+Run the GUI.  
+In GUI the user have to choose file or folder or SQL (the user can add more dataBase or clear the dataBase).  
+Then, the user can choose to apply algo1 or algo2 on the database.  
+He can also filter the dataBase as his wish while choosing the filter on the options in menu on the top.  
+The user can also export the dataBase to KML or to CSV as his wish.
 
 
 In matala0+1:  
