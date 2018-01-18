@@ -42,6 +42,7 @@ public class FindLocation {
 	static int Number_of_loc = 3;
 	
 
+	
 	/**
 	 * This function get folder and String location.
 	 * The function read the files from the folder calculate the Weighted average for any MAC and convert it to csv file.
