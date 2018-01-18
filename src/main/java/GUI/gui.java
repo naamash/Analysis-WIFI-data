@@ -105,7 +105,6 @@ public class gui {
 		mnNew.add(btnWhigleWififolder);
 
 		
-		
 		JButton btnCsvCols = new JButton("CSV 46 cols file");
 		btnCsvCols.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
