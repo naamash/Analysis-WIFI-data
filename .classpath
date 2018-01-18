@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/jsr173_api-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hadar/Desktop/KmlAndCsv-files/Jak/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
