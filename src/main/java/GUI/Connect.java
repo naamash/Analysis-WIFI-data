@@ -46,11 +46,7 @@ public class Connect {
 	ArrayList<String> folder_paths;
 
 
-
-
 	/**
-	 * https://github.com/yuvalmizrahi2/Task1/blob/master/src/gui/Wraper.java
-	 * https://github.com/YitzhakSharon/OOP/blob/master/src/GUI/Connect.java
 	 * Checks that there are no Macs duplicate 
 	 */
 	public void douplicate() {
